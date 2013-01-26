@@ -10,7 +10,8 @@ double rh;
 
 //Compute Composition C
 for(k=k1;k<k2;k++){
-C[k]=0;
+C[k]=0.0;
+p[k]=0.0;
 
 
 
@@ -20,6 +21,7 @@ for(a=0;a<Q;a++)
 }
 
 }
+
 
 //Compute free energy and density
 for(k=k1;k<k2;k++)
@@ -63,9 +65,9 @@ dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]+mu[d[k][10]]+m
 dmu[k][2]=(mu[d[k][4]]-mu[d[k][5]])*t1/2+(mu[d[k][10]]+mu[d[k][11]]+mu[d[k][14]]+mu[d[k][15]]-mu[d[k][12]]-mu[d[k][13]]-mu[d[k][16]]-mu[d[k][17]])*t2/2;
 	
 	
-	for(i=0;i<2;i++)
+	for(i=0;i<dimensions;i++)
 	{
-		u[k][i]=0;
+		u[k][i]=0.0;
 		for(a=0;a<19;a++)
 			{
 				u[k][i]+=e[a][i]*g[k][a];
@@ -75,7 +77,7 @@ dmu[k][2]=(mu[d[k][4]]-mu[d[k][5]])*t1/2+(mu[d[k][10]]+mu[d[k][11]]+mu[d[k][14]]
 			}	
 		
 		
-		u[k][i]+=C[k]*dmu[k][i];
+		u[k][i]-=C[k]*dmu[k][i];
 		
 		u[k][i]/=rho[k];
 		u[k][i]/=cs2;	
@@ -85,11 +87,11 @@ dmu[k][2]=(mu[d[k][4]]-mu[d[k][5]])*t1/2+(mu[d[k][10]]+mu[d[k][11]]+mu[d[k][14]]
 //Compute macroscopic pressure
 for(k=k1;k<k2;k++)
 {
-	drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]+rho[d[k][14]]+rho[d[k][16]]-rho[d[k][7]]-rho[d[k][9]]-rho[d[k][15]]-rho[d[k][17]])*t2/2;
+	drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]+rho[d[i][14]]+rho[d[i][16]]-rho[d[i][7]]-rho[d[i][9]]-rho[d[i][15]]-rho[d[i][17]])*t2/2;
 
-drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]+rho[d[k][10]]+rho[d[k][12]]-rho[d[k][8]]-rho[d[k][9]]-rho[d[k][11]]-rho[d[k][13]])*t2/2;
+drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]+rho[d[i][10]]+rho[d[i][12]]-rho[d[i][8]]-rho[d[i][9]]-rho[d[i][11]]-rho[d[i][13]])*t2/2;
 
-drho[k][2]=(rho[d[k][4]]-rho[d[k][5]])*t1/2+(rho[d[k][10]]+rho[d[k][11]]+rho[d[k][14]]+rho[d[k][15]]-rho[d[k][12]]-rho[d[k][13]]-rho[d[k][16]]-rho[d[k][17]])*t2/2;
+drho[i][2]=(rho[d[i][4]]-rho[d[i][5]])*t1/2+(rho[d[i][10]]+rho[d[i][11]]+rho[d[i][14]]+rho[d[i][15]]-rho[d[i][12]]-rho[d[i][13]]-rho[d[i][16]]-rho[d[i][17]])*t2/2;
 
 	
 	
@@ -99,7 +101,7 @@ drho[k][2]=(rho[d[k][4]]-rho[d[k][5]])*t1/2+(rho[d[k][10]]+rho[d[k][11]]+rho[d[k
 		
 		}
 
-	p[k]+=drho[0][k]*u[k][0]+drho[1][k]*u[k][1]+drho[2][k]*u[k][2];
+	p[k]+=drho[k][0]*u[k][0]+drho[k][1]*u[k][1]+drho[k][2]*u[k][2];
 }
 
 //Compute gamma

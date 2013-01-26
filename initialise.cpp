@@ -28,6 +28,8 @@ void wet::initialise()
 	
 	dgamma= new double[ProcessN][19];
 	
+	dgamma1= new double[ProcessN][19];
+	
 	p=new double[ProcessN];//Pressure
 	
 	dp=new double[ProcessN][3];
@@ -75,11 +77,15 @@ void wet::initialise()
 		
 		equiliberiumh(k);
 	
-
+		//diffMD();
 		
 		for(a=0;a<Q;a++)
 			{
-				g[k][a]=geq[k][a];
+				g[k][a]=geq[k][a];//+(rho[k]-C[k]*mu[k]/cs2)*dgamma[k][a];
+				for(i=0;i<dimensions;i++)
+				{
+					//g[k][a]+=(e[a][i]-u[k][i])*((gamma[k][a]-t[a])*drho[k][i]-C[k]*gamma[k][a]*dmu[k][i]/cs2);
+				}
 				h[k][a]=heq[k][a]	;	
 			}
 	

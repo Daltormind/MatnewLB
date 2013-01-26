@@ -1,0 +1,73 @@
+//rhoomputes the mixed differenrhoes of rho ,mu rho, and p
+
+#include "wet.h"
+
+void wet::diffMD()
+{
+	//Work out mixed difference for rho
+	drho[k][0]*=3;
+	drho[k][0]-=t1/4*(rho[d[d[k][0]][0]]-rho[d[d[k][1]][1]])+t2/4*(rho[d[d[k][6]][6]]+rho[d[d[k][8]][8]]+rho[d[d[k][14]][14]]+rho[d[d[k][16]][16]]-rho[d[d[k][7]][7]]-rho[d[d[k][9]][9]]-rho[d[d[k][15]][15]]-rho[d[d[k][17]][17]]);
+
+	drho[k][1]*=3;
+	drho[k][1]-=t1/4*(rho[d[d[k][2]][2]]-rho[d[d[k][3]][3]])+t2/4*(rho[d[d[k][6]][6]]+rho[d[d[k][7]][7]]+rho[d[d[k][10]][10]]+rho[d[d[k][12]][12]]-rho[d[d[k][8]][8]]-rho[d[d[k][9]][9]]-rho[d[d[k][11]][11]]-rho[d[d[k][13]][13]]);
+
+	
+	drho[k][2]*=3;
+	drho[k][2]-=t1/4*(rho[d[d[k][4]][4]]-rho[d[d[k][5]][5]])+t2/4*(rho[d[d[k][10]][10]]+rho[d[d[k][11]][11]]+rho[d[d[k][14]][14]]+rho[d[d[k][15]][15]]-rho[d[d[k][12]][12]]-rho[d[d[k][13]][13]]-rho[d[d[k][16]][16]]-rho[d[d[k][17]][17]]);
+	
+	
+	//Work out mixed difference for C
+	dC[k][0]*=3;
+	dC[k][0]-=t1/4*(C[d[d[k][0]][0]]-C[d[d[k][1]][1]])+t2/4*(C[d[d[k][6]][6]]+C[d[d[k][8]][8]]+C[d[d[k][14]][14]]+C[d[d[k][16]][16]]-C[d[d[k][7]][7]]-C[d[d[k][9]][9]]-C[d[d[k][15]][15]]-C[d[d[k][17]][17]]);
+
+	dC[k][1]*=3;
+	dC[k][1]-=t1/4*(C[d[d[k][2]][2]]-C[d[d[k][3]][3]])+t2/4*(C[d[d[k][6]][6]]+C[d[d[k][7]][7]]+C[d[d[k][10]][10]]+C[d[d[k][12]][12]]-C[d[d[k][8]][8]]-C[d[d[k][9]][9]]-C[d[d[k][11]][11]]-C[d[d[k][13]][13]]);
+
+	
+	dC[k][2]*=3;
+	dC[k][2]-=t1/4*(C[d[d[k][4]][4]]-C[d[d[k][5]][5]])+t2/4*(C[d[d[k][10]][10]]+C[d[d[k][11]][11]]+C[d[d[k][14]][14]]+C[d[d[k][15]][15]]-C[d[d[k][12]][12]]-C[d[d[k][13]][13]]-C[d[d[k][16]][16]]-C[d[d[k][17]][17]]);
+
+	
+	//Work out mixed differnce for mu
+	dmu[k][0]*=3;
+	dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][8]][8]]+mu[d[d[k][14]][14]]+mu[d[d[k][16]][16]]-mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]-mu[d[d[k][15]][15]]-mu[d[d[k][17]][17]]);
+
+	dmu[k][1]*=3;
+	dmu[k][1]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][7]][7]]+mu[d[d[k][10]][10]]+mu[d[d[k][12]][12]]-mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]-mu[d[d[k][11]][11]]-mu[d[d[k][13]][13]]);
+
+	
+	dmu[k][2]*=3;
+	dmu[k][2]-=t1/4*(mu[d[d[k][4]][4]]-mu[d[d[k][5]][5]])+t2/4*(mu[d[d[k][10]][10]]+mu[d[d[k][11]][11]]+mu[d[d[k][14]][14]]+mu[d[d[k][15]][15]]-mu[d[d[k][12]][12]]-mu[d[d[k][13]][13]]-mu[d[d[k][16]][16]]-mu[d[d[k][17]][17]]);
+
+	
+	//Work out mixed difference for p
+	dp[k][0]*=3;
+	dp[k][0]-=t1/4*(p[d[d[k][0]][0]]-p[d[d[k][1]][1]])+t2/4*(p[d[d[k][6]][6]]+p[d[d[k][8]][8]]+p[d[d[k][14]][14]]+p[d[d[k][16]][16]]-p[d[d[k][7]][7]]-p[d[d[k][9]][9]]-p[d[d[k][15]][15]]-p[d[d[k][17]][17]]);
+
+	dp[k][1]*=3;
+	dp[k][1]-=t1/4*(p[d[d[k][2]][2]]-p[d[d[k][3]][3]])+t2/4*(p[d[d[k][6]][6]]+p[d[d[k][7]][7]]+p[d[d[k][10]][10]]+p[d[d[k][12]][12]]-p[d[d[k][8]][8]]-p[d[d[k][9]][9]]-p[d[d[k][11]][11]]-p[d[d[k][13]][13]]);
+
+	
+	dp[k][2]*=3;
+	dp[k][2]-=t1/4*(p[d[d[k][4]][4]]-p[d[d[k][5]][5]])+t2/4*(p[d[d[k][10]][10]]+p[d[d[k][11]][11]]+p[d[d[k][14]][14]]+p[d[d[k][15]][15]]-p[d[d[k][12]][12]]-p[d[d[k][13]][13]]-p[d[d[k][16]][16]]-p[d[d[k][17]][17]]);
+
+	
+	//Work out mixed difference for gamma
+	
+	for(a=0;a<Q;a++)
+	{
+	dgamma[k][a]*=3;
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][8]][8]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][16]][16]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][15]][15]][a]-gamma[d[d[k][17]][17]][a])*(e[a][0]-u[k][0]);
+
+	
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][7]][7]][a]+gamma[d[d[k][10]][10]][a]+gamma[d[d[k][12]][12]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][11]][11]][a]-gamma[d[d[k][13]][13]][a])*(e[a][1]-u[k][1]);
+
+	
+	
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][4]][4]][a]-gamma[d[d[k][5]][5]][a])+t2/4*(gamma[d[d[k][10]][10]][a]+gamma[d[d[k][11]][11]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][15]][15]][a]-gamma[d[d[k][12]][12]][a]-gamma[d[d[k][13]][13]][a]-gamma[d[d[k][16]][16]][a]-gamma[d[d[k][17]][17]][a])*(e[a][2]-u[k][2]);
+	}
+
+
+
+
+}

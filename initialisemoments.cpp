@@ -16,8 +16,8 @@ void wet::initialisemoments()
 	if((xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<R*R)
 		{
 			C[i]=1;
-			u[i][0]=ux;
-			u[i][1]=uy;
+			u[i][0]=xk;
+			u[i][1]=-yk;
 			u[i][2]=uz;
 		
 		}
@@ -25,8 +25,8 @@ void wet::initialisemoments()
 		{
 		
 			C[i]=0;
-			u[i][0]=0.0;
-			u[i][1]=0.0;
+			u[i][0]=xk;
+			u[i][1]=-yk;
 			u[i][2]=0.0;
 		
 		}

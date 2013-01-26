@@ -43,7 +43,7 @@ class wet
 	
 	int a,i ;//Discrete velocity index and cartesian index
 	
-	double (*gamma)[19], (*dgamma)[19]; //Gamma 
+	double (*gamma)[19], (*dgamma)[19], (*dgamma1)[19]; //Gamma 
 	
 	double (*g)[19], (*h)[19]; //The single particle probability functions
 	
@@ -84,13 +84,16 @@ class wet
 	void writemoments(long int);
 	void computemoments();
 	template<typename V> V mod(V,V);
+	void writevelocity(int);
+	void diffgamma();
+	void diffMD();
 	
 	
 	public:
 	
 		void algorithm();
 		wet(void);
-		
+		~wet(void);
 	
 	
 	

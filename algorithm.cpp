@@ -10,6 +10,7 @@ void wet::algorithm()
 	
 	
 	writemoments(0);
+	writevelocity(0);
 	
 	
 	
@@ -33,7 +34,7 @@ void wet::algorithm()
 
 
 	writemoments(1);
-
+	writevelocity(1);
 
 
 
