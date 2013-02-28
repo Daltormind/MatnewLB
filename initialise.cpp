@@ -7,10 +7,23 @@ void wet::initialise()
 {
 
 	ProcessN=Lx*Ly*Lz;
-	cs2=1.0/3.0;
+	cs2=108900.0;//1.0/3.0;
 	dt=1.0;
 	dx=1.0;
 	
+	if(dimensions==2)
+	{
+		t0=4.0/9.0,t1=1.0/9.0,t2=1.0/36.0; //Weightings
+		
+		
+	}	
+	if(dimensions==3)
+	{
+		t0=1.0/3.0,t1=1.0/18.0,t2=1.0/36.0; //Weightings
+		
+	}		
+	
+	Q=19;
 	
 	d=new int[ProcessN][18]; //Array which holds neigbour values
 	
@@ -28,8 +41,6 @@ void wet::initialise()
 	
 	dgamma= new double[ProcessN][19];
 	
-	dgamma1= new double[ProcessN][19];
-	
 	p=new double[ProcessN];//Pressure
 	
 	dp=new double[ProcessN][3];
@@ -46,13 +57,23 @@ void wet::initialise()
 	
 	h=new double[ProcessN][19];
 	
+	tau=new double[ProcessN];
+	 
+	gamhold=new double[ProcessN][19]; 
+	
+	hc=new double[ProcessN][19];
+	
+	gc=new double[ProcessN][19];
+	
+	f=new double[ProcessN];
+	
 	
 	
 	//--------------------Initialise Variable values----------------------
 	
-	t0=1.0/3.0,t1=1.0/18.0,t2=1.0/36.0; //Weightings
-	Q=19; // Number of velocity discridations
-				
+	
+	
+	
 	 
 	
 	 k1=0, k2=ProcessN;
@@ -64,21 +85,24 @@ void wet::initialise()
 	
 	initialisemoments();
 	
-	for(k=k1;k<k2;++k)
-	{
-		
+	
+	writemoments(0);
+	
 		
 		
 		
 	
 		
-		equiliberiumg(k);
+		equiliberiumg();
 		
 		
-		equiliberiumh(k);
-	
+		equiliberiumh();
+		writevelocity(0);	
 		//diffMD();
+		writevelocity(50);
 		
+	for(k=k1;k<k2;k++)
+	{	
 		for(a=0;a<Q;a++)
 			{
 				g[k][a]=geq[k][a];//+(rho[k]-C[k]*mu[k]/cs2)*dgamma[k][a];

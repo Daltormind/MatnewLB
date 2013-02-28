@@ -7,35 +7,57 @@
 void wet::algorithm()
 
 {
+		
+		
+		 int ch=50;
 	
 	
-	writemoments(0);
-	writevelocity(0);
-	
-	
-	
-	//for(st=0;st=Neqst;st++)
-		//{
-			computemoments();
+		for(st=1;st<=Neqst;st++)
+		{
+			//ch=ch+1;
+			//computemoments();
 			
-			for(k=k1;k<k2;k++)
 			
+			
+			//writemoments(st);
+			
+			
+			
+			
+			//writevelocity(st);
+			
+			diffMD();
+			
+			//writevelocity(ch);
+			
+			propcolg();
+			
+			propcolh();
+			
+			mach();
+			
+		for(k=k1;k<k2;k++)
+		{
+			for(a=0;a<Q;a++)
 			{
-			
-			//equiliberiumg(k);
-			
-			//equiliberiumh(k);
-			
-			//collisiong();
-			
-			//collisionh();
+				
+		
+				h[k][a]=hc[k][a];
+				g[k][a]=gc[k][a];
+		
 			}
-		//}
 
-
-	writemoments(1);
-	writevelocity(1);
-
-
+		}
+		
+		computemoments();
+		if(st%wrtst==0)
+		{
+		writemoments(st);
+		writevelocity(st);
+		}
+		equiliberiumg();
+		equiliberiumh();
+		
+		}
 
 }                                                                                             

@@ -15,25 +15,37 @@ void wet::readinput()
 		cout << "Can't open the input file wet.par " << endl;
 	}
 	
+	inputfile >> Neqst;
+    inputfile.ignore(250,'\n');
+    cout << "Neqst " << Neqst << endl;
+    
+    inputfile >> wrtst;
+    inputfile.ignore(250,'\n');
+    cout << "wrtst " << wrtst << endl;
+	
 	inputfile >> dimensions;
     inputfile.ignore(250,'\n');
     cout << "dimensions " << dimensions << endl;
     
     inputfile >> Lx >> Ly >> Lz;
     inputfile.ignore(250,'\n');
-    cout << "Simulation Box Size " << Lx << Ly << Lz << endl;
+    cout << "Simulation Box Size " << Lx << " " << Ly << " "<< Lz << endl;
     
     inputfile >> rho1 >> rho2 ;
     inputfile.ignore(250,'\n');
-    cout << "rho1 rho2 are " << rho1 << rho2 << endl;
+    cout << "rho1 rho2 are " << rho1 << " " << rho2 << endl;
     
     inputfile >> kappa ;
     inputfile.ignore(250,'\n');
     cout << "kappa is " << kappa << endl;
     
-    inputfile >> B ;
+    inputfile >> B >> BA ;
     inputfile.ignore(250,'\n');
-    cout << "B is " << B << endl;
+    cout << "B and BA are " << B << " " << BA << endl;
+    
+    inputfile >> tau1 >> tau2 ;
+    inputfile.ignore(250,'\n');
+    cout << "tau1 and tau2 are " << tau1 << " " << tau2 << endl;
     
     inputfile >> folder;
     inputfile.ignore(250,'\n');
@@ -63,7 +75,23 @@ void wet::readinput()
     
     inputfile.close();
     
-
+	//-------------------------------Get inputs from surf.par-----------------------
+    
+    inputfile.open("surf.par");
+    
+    if (!inputfile) {
+		cout << "Can't open the input file surf.par " << endl;
+	}
+	
+	inputfile >> xs >> ys >> zs ;
+    inputfile.ignore(250,'\n');
+    cout << "Drop centre " << xs << " " << ys << " " << zs << endl;
+    
+    inputfile >> wx >> wy >> wz;
+    inputfile.ignore(250,'\n');
+    cout << "Initial Drop velocity " << wx << " " << wy << " " << wz << endl;
+    
+    inputfile.close();
 
 
 

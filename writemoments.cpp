@@ -102,4 +102,27 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		
+		snprintf(filename1,20,"/sf%ld.m",in);			//Create a name for file that contain data
+		filename=folder+filename1;
+        file.open(filename.c_str());
+		file.precision(4);
+		
+		for( h = 0 ; h < Lz ; h++) 
+		{   
+			file << "f" << in << "(:,:," << h+1 << ")=[" << endl;
+			for( i = 0 ; i < Lx ; i++) 
+			{
+				for( j = 0 ; j < Ly ; j++) 
+				{
+					k = h + j*Lz + i*Ly*Lz;
+					file << f[k] << " " ;
+						
+				}
+				file << endl;
+			}
+			file <<"];" << endl;
+		}
+		
+		file.close();
+		
 }
