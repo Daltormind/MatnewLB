@@ -48,23 +48,65 @@ void wet::initialisemoments()
 		
 	for(i=k1;i<k2;++i)
 	{	
-		d2C=0.0;
-		for(a=1;a<Q;a++)
-		{
-			d2C+=t[a]*(C[d[i][a-1]]-2*C[i]+C[d[i][com[a]-1]]);
+		if(mask[k]!=28)
+		{	
+			d2C=0.0;
+			if(mask[k]==0)
+			{
+				
+				for(a=1;a<Q;a++)
+				{
+					d2C+=t[a]*(C[d[i][a-1]]-2*C[i]+C[d[i][com[a]-1]]);
 					
 			
+				}
+			}
+			else
+			{	
+				if(mask[d[k][0]]==28)
+				{
+					d2C=2*( t1*( 2*C[d[k][1]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) +2*t2*( C[d[k][7]] + C[d[k][9]] - 2*C[k] ));
+				}
+				if(mask[d[k][1]]==28)
+				{
+					d2C=2*( t1*( 2*C[d[k][0]]+ C[d[k][2]] + C[d[k][3]] - 4*C[k]) + 2*t2*( C[d[k][5]] + C[d[k][8]] - 2*C[k] ));
+				}
+				if(mask[d[k][2]]==28)
+				{
+					d2C=2*( t1*( 2*C[d[k][3]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + 2*t2*( C[d[k][8]] + C[d[k][9]] - 2*C[k] ));
+				}
+				if(mask[d[k][3]]==28)
+				{
+					d2C=2*( t1*( 2*C[d[k][2]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + 2*t2*( C[d[k][5]] + C[d[k][7]] - 2*C[k] ));
+				}
+				if(mask[d[k][6]]==28)
+				{
+					d2C=2*( t1*( C[d[k][2]] + C[d[k][3]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + t2*( C[d[k][8]] + 2*C[d[k][9]] +C[d[k][7]] - 4*C[k]) );
+				}
+				if(mask[d[k][7]]==28)
+				{
+					d2C=2*( t1*( C[d[k][2]] + C[d[k][3]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + t2*( 2*C[d[k][8]] + C[d[k][9]] +C[d[k][6]] - 4*C[k]) );
+				}
+				if(mask[d[k][8]]==28)
+				{
+					d2C=2*( t1*( C[d[k][2]] + C[d[k][3]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + t2*( 2*C[d[k][7]] + C[d[k][9]] +C[d[k][6]] - 4*C[k]) );
+				}
+				if(mask[d[k][9]]==28)
+				{
+					d2C=2*( t1*( C[d[k][2]] + C[d[k][3]]+ C[d[k][0]] + C[d[k][1]] - 4*C[k]) + t2*( 2*C[d[k][6]] + C[d[k][7]] +C[d[k][8]] - 4*C[k]) );
+				}
+			}
+		
+	
+			mu[i]=2*B*( C[i]*pow(C[i]-1.0,2) + pow(C[i],2)*(C[i]-1.0) ) - kappa*( 1/(cs2*dt*dt) )*d2C;
+	
 		}
-		
-		
-	
-	mu[i]=2*B*(C[i]*pow(C[i]-1.0,2)+pow(C[i],2)*(C[i]-1.0))-kappa*(1/(cs2*dt*dt))*d2C;
-	
 	}
 	
 	for(i=k1;i<k2;++i)
 	{
-	
+	if(mask[k]!=28)
+	{
 	if(dimensions==3)
 	{
 	dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]+mu[d[i][14]]+mu[d[i][16]]-mu[d[i][7]]-mu[d[i][9]]-mu[d[i][15]]-mu[d[i][17]])*t2/2;
@@ -82,6 +124,86 @@ void wet::initialisemoments()
 
 	dmu[i][2]=0.0;
 	}
+	
+	}
+	else
+	{
+		if(dimensions==2)
+		{
+			if(mask[d[k][0]])
+			{
+				dmu[k][0]=0.0;
+				
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][1]])
+			{
+				dmu[k][0]=0.0;
+				
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][2]])
+			{
+				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
+				
+				dmu[i][1]=0.0
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][3]])
+			{
+				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
+				
+				dmu[i][1]=0.0
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][6]])
+			{
+				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][8]]-mu[d[i][7]])*t2/2;
+
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][7]]-mu[d[i][8]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][7]])
+			{
+				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][8]])
+			{
+				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+			
+			if(mask[d[k][9]])
+			{
+				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][8]]-mu[d[i][7]])*t2/2;
+
+				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][7]]-mu[d[i][8]])*t2/2;
+
+				dmu[i][2]=0.0;
+			}
+		}
+	}
+	
 	for(a=0;a<19;a++)
 	{
 		gamma[i][a]=t[a]*(1+(e[a][0]*u[i][0]+e[a][1]*u[i][1]+e[a][2]*u[i][2])/cs2+pow(e[a][0]*u[i][0]
@@ -96,6 +218,9 @@ void wet::initialisemoments()
 	
 	
 	for(i=k1;i<k2;++i)
+	{
+	
+	if(mask[k]!=28)
 	{
 	if(dimensions==3)
 	{
@@ -112,6 +237,84 @@ void wet::initialisemoments()
 	drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
 
 	drho[i][2]=0.0;
+	}
+	}
+	else
+	{
+	if(dimensions==2)
+	{
+		if(mask[d[k][0]])
+			{
+				drho[k][0]=0.0;
+				
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][1]])
+			{
+				drho[k][0]=0.0;
+				
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][2]])
+			{
+				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
+				
+				drho[i][1]=0.0
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][3]])
+			{
+				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
+				
+				drho[i][1]=0.0
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][6]])
+			{
+				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][8]]-rho[d[i][7]])*t2/2;
+
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][7]]-rho[d[i][8]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][7]])
+			{
+				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][8]])
+			{
+				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+			
+			if(mask[d[k][9]])
+			{
+				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][8]]-rho[d[i][7]])*t2/2;
+
+				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][7]]-rho[d[i][8]])*t2/2;
+
+				drho[i][2]=0.0;
+			}
+	}
 	}
 	p[i]=rho[i]*(u[i][0]*u[i][0]+u[i][1]*u[i][1]+u[i][2]*u[i][2])/2;
 

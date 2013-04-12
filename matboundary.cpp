@@ -22,7 +22,7 @@ void wet::applyBoundaryConditions(void)
 				computecoordinate(k);
 				a2=xk*xk+yk*yk+zk*zk;
 				
-				if (mask[dd1[k]] == 28)
+				if (mask[dd[k][0]] == 28)
 				 {       
 				 ee=1;
 				 ae=xk-xc;
@@ -31,7 +31,7 @@ void wet::applyBoundaryConditions(void)
 				 	
 				 if(q<0.5)
 				 {
-				 	ff2[k]=2*q*fn1[k]+(1-2*q)*fn1[dd2[k]];
+				 	ff[k][2]=2*q*fn1[k]+(1-2*q)*fn1[dd2[k]];
 				 }
 				 
 				 if(q>=0.5)

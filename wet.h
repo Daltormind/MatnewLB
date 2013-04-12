@@ -13,9 +13,13 @@ using namespace std;
 
 const double e[19][3]={{0,0,0},{1,0,0},{-1,0,0},{0,1,0},{0,-1,0},{0,0,1},{0,0,-1},{1,1,0},{-1,1,0},{1,-1,0},{-1,-1,0},{0,1,1},{0,-1,1},{0,1,-1},{0,-1,-1},{1,0,1},{-1,0,1},{1,0,-1},{-1,0,-1}};
 
-const double t[19]={1.0/3.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0};
+//const double t[19]={1.0/3.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0};
+
+const double t[19]={4.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,0.0,0.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
 const int com[19]={0,2,1,4,3,6,5,10,9,8,7,14,13,12,11,18,17,16,15};
+
+//const int com[9]={0,2,1,4,3,8,7,6,5};
 class wet
 {
 
@@ -39,11 +43,13 @@ class wet
 	
 	int xk,yk,zk; //Positions
 	
+	int xs ys ,zs,xw,yw,zw; //Position and width of solid surface
+	
 	int xcentre,ycentre,zcentre,R; //Drop position and drop radius
 	
 	int a,i ;//Discrete velocity index and cartesian index
 	
-	double (*gamma)[19], (*dgamma)[19], (*dgamma1)[19]; //Gamma 
+	double (*gamma)[19], (*dgamma)[19]; //Gamma 
 	
 	double (*g)[19], (*h)[19]; //The single particle probability functions
 	
@@ -53,6 +59,15 @@ class wet
 	
 	double (*geq)[19], (*heq)[19]; //Equiliberium functions
 	
+	double (*gamhold)[19];//Used to calculate the laplacian of gamma
+	
+	double *tau,tau1,tau2;//Relaxation times
+	
+	double M,BA;//Mobility and free energy variation
+	
+	double *f;
+	
+	int wrtst;//step interval at which to write to file
 	
 	
 	int dimensions; //Number of dimensions the problem is being run in 
@@ -79,15 +94,18 @@ class wet
 	void initialise();
 	void neibour(int);
 	void readinput();
-	void equiliberiumg(int);
-	void equiliberiumh(int);
+	void equiliberiumg();
+	void equiliberiumh();
 	void writemoments(long int);
 	void computemoments();
 	template<typename V> V mod(V,V);
 	void writevelocity(int);
 	void diffgamma();
 	void diffMD();
-	
+	void propcolh();
+	void propcolg();
+	void mach();
+	void initialisesurface();
 	
 	public:
 	

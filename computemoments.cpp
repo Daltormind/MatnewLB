@@ -10,6 +10,8 @@ double rh;
 
 //Compute Composition C
 for(k=k1;k<k2;k++){
+if(mask[k]!=28)
+{
 C[k]=0.0;
 p[k]=0.0;
 
@@ -29,23 +31,57 @@ for(a=0;a<Q;a++)
 		
 	}
 }
+}
 
 
 //Compute free energy and density
 for(k=k1;k<k2;k++)
 {	
-	
+	if(mask[k]!=28)
+{
 	d2C=0.0;
+	
+	if(mask[k]==0)
+	{
 	for(a=1;a<Q;a++)
 		{
 			d2C+=t[a]*(C[d[k][a-1]]-2*C[k]+C[d[k][com[a]-1]]);
 			
 		}
-	
+	}
+	else
+	{
+		if(dimensions==2)
+		{
+			if(mask[d[k][0]]==28)
+			{
+				d2C=2/cs2*( t1*( 2*C[d[k][1]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+			}
+			
+			if(mask[d[k][1]]==28)
+			{
+				d2C=2/cs2*( t1*( 2*C[d[k][0]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+
+			}
+			
+			if(mask[d[k][2]]==28)
+			{
+				d2C=2/cs2*( t1*( 2*C[d[k][3]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+
+			}
+			
+			if(mask[d[k][3]]==28)
+			{
+				d2C=2/cs2*( t1*( 2*C[d[k][2]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+
+			}
+		}	
+	}
 	mu[k]=2*B*(C[k]*pow(C[k]-1.0,2)+pow(C[k],2)*(C[k]-1.0))-kappa*(1.0/(cs2*dt*dt))*d2C;
 	
 	
 	rho[k]=C[k]*rho1+(1-C[k])*rho2;
+}
 }
 
 
@@ -55,6 +91,10 @@ for(k=k1;k<k2;k++)
 
 //Compute Macroscopic velocity
 for(k=k1;k<k2;k++)
+{
+if(mask[k]!=28)
+{
+if(mask[k]==0)
 {
 if(dimensions==3)
 {
@@ -72,7 +112,48 @@ dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu
 
 dmu[k][2]=0.0;
 }
-	
+}
+else
+{
+	if(dimensions==2)
+		{
+			if(mask[d[k][0]]==28)
+			{
+				dmu[k][0]=0.0;
+				
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu[d[k][9]])*t2/2;
+
+				dmu[k][2]=0.0;
+			}
+			
+			if(mask[d[k][1]]==28)
+			{
+				dmu[k][0]=0.0;
+				
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu[d[k][9]])*t2/2;
+
+				dmu[k][2]=0.0;
+			}
+			
+			if(mask[d[k][2]]==28)
+			{
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
+				
+				dmu[k][1]=0.0
+
+				dmu[k][2]=0.0;
+			}
+			
+			if(mask[d[k][3]]==28)
+			{
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
+				
+				dmu[k][1]=0.0
+
+				dmu[k][2]=0.0;
+			}
+		}
+}	
 	for(i=0;i<dimensions;i++)
 	{
 		u[k][i]=0.0;
@@ -97,9 +178,14 @@ dmu[k][2]=0.0;
 		}
 	}
 }
+}
 
 //Compute macroscopic pressure
 for(k=k1;k<k2;k++)
+{
+if(mask[k]!=28)
+{
+if(mask[k]==0)
 {
 if(dimensions==3)
 {
@@ -117,6 +203,48 @@ drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][
 
 drho[k][2]=0.0;
 }
+}
+else
+{
+if(dimensions==2)
+		{
+			if(mask[d[k][0]]==28)
+			{
+				drho[k][0]=0.0;
+				
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
+
+				drho[k][2]=0.0;
+			}
+			
+			if(mask[d[k][1]]==28)
+			{
+				drho[k][0]=0.0;
+				
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
+
+				drho[k][2]=0.0;
+			}
+			
+			if(mask[d[k][2]]==28)
+			{
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
+				
+				drho[k][1]=0.0
+
+				drho[k][2]=0.0;
+			}
+			
+			if(mask[d[k][3]]==28)
+			{
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
+				
+				drho[k][1]=0.0
+
+				drho[k][2]=0.0;
+			}
+		}
+}
 	
 	
 	for(a=0;a<19;a++)
@@ -127,10 +255,12 @@ drho[k][2]=0.0;
 
 	p[k]+=drho[k][0]*u[k][0]+drho[k][1]*u[k][1]+drho[k][2]*u[k][2];
 }
-
+}
 //Compute gamma
 
 for(k=k1;k<k2;k++)
+	{
+	if(mask[k]!=28)
 	{
 		/*
 		gamma[k][0]=t1/cs2*(1-(u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/2);
@@ -169,6 +299,8 @@ for(k=k1;k<k2;k++)
 	
 	tau[k]=1.0/(C[k]/tau1+(1-C[k])/tau2);
 	
+	
+	}
 	}
 	
 }
