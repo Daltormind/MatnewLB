@@ -10,6 +10,8 @@ void wet::writemoments(long int in)
 	char filename1[20];
 		string filename;
         
+        //------------------------- Write the composition File------------------------
+        
         snprintf(filename1,20,"/sC%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
@@ -23,7 +25,9 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					file << C[k] << " " ;
+					if(mask[k]==28){file << -2 << " " ;}
+					
+					else{file << C[k] << " " ;}
 						
 				}
 				file << endl;
@@ -32,6 +36,8 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
+		
+		//--------------------------- Write free energy file---------------------------
 		
 		snprintf(filename1,20,"/smu%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
@@ -56,6 +62,8 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		
+		//-------------------------- Write Density File -------------------------------
+		
 		snprintf(filename1,20,"/srho%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
@@ -78,6 +86,8 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
+		
+		//------------------------- Write pressure File----------------------------------
 		
 		snprintf(filename1,20,"/sp%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
@@ -102,6 +112,8 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		
+		//------------------------ Write f File -----------------------------------------
+		
 		snprintf(filename1,20,"/sf%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
@@ -116,6 +128,31 @@ void wet::writemoments(long int in)
 				{
 					k = h + j*Lz + i*Ly*Lz;
 					file << f[k] << " " ;
+						
+				}
+				file << endl;
+			}
+			file <<"];" << endl;
+		}
+		
+		file.close();
+		
+		//--------------------------- Write mask ---------------------------------------
+		
+		snprintf(filename1,20,"/smask%ld.m",in);			//Create a name for file that contain data
+		filename=folder+filename1;
+        file.open(filename.c_str());
+		file.precision(4);
+		
+		for( h = 0 ; h < Lz ; h++) 
+		{   
+			file << "mask" << in << "(:,:," << h+1 << ")=[" << endl;
+			for( i = 0 ; i < Lx ; i++) 
+			{
+				for( j = 0 ; j < Ly ; j++) 
+				{
+					k = h + j*Lz + i*Ly*Lz;
+					file << mask[k] << " " ;
 						
 				}
 				file << endl;

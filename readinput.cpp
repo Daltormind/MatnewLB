@@ -85,11 +85,11 @@ void wet::readinput()
 	
 	inputfile >> xs >> ys >> zs ;
     inputfile.ignore(250,'\n');
-    cout << "Drop centre " << xs << " " << ys << " " << zs << endl;
+    cout << "Surface position " << xs << " " << ys << " " << zs << endl;
     
     inputfile >> wx >> wy >> wz;
     inputfile.ignore(250,'\n');
-    cout << "Initial Drop velocity " << wx << " " << wy << " " << wz << endl;
+    cout << "surface width " << wx << " " << wy << " " << wz << endl;
     
     inputfile.close();
 

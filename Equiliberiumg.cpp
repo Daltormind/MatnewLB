@@ -5,10 +5,12 @@
 void wet ::equiliberiumg()
 
 {
-	if(mask[k]!=28)
-	{
+
 	for(k=k1;k<k2;k++)
 	{
+	if(mask[k]!=28)
+	{
+	
 
 		for(a=0;a<Q;a++)
 		{	

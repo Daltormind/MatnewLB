@@ -7,7 +7,8 @@ void wet::propcolh()
 	double hold;
 	
 	for(k=k1;k<k2;k++)
-	{
+	{	if(mask[k]!=28)
+		{
 		for(a=0;a<Q;a++)
 		{
 			
@@ -43,6 +44,20 @@ void wet::propcolh()
 		hold*=gamma[k][a];
 		
 		hold+=h[k][a]-1/(tau[k]+0.5)*(h[k][a]-heq[k][a]);
+			
+			if(mask[k]==1)
+			{
+				if(a==0)
+				{
+					hc[k][a]=hold;
+				}
+				else
+				{
+					if(mask[d[k][a-1]]==28){hc[k][com[a]-1]=hold;}else{hc[d[k][a-1]][a]=hold;}		
+				}
+			}
+			else
+			{
 			if(a==0)
 			{
 				hc[k][a]=hold;
@@ -51,7 +66,8 @@ void wet::propcolh()
 			{
 				hc[d[k][a-1]][a]=hold;		
 			}
+			}
 		}
 	}
-
+	}
 }	

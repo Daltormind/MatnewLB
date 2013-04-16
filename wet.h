@@ -25,7 +25,7 @@ class wet
 
 	int ProcessN; //Number of nodes the processor is dealing with
 	
-	double *C , *mu , *p, *rho; //Assigning memory space to the composition 
+	double *C , *mu , *p, *rho, *mask; //Assigning memory space to the composition 
 	
 	double (*u)[3];
 	
@@ -43,7 +43,7 @@ class wet
 	
 	int xk,yk,zk; //Positions
 	
-	int xs ys ,zs,xw,yw,zw; //Position and width of solid surface
+	int xs, ys ,zs,xw,yw,zw; //Position and width of solid surface
 	
 	int xcentre,ycentre,zcentre,R; //Drop position and drop radius
 	
@@ -87,12 +87,14 @@ class wet
 	long int Neqst; //Number of iteration steps
 
 	int Q; // Number of velocity dicridations
+	
+	int wx ,wy ,wz ; //Width of surface
 
 
 	void initialisemoments();
 	void computecoordinates(int);
 	void initialise();
-	void neibour(int);
+	void neibour();
 	void readinput();
 	void equiliberiumg();
 	void equiliberiumh();
@@ -106,6 +108,7 @@ class wet
 	void propcolg();
 	void mach();
 	void initialisesurface();
+	void relabel();
 	
 	public:
 	

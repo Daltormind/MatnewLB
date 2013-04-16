@@ -42,17 +42,22 @@ void wet::algorithm()
 			{
 				
 		
-				h[k][a]=hc[k][a];
-				g[k][a]=gc[k][a];
+				//h[k][a]=hc[k][a];
+				//g[k][a]=gc[k][a];
 		
 			}
 
 		}
 		
+		writemoments(100+st);
 		computemoments();
+		
+		
 		if(st%wrtst==0)
 		{
+		cout << "t = " << st << endl;
 		writemoments(st);
+		
 		writevelocity(st);
 		}
 		equiliberiumg();

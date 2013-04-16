@@ -9,20 +9,21 @@ void wet::computemoments()
 double rh;
 
 //Compute Composition C
-for(k=k1;k<k2;k++){
-if(mask[k]!=28)
+for(k=k1;k<k2;k++)
 {
-C[k]=0.0;
-p[k]=0.0;
-
-
-
-for(a=0;a<Q;a++)
-{
-	C[k]+=h[k][a];
-}
-	if(C[k]>2)
+	if(mask[k]!=28)
 	{
+		C[k]=0.0;
+		p[k]=0.0;
+
+
+		
+		for(a=0;a<Q;a++)
+		{
+			C[k]+=h[k][a];
+		}
+		if(C[k]>2)
+		{
 		//cout << " C is greater than 1 at " << st << " " << k << " " << C[k] << endl;
 		for(a=0;a<Q;a++)
 		{
@@ -55,24 +56,24 @@ for(k=k1;k<k2;k++)
 		{
 			if(mask[d[k][0]]==28)
 			{
-				d2C=2/cs2*( t1*( 2*C[d[k][1]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+				d2C=2/cs2*( t1*( 2*C[d[k][1]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  );
 			}
 			
 			if(mask[d[k][1]]==28)
 			{
-				d2C=2/cs2*( t1*( 2*C[d[k][0]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+				d2C=2/cs2*( t1*( 2*C[d[k][0]] + C[d[k][2]] + C[d[k][3]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  );
 
 			}
 			
 			if(mask[d[k][2]]==28)
 			{
-				d2C=2/cs2*( t1*( 2*C[d[k][3]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+				d2C=2/cs2*( t1*( 2*C[d[k][3]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  );
 
 			}
 			
 			if(mask[d[k][3]]==28)
 			{
-				d2C=2/cs2*( t1*( 2*C[d[k][2]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  )
+				d2C=2/cs2*( t1*( 2*C[d[k][2]] + C[d[k][0]] + C[d[k][1]] - 4*C[k] ) + t2*( C[d[k][6]] + C[d[k][7]] + C[d[k][8]] + C[d[k][9]] - 4*C[k])  );
 
 			}
 		}	
@@ -139,7 +140,7 @@ else
 			{
 				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
 				
-				dmu[k][1]=0.0
+				dmu[k][1]=0.0;
 
 				dmu[k][2]=0.0;
 			}
@@ -148,7 +149,7 @@ else
 			{
 				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
 				
-				dmu[k][1]=0.0
+				dmu[k][1]=0.0;
 
 				dmu[k][2]=0.0;
 			}
@@ -230,7 +231,7 @@ if(dimensions==2)
 			{
 				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
 				
-				drho[k][1]=0.0
+				drho[k][1]=0.0;
 
 				drho[k][2]=0.0;
 			}
@@ -239,7 +240,7 @@ if(dimensions==2)
 			{
 				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
 				
-				drho[k][1]=0.0
+				drho[k][1]=0.0;
 
 				drho[k][2]=0.0;
 			}

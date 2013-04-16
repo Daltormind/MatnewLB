@@ -51,7 +51,7 @@ void wet::initialisemoments()
 		if(mask[k]!=28)
 		{	
 			d2C=0.0;
-			if(mask[k]==0)
+			if(mask[k]==0 or mask[k]==2)
 			{
 				
 				for(a=1;a<Q;a++)
@@ -107,6 +107,8 @@ void wet::initialisemoments()
 	{
 	if(mask[k]!=28)
 	{
+	if(mask[k]==0 or mask[k]==2)
+	{
 	if(dimensions==3)
 	{
 	dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]+mu[d[i][14]]+mu[d[i][16]]-mu[d[i][7]]-mu[d[i][9]]-mu[d[i][15]]-mu[d[i][17]])*t2/2;
@@ -124,6 +126,7 @@ void wet::initialisemoments()
 
 	dmu[i][2]=0.0;
 	}
+	
 	
 	}
 	else
@@ -152,7 +155,7 @@ void wet::initialisemoments()
 			{
 				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
 				
-				dmu[i][1]=0.0
+				dmu[i][1]=0.0;
 
 				dmu[i][2]=0.0;
 			}
@@ -161,7 +164,7 @@ void wet::initialisemoments()
 			{
 				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
 				
-				dmu[i][1]=0.0
+				dmu[i][1]=0.0;
 
 				dmu[i][2]=0.0;
 			}
@@ -215,12 +218,14 @@ void wet::initialisemoments()
 	
 	rho[i]=C[i]*rho1+(1-C[i])*rho2;
 	}
-	
+	}
 	
 	for(i=k1;i<k2;++i)
 	{
 	
 	if(mask[k]!=28)
+	{
+	if(mask[k]==0 or mask[k]==2)
 	{
 	if(dimensions==3)
 	{
@@ -265,7 +270,7 @@ void wet::initialisemoments()
 			{
 				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
 				
-				drho[i][1]=0.0
+				drho[i][1]=0.0;
 
 				drho[i][2]=0.0;
 			}
@@ -274,7 +279,7 @@ void wet::initialisemoments()
 			{
 				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
 				
-				drho[i][1]=0.0
+				drho[i][1]=0.0;
 
 				drho[i][2]=0.0;
 			}
@@ -319,7 +324,7 @@ void wet::initialisemoments()
 	p[i]=rho[i]*(u[i][0]*u[i][0]+u[i][1]*u[i][1]+u[i][2]*u[i][2])/2;
 
 tau[i]=1.0/(C[i]/tau1+(1-C[i])/tau2);
-
+}
 
 }
 

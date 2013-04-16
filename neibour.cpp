@@ -2,7 +2,7 @@
 
 #include "wet.h"
 
-void wet::neibour(int k)
+void wet::neibour()
 
 {
 	
@@ -26,6 +26,11 @@ void wet::neibour(int k)
 	
 	int x,y,z; //Intigers which give the offset of each point
 	
+	
+	
+	for(k=k1;k<k2;k++)
+	{
+	
 	computecoordinates(k);
 	
 	for(a=0;a<Q-1;a++)
@@ -45,7 +50,7 @@ void wet::neibour(int k)
 	
 	
 	d[k][a]=z+y*Lz+x*Ly*Lz;
-	
+	}
 	
 	
 	}

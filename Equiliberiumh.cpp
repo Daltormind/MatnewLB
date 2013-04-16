@@ -5,14 +5,16 @@
 void wet ::equiliberiumh()
 {
 
-if(mask[k]!=28)
-{
+
 for(k=k1;k<k2;k++)
 {
+if(mask[k]!=28)
+{
+
 	// Calculate dCD of C
 	if(mask[k]!=28)
 	{
-	if(mask[k]==0)
+	if(mask[k]==0 or mask[k]==2)
 	{
 	if(dimensions==3)
 	{
@@ -52,7 +54,7 @@ for(k=k1;k<k2;k++)
 	
 	dp[k][2]=0.0;
 	}
-	}
+	} //Calculate differentials of p and C
 	else
 	{
 		if(dimensions==2)
@@ -79,7 +81,7 @@ for(k=k1;k<k2;k++)
 			{
 				dC[k][0]=(C[d[k][0]]-C[d[k][1]])*t1/2+(C[d[k][6]]+C[d[k][8]]-C[d[k][7]]-C[d[k][9]])*t2/2;
 				
-				dC[k][1]=0.0
+				dC[k][1]=0.0;
 
 				dC[k][2]=0.0;
 			}
@@ -88,7 +90,7 @@ for(k=k1;k<k2;k++)
 			{
 				dC[k][0]=(C[d[k][0]]-C[d[k][1]])*t1/2+(C[d[k][6]]+C[d[k][8]]-C[d[k][7]]-C[d[k][9]])*t2/2;
 				
-				dC[k][1]=0.0
+				dC[k][1]=0.0;
 
 				dC[k][2]=0.0;
 			}
@@ -221,19 +223,13 @@ for(k=k1;k<k2;k++)
 	
 		heq[k][a]/=cs2;
 	
-		if(st==1 and k==2449 and a==0)
-			{
-				cout <<  "Heq k a= " << heq[k][a] << endl;
-			}
+		
 	
 		heq[k][a]*=gamma[k][a];
 	
 		heq[k][a]+=C[k]*gamma[k][a];
 		
-		if(st==1 and k==2449 and a==0)
-			{
-				cout <<  "Heq k a= " << heq[k][a]<< " C[k]=" << C[k] << " gamma ka=" << gamma[k][a] << endl;
-			}
+		
 	
 	
 	

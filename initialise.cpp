@@ -29,6 +29,8 @@ void wet::initialise()
 	
 	C=new double[ProcessN]; //Array which holds Composition values
 	
+	mask =new double[ProcessN]; //Array which holds the information on the substrate
+	
 	dC=new double[ProcessN][3];	//Array which holds gradient of composition
 	
 	u=new double[ProcessN][3]; //Velocity
@@ -78,16 +80,19 @@ void wet::initialise()
 	
 	 k1=0, k2=ProcessN;
 	
-	for(k=k1;k<k2;++k)
-	{
-	neibour(k);
-	}
+	
+	neibour();
+	initialisesurface();
+	
+	
+	
+	relabel();
 	
 	initialisemoments();
 	
 	
 	writemoments(0);
-	
+	writevelocity(0);
 		
 		
 		
@@ -97,9 +102,8 @@ void wet::initialise()
 		
 		
 		equiliberiumh();
-		writevelocity(0);	
-		//diffMD();
-		writevelocity(50);
+		writemoments(-1);	
+		
 		
 	for(k=k1;k<k2;k++)
 	{	
