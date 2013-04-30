@@ -35,13 +35,17 @@ void wet::readinput()
     inputfile.ignore(250,'\n');
     cout << "rho1 rho2 are " << rho1 << " " << rho2 << endl;
     
-    inputfile >> kappa ;
+    inputfile >> ep ;
     inputfile.ignore(250,'\n');
-    cout << "kappa is " << kappa << endl;
+    cout << "epsilon is " << ep << endl;
     
     inputfile >> B >> BA ;
     inputfile.ignore(250,'\n');
     cout << "B and BA are " << B << " " << BA << endl;
+    
+    inputfile >> M ;
+    inputfile.ignore(250,'\n');
+    cout << "M is " << M  << endl;
     
     inputfile >> tau1 >> tau2 ;
     inputfile.ignore(250,'\n');

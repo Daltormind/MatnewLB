@@ -27,6 +27,8 @@ wet::~wet(void)
 	delete []dgamma;
 	delete []gamhold;
 	delete []gamma;
+	delete []Ct;
+	delete []ht;
 	
 
 }

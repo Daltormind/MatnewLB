@@ -61,6 +61,13 @@ void wet::diffMD()
 	drho[k][1]*=3;
 	drho[k][1]-=t1/4*(rho[d[d[k][2]][2]]-rho[d[d[k][3]][3]])+t2/4*(rho[d[d[k][6]][6]]+rho[d[d[k][7]][7]]-rho[d[d[k][8]][8]]-rho[d[d[k][9]][9]]);
 	}
+	
+	if(dimensions==1)
+	{
+		drho[k][0]*=3;
+		drho[k][0]-=t1/4*(rho[d[d[k][0]][0]]-rho[d[d[k][1]][1]]);
+
+	}
 
 	if(dimensions==3)
 	{
@@ -84,6 +91,13 @@ void wet::diffMD()
 	dC[k][1]-=t1/4*(C[d[d[k][2]][2]]-C[d[d[k][3]][3]])+t2/4*(C[d[d[k][6]][6]]+C[d[d[k][7]][7]]-C[d[d[k][8]][8]]-C[d[d[k][9]][9]]);
 
 
+
+	}
+	
+	if(dimensions==1)
+	{
+		dC[k][0]*=3;
+		dC[k][0]-=t1/4*(C[d[d[k][0]][0]]-C[d[d[k][1]][1]]);
 
 	}
 
@@ -110,6 +124,13 @@ void wet::diffMD()
 
 
 	}
+	
+	if(dimensions==1)
+	{
+		dmu[k][0]*=3;
+		dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]]);
+
+	}
 
 	if(dimensions==3)
 	{
@@ -132,7 +153,12 @@ void wet::diffMD()
 	dp[k][1]*=3;
 	dp[k][1]-=t1/4*(p[d[d[k][2]][2]]-p[d[d[k][3]][3]])+t2/4*(p[d[d[k][6]][6]]+p[d[d[k][7]][7]]-p[d[d[k][8]][8]]-p[d[d[k][9]][9]]);
 
+	if(dimensions)
+	{
+		dp[k][0]*=3;
+		dp[k][0]-=t1/4*(p[d[d[k][0]][0]]-p[d[d[k][1]][1]]);
 
+	}
 	}
 
 	//Work out mixed difference for gamma
@@ -161,6 +187,15 @@ void wet::diffMD()
 
 
 	}
+    if(dimensions==1)
+    {
+    	dgamma[k][a]*=3;
+		dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])*(e[a][0]-u[k][0]);
+
+    }
+    
+    
+    
     }
     }
     else

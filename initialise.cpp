@@ -7,9 +7,10 @@ void wet::initialise()
 {
 
 	ProcessN=Lx*Ly*Lz;
-	cs2=108900.0;//1.0/3.0;
+	cs2=1.0/3.0;//108900.0;//1.0/3.0;
 	dt=1.0;
 	dx=1.0;
+	kappa=B*ep*ep/8;
 	
 	if(dimensions==2)
 	{
@@ -21,7 +22,12 @@ void wet::initialise()
 	{
 		t0=1.0/3.0,t1=1.0/18.0,t2=1.0/36.0; //Weightings
 		
-	}		
+	}	
+	
+	if(dimensions==1)
+	{
+		t0=2.0/3.0, t1=1.0/6.0;
+	}	
 	
 	Q=19;
 	
@@ -69,7 +75,9 @@ void wet::initialise()
 	
 	f=new double[ProcessN];
 	
+	ht=new double[ProcessN][19];
 	
+	Ct=new double[ProcessN];
 	
 	//--------------------Initialise Variable values----------------------
 	
@@ -92,7 +100,7 @@ void wet::initialise()
 	
 	
 	writemoments(0);
-	writevelocity(0);
+	
 		
 		
 		
@@ -102,7 +110,7 @@ void wet::initialise()
 		
 		
 		equiliberiumh();
-		writemoments(-1);	
+		writemoments(75);	
 		
 		
 	for(k=k1;k<k2;k++)
@@ -121,6 +129,6 @@ void wet::initialise()
 	
 	}
 
-	
+	writevelocity(0);
 
 }

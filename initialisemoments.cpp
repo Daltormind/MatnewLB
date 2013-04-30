@@ -38,10 +38,10 @@ void wet::initialisemoments()
 	
 	else
 	{
-		C[i]=xk;
-		u[i][0]=ux;//0.0;
-		u[i][1]=uy;//0.0;
-		u[i][2]=uz;//0.0;
+		if(xk<=xcentre){C[i]=0;}else{C[i]=1;}
+		u[i][0]=0.0;
+		u[i][1]=0.0;
+		u[i][2]=0.0;
 	}	
 	}
 	}
@@ -125,6 +125,15 @@ void wet::initialisemoments()
 	dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
 
 	dmu[i][2]=0.0;
+	}
+	
+	if(dimensions==1)
+	{
+		dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2;
+		
+		dmu[i][1]=0.0;
+
+		dmu[i][2]=0.0;
 	}
 	
 	
@@ -243,6 +252,14 @@ void wet::initialisemoments()
 
 	drho[i][2]=0.0;
 	}
+	if(dimensions==1)
+	{
+		drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2;
+		
+		drho[i][1]=0.0;
+
+		drho[i][2]=0.0;
+	}
 	}
 	else
 	{
@@ -324,6 +341,12 @@ void wet::initialisemoments()
 	p[i]=rho[i]*(u[i][0]*u[i][0]+u[i][1]*u[i][1]+u[i][2]*u[i][2])/2;
 
 tau[i]=1.0/(C[i]/tau1+(1-C[i])/tau2);
+
+f[i]=0.0;
+for(a=0;a<19;a++)
+{
+	f[i]+=gamma[i][a];
+}
 }
 
 }

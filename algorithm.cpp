@@ -28,7 +28,7 @@ void wet::algorithm()
 			
 			diffMD();
 			
-			//writevelocity(ch);
+			writemoments(80);
 			
 			propcolg();
 			
@@ -42,20 +42,21 @@ void wet::algorithm()
 			{
 				
 		
-				//h[k][a]=hc[k][a];
-				//g[k][a]=gc[k][a];
+				h[k][a]=hc[k][a];
+				g[k][a]=gc[k][a];
 		
 			}
 
 		}
 		
-		writemoments(100+st);
+		
 		computemoments();
 		
 		
 		if(st%wrtst==0)
 		{
-		cout << "t = " << st << endl;
+		computefreeenergy();
+		cout << "t = " << st << " El=" << El << " Eg=" << Eg << " Ei=" << Ei  << " Et=" << Et << endl;
 		writemoments(st);
 		
 		writevelocity(st);

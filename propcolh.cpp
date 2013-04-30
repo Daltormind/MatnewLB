@@ -43,6 +43,15 @@ void wet::propcolh()
 	
 		hold*=gamma[k][a];
 		
+		if(a==0)
+			{
+				ht[k][a]=hold;
+			}
+			else
+			{
+				ht[d[k][a-1]][a]=hold;		
+			}
+		
 		hold+=h[k][a]-1/(tau[k]+0.5)*(h[k][a]-heq[k][a]);
 			
 			if(mask[k]==1)

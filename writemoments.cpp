@@ -15,7 +15,7 @@ void wet::writemoments(long int in)
         snprintf(filename1,20,"/sC%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -42,7 +42,7 @@ void wet::writemoments(long int in)
 		snprintf(filename1,20,"/smu%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -67,7 +67,7 @@ void wet::writemoments(long int in)
 		snprintf(filename1,20,"/srho%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -92,7 +92,7 @@ void wet::writemoments(long int in)
 		snprintf(filename1,20,"/sp%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -117,7 +117,7 @@ void wet::writemoments(long int in)
 		snprintf(filename1,20,"/sf%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -142,7 +142,7 @@ void wet::writemoments(long int in)
 		snprintf(filename1,20,"/smask%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
 		for( h = 0 ; h < Lz ; h++) 
 		{   
@@ -152,7 +152,32 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					file << mask[k] << " " ;
+					file << dC[k][1] << " " ;
+						
+				}
+				file << endl;
+			}
+			file <<"];" << endl;
+		}
+		
+		file.close();
+		
+		//--------------------------- Write Ctest ---------------------------------------
+		
+		snprintf(filename1,20,"/sCt%ld.m",in);			//Create a name for file that contain data
+		filename=folder+filename1;
+        file.open(filename.c_str());
+		file.precision(16);
+		
+		for( h = 0 ; h < Lz ; h++) 
+		{   
+			file << "Ct" << in << "(:,:," << h+1 << ")=[" << endl;
+			for( i = 0 ; i < Lx ; i++) 
+			{
+				for( j = 0 ; j < Ly ; j++) 
+				{
+					k = h + j*Lz + i*Ly*Lz;
+					file << dC[k][0] << " " ;
 						
 				}
 				file << endl;

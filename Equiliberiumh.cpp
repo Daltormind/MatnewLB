@@ -34,6 +34,14 @@ if(mask[k]!=28)
 	dC[k][2]=0.0;
 	}
 	
+	if (dimensions==1)
+	{
+		dC[k][0]=(C[d[k][0]]-C[d[k][1]])*t1/2;
+		
+		dC[k][1]=0.0;
+	
+		dC[k][2]=0.0;
+	}
 	
 	// Calculate dCD of p
 	
@@ -53,6 +61,15 @@ if(mask[k]!=28)
 	dp[k][1]=(p[d[k][2]]-p[d[k][3]])*t1/2+(p[d[k][6]]+p[d[k][7]]-p[d[k][8]]-p[d[k][9]])*t2/2;
 	
 	dp[k][2]=0.0;
+	}
+	
+	if(dimensions==1)
+	{
+		dp[k][0]=(p[d[k][0]]-p[d[k][1]])*t1/2;
+		dp[k][1]=0.0;
+		dp[k][2]=0.0;
+	
+	
 	}
 	} //Calculate differentials of p and C
 	else

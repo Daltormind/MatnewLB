@@ -15,7 +15,10 @@ const double e[19][3]={{0,0,0},{1,0,0},{-1,0,0},{0,1,0},{0,-1,0},{0,0,1},{0,0,-1
 
 //const double t[19]={1.0/3.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0};
 
-const double t[19]={4.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,0.0,0.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+//const double t[19]={4.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,1.0/9.0,0.0,0.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+
+const double t[19]={2.0/3.0,1.0/6.0,1.0/6.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+
 
 const int com[19]={0,2,1,4,3,6,5,10,9,8,7,14,13,12,11,18,17,16,15};
 
@@ -25,7 +28,7 @@ class wet
 
 	int ProcessN; //Number of nodes the processor is dealing with
 	
-	double *C , *mu , *p, *rho, *mask; //Assigning memory space to the composition 
+	double *C , *mu , *p, *rho, *mask,*Ct; //Assigning memory space to the composition 
 	
 	double (*u)[3];
 	
@@ -51,7 +54,7 @@ class wet
 	
 	double (*gamma)[19], (*dgamma)[19]; //Gamma 
 	
-	double (*g)[19], (*h)[19]; //The single particle probability functions
+	double (*g)[19], (*h)[19],(*ht)[19]; //The single particle probability functions
 	
 	double (*ge)[19], (*he)[19]; //Equiliberium functions
 	
@@ -72,7 +75,7 @@ class wet
 	
 	int dimensions; //Number of dimensions the problem is being run in 
 	
-	double B, kappa; //Constants in free Energy
+	double B, kappa,ep; //Constants in free Energy and interface width
 
 	double cs2;//cs squared in literature
 	
@@ -89,6 +92,8 @@ class wet
 	int Q; // Number of velocity dicridations
 	
 	int wx ,wy ,wz ; //Width of surface
+	
+	double El,Eg,Ei,Et;//Energy values
 
 
 	void initialisemoments();
@@ -109,6 +114,7 @@ class wet
 	void mach();
 	void initialisesurface();
 	void relabel();
+	void computefreeenergy();
 	
 	public:
 	

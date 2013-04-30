@@ -15,12 +15,13 @@ for(k=k1;k<k2;k++)
 	{
 		C[k]=0.0;
 		p[k]=0.0;
-
+		Ct[k]=0.0;
 
 		
 		for(a=0;a<Q;a++)
 		{
 			C[k]+=h[k][a];
+			Ct[k]+=ht[k][a];
 		}
 		if(C[k]>2)
 		{
@@ -113,6 +114,14 @@ dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu
 
 dmu[k][2]=0.0;
 }
+if(dimensions==1)
+{
+	dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2;
+	
+	dmu[k][1]=0.0;
+
+	dmu[k][2]=0.0;
+}
 }
 else
 {
@@ -203,6 +212,13 @@ drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][
 drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
 
 drho[k][2]=0.0;
+}
+if(dimensions==1)
+{
+	drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2;
+	drho[k][1]=0.0;
+
+	drho[k][2]=0.0;
 }
 }
 else

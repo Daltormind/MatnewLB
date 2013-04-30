@@ -32,6 +32,11 @@ void wet ::equiliberiumg()
 			dgamma[k][a]+=((gamma[d[k][2]][a]-gamma[d[k][3]][a])*t1/2+(gamma[d[k][6]][a]+gamma[d[k][7]][a]-gamma[d[k][8]][a]-gamma[d[k][9]][a])*t2/2)*(e[a][1]-u[k][1]);
 	
 			}
+			if(dimensions==1)
+			{
+							dgamma[k][a]=((gamma[d[k][0]][a]-gamma[d[k][1]][a])*t1/2)*(e[a][0]-u[k][0]);
+
+			}
 			}
 			else
 			{

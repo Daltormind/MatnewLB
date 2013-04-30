@@ -6,7 +6,7 @@ void wet::mach()
 {
 	for(k=k1;k<k2;k++)
 	{
-		M=sqrt((u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/cs2);
+		
 		
 		
 	
@@ -54,10 +54,12 @@ void wet::mach()
 			if(a==0)
 			{
 				hc[k][a]+=M/2*(gamhold[k][a]+gamhold[k][a]);
+				ht[k][a]+=M/2*(gamhold[k][a]+gamhold[k][a]);
 			}
 			else
 			{	
 				hc[k][a]+=M/2*(gamhold[d[k][com[a]-1]][a]+gamhold[k][a]);
+				ht[k][a]+=M/2*(gamhold[d[k][com[a]-1]][a]+gamhold[k][a]);
 			}
 		
 			h[k][a]=hc[k][a];

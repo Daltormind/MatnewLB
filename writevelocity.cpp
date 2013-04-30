@@ -5,7 +5,7 @@
 void wet::writevelocity(int in)
 
 {
-	int q, j, h;
+	int q, j, n;
 	ofstream file;
 	char filename1[20];
 		string filename;
@@ -16,17 +16,17 @@ void wet::writevelocity(int in)
         snprintf(filename1,20,"/su%dt%ld.m",i,in);			//Create a name for file that contain data
 		filename=folder+filename1;
         file.open(filename.c_str());
-		file.precision(4);
+		file.precision(16);
 		
-		for( h = 0 ; h < Lz ; h++) 
+		for( n = 0 ; n < Lz ; n++) 
 		{   
-			file << "u" << i << "t" << in << "(:,:," << h+1 << ")=[" << endl;
+			file << "u" << i << "t" << in << "(:,:," << n+1 << ")=[" << endl;
 			for( q = 0 ; q < Lx ; q++) 
 			{
 				for( j = 0 ; j < Ly ; j++) 
 				{
-					k = h + j*Lz + q*Ly*Lz;
-					file << u[k][i] << " " ;
+					k = n + j*Lz + q*Ly*Lz;
+					file << h[k][i] << " " ;
 						
 				}
 				file << endl;
