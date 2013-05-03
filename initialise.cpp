@@ -79,6 +79,13 @@ void wet::initialise()
 	
 	Ct=new double[ProcessN];
 	
+	dgammat=new double[3];
+	
+	dCt=new double[3];
+	dmut=new double[3];
+	drhot=new double[3];
+	dpt=new double[3];
+	
 	//--------------------Initialise Variable values----------------------
 	
 	

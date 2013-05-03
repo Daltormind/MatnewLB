@@ -14,6 +14,10 @@ void wet::propcolh()
 			
 			hold=0.0;
 			
+			diffMDt(p,dpt);
+			diffMDt(mu,dmut);
+			diffMDt(C,dCt);
+			
 			if(st==1 and k==5000)
 			{
 				//cout << "Hold1=" << hold << "Heq k a= " << heq[k][a] << endl;
@@ -31,13 +35,13 @@ void wet::propcolh()
 			}
 			*/
 			
-			hold+=(e[a][0]-u[k][0])*(dC[k][0]-C[k]/rho[k]/cs2*(dp[k][0]+C[k]*dmu[k][0]));
+			hold+=(e[a][0]-u[k][0])*(dCt[0]-C[k]/rho[k]/cs2*(dpt[0]+C[k]*dmut[0]));
 	
-		hold+=(e[a][1]-u[k][1])*(dC[k][1]-C[k]/rho[k]/cs2*(dp[k][1]+C[k]*dmu[k][1]));
+		hold+=(e[a][1]-u[k][1])*(dCt[1]-C[k]/rho[k]/cs2*(dpt[1]+C[k]*dmut[1]));
 	
-		hold+=(e[a][2]-u[k][2])*(dC[k][2]-C[k]/rho[k]/cs2*(dp[k][2]+C[k]*dmu[k][2]));
+		hold+=(e[a][2]-u[k][2])*(dCt[2]-C[k]/rho[k]/cs2*(dpt[2]+C[k]*dmut[2]));
 	
-		hold/=cs2;
+		//hold/=cs2;
 	
 		
 	

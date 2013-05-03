@@ -7,30 +7,30 @@ void wet::initialisemoments()
 	
 	
 	//Initialise C Composition
-	for(i=k1;i<k2;++i)
+	for(k=k1;k<k2;++k)
 	{
 	if(mask[k]!=28)
 	{
-	computecoordinates(i);
+	computecoordinates(k);
 	
 	if(R!=-1)
 	{
 	
 	if((xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<R*R/*xk<50*/)
 		{
-			C[i]=1;
-			u[i][0]=ux;
-			u[i][1]=uy;
-			u[i][2]=uz;
+			C[k]=1;
+			u[k][0]=ux;
+			u[k][1]=uy;
+			u[k][2]=uz;
 		
 		}
 	else
 		{
 		
-			C[i]=0;
-			u[i][0]=0.0;
-			u[i][1]=0.0;
-			u[i][2]=0.0;
+			C[k]=0;
+			u[k][0]=0.0;
+			u[k][1]=0.0;
+			u[k][2]=0.0;
 		
 		}
 	}
@@ -38,15 +38,15 @@ void wet::initialisemoments()
 	
 	else
 	{
-		if(xk<=xcentre){C[i]=0;}else{C[i]=1;}
-		u[i][0]=0.0;
-		u[i][1]=0.0;
-		u[i][2]=0.0;
+		if(xk<=xcentre){C[k]=0;}else{C[k]=1;}
+		u[k][0]=0.0;
+		u[k][1]=0.0;
+		u[k][2]=0.0;
 	}	
 	}
 	}
 		
-	for(i=k1;i<k2;++i)
+	for(k=k1;k<k2;++k)
 	{	
 		if(mask[k]!=28)
 		{	
@@ -56,9 +56,11 @@ void wet::initialisemoments()
 				
 				for(a=1;a<Q;a++)
 				{
-					d2C+=t[a]*(C[d[i][a-1]]-2*C[i]+C[d[i][com[a]-1]]);
-					
-			
+					//d2C+=t[a]*(C[d[k][a-1]]-2*C[k]+C[d[k][com[a]-1]]);
+					if(dimensions==1)
+					{
+					d2C=C[d[k][0]]-2*C[k]+C[d[k][1]];
+					}
 				}
 			}
 			else
@@ -98,12 +100,12 @@ void wet::initialisemoments()
 			}
 		
 	
-			mu[i]=2*B*( C[i]*pow(C[i]-1.0,2) + pow(C[i],2)*(C[i]-1.0) ) - kappa*( 1/(cs2*dt*dt) )*d2C;
+			mu[k]=/*2*B*( C[k]*pow(C[k]-1.0,2) + pow(C[k],2)*(C[k]-1.0) ) - kappa*( 1/(dt*dt) )*/d2C;
 	
 		}
 	}
 	
-	for(i=k1;i<k2;++i)
+	for(k=k1;k<k2;++k)
 	{
 	if(mask[k]!=28)
 	{
@@ -111,29 +113,29 @@ void wet::initialisemoments()
 	{
 	if(dimensions==3)
 	{
-	dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]+mu[d[i][14]]+mu[d[i][16]]-mu[d[i][7]]-mu[d[i][9]]-mu[d[i][15]]-mu[d[i][17]])*t2/2;
+	dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]+mu[d[k][14]]+mu[d[k][16]]-mu[d[k][7]]-mu[d[k][9]]-mu[d[k][15]]-mu[d[k][17]])*t2/2;
 
-	dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]+mu[d[i][10]]+mu[d[i][12]]-mu[d[i][8]]-mu[d[i][9]]-mu[d[i][11]]-mu[d[i][13]])*t2/2;
+	dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]+mu[d[k][10]]+mu[d[k][12]]-mu[d[k][8]]-mu[d[k][9]]-mu[d[k][11]]-mu[d[k][13]])*t2/2;
 
-	dmu[i][2]=(mu[d[i][4]]-mu[d[i][5]])*t1/2+(mu[d[i][10]]+mu[d[i][11]]+mu[d[i][14]]+mu[d[i][15]]-mu[d[i][12]]-mu[d[i][13]]-mu[d[i][16]]-mu[d[i][17]])*t2/2;
+	dmu[k][2]=(mu[d[k][4]]-mu[d[k][5]])*t1/2+(mu[d[k][10]]+mu[d[k][11]]+mu[d[k][14]]+mu[d[k][15]]-mu[d[k][12]]-mu[d[k][13]]-mu[d[k][16]]-mu[d[k][17]])*t2/2;
 	}
 	
 	if(dimensions==2)
 	{
-	dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
+	dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
 
-	dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
+	dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu[d[k][9]])*t2/2;
 
-	dmu[i][2]=0.0;
+	dmu[k][2]=0.0;
 	}
 	
 	if(dimensions==1)
 	{
-		dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2;
+		dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2;
 		
-		dmu[i][1]=0.0;
+		dmu[k][1]=0.0;
 
-		dmu[i][2]=0.0;
+		dmu[k][2]=0.0;
 	}
 	
 	
@@ -146,90 +148,90 @@ void wet::initialisemoments()
 			{
 				dmu[k][0]=0.0;
 				
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][1]])
 			{
 				dmu[k][0]=0.0;
 				
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]+mu[d[i][7]]-mu[d[i][8]]-mu[d[i][9]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]+mu[d[k][7]]-mu[d[k][8]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][2]])
 			{
-				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
 				
-				dmu[i][1]=0.0;
+				dmu[k][1]=0.0;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][3]])
 			{
-				dmu[k][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]+mu[d[i][8]]-mu[d[i][7]]-mu[d[i][9]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]+mu[d[k][8]]-mu[d[k][7]]-mu[d[k][9]])*t2/2;
 				
-				dmu[i][1]=0.0;
+				dmu[k][1]=0.0;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][6]])
 			{
-				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][8]]-mu[d[i][7]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][8]]-mu[d[k][7]])*t2/2;
 
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][7]]-mu[d[i][8]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][7]]-mu[d[k][8]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][7]])
 			{
-				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][8]])
 			{
-				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][6]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][6]]-mu[d[i][9]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][6]]-mu[d[k][9]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 			
 			if(mask[d[k][9]])
 			{
-				dmu[i][0]=(mu[d[i][0]]-mu[d[i][1]])*t1/2+(mu[d[i][8]]-mu[d[i][7]])*t2/2;
+				dmu[k][0]=(mu[d[k][0]]-mu[d[k][1]])*t1/2+(mu[d[k][8]]-mu[d[k][7]])*t2/2;
 
-				dmu[i][1]=(mu[d[i][2]]-mu[d[i][3]])*t1/2+(mu[d[i][7]]-mu[d[i][8]])*t2/2;
+				dmu[k][1]=(mu[d[k][2]]-mu[d[k][3]])*t1/2+(mu[d[k][7]]-mu[d[k][8]])*t2/2;
 
-				dmu[i][2]=0.0;
+				dmu[k][2]=0.0;
 			}
 		}
 	}
 	
 	for(a=0;a<19;a++)
 	{
-		gamma[i][a]=t[a]*(1+(e[a][0]*u[i][0]+e[a][1]*u[i][1]+e[a][2]*u[i][2])/cs2+pow(e[a][0]*u[i][0]
-		+e[a][1]*u[i][1]+e[a][2]*u[i][2],2)/cs2/cs2/2-(u[i][0]*u[i][0]+u[i][1]*u[i][1]+u[i][2]*u[i][2])/cs2/2);
+		gamma[k][a]=t[a]*(1+(e[a][0]*u[k][0]+e[a][1]*u[k][1]+e[a][2]*u[k][2])/cs2+pow(e[a][0]*u[k][0]
+		+e[a][1]*u[k][1]+e[a][2]*u[k][2],2)/cs2/cs2/2-(u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/cs2/2);
 		
 		
 	}
 	
 	
-	rho[i]=C[i]*rho1+(1-C[i])*rho2;
+	rho[k]=C[k]*rho1+(1-C[k])*rho2;
 	}
 	}
 	
-	for(i=k1;i<k2;++i)
+	for(k=k1;k<k2;++k)
 	{
 	
 	if(mask[k]!=28)
@@ -238,27 +240,27 @@ void wet::initialisemoments()
 	{
 	if(dimensions==3)
 	{
-	drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]+rho[d[i][14]]+rho[d[i][16]]-rho[d[i][7]]-rho[d[i][9]]-rho[d[i][15]]-rho[d[i][17]])*t2/2;
+	drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]+rho[d[k][14]]+rho[d[k][16]]-rho[d[k][7]]-rho[d[k][9]]-rho[d[k][15]]-rho[d[k][17]])*t2/2;
 
-	drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]+rho[d[i][10]]+rho[d[i][12]]-rho[d[i][8]]-rho[d[i][9]]-rho[d[i][11]]-rho[d[i][13]])*t2/2;
+	drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]+rho[d[k][10]]+rho[d[k][12]]-rho[d[k][8]]-rho[d[k][9]]-rho[d[k][11]]-rho[d[k][13]])*t2/2;
 
-	drho[i][2]=(rho[d[i][4]]-rho[d[i][5]])*t1/2+(rho[d[i][10]]+rho[d[i][11]]+rho[d[i][14]]+rho[d[i][15]]-rho[d[i][12]]-rho[d[i][13]]-rho[d[i][16]]-rho[d[i][17]])*t2/2;
+	drho[k][2]=(rho[d[k][4]]-rho[d[k][5]])*t1/2+(rho[d[k][10]]+rho[d[k][11]]+rho[d[k][14]]+rho[d[k][15]]-rho[d[k][12]]-rho[d[k][13]]-rho[d[k][16]]-rho[d[k][17]])*t2/2;
 	}
 	if(dimensions==2)
 	{
-	drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
+	drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
 
-	drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
+	drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
 
-	drho[i][2]=0.0;
+	drho[k][2]=0.0;
 	}
 	if(dimensions==1)
 	{
-		drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2;
+		drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2;
 		
-		drho[i][1]=0.0;
+		drho[k][1]=0.0;
 
-		drho[i][2]=0.0;
+		drho[k][2]=0.0;
 	}
 	}
 	else
@@ -269,83 +271,83 @@ void wet::initialisemoments()
 			{
 				drho[k][0]=0.0;
 				
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][1]])
 			{
 				drho[k][0]=0.0;
 				
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]+rho[d[i][7]]-rho[d[i][8]]-rho[d[i][9]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]+rho[d[k][7]]-rho[d[k][8]]-rho[d[k][9]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][2]])
 			{
-				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
 				
-				drho[i][1]=0.0;
+				drho[k][1]=0.0;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][3]])
 			{
-				drho[k][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]+rho[d[i][8]]-rho[d[i][7]]-rho[d[i][9]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]+rho[d[k][8]]-rho[d[k][7]]-rho[d[k][9]])*t2/2;
 				
-				drho[i][1]=0.0;
+				drho[k][1]=0.0;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][6]])
 			{
-				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][8]]-rho[d[i][7]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][8]]-rho[d[k][7]])*t2/2;
 
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][7]]-rho[d[i][8]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][7]]-rho[d[k][8]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][7]])
 			{
-				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]-rho[d[k][9]])*t2/2;
 
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]-rho[d[k][9]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][8]])
 			{
-				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][6]]-rho[d[k][9]])*t2/2;
 
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][6]]-rho[d[i][9]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][6]]-rho[d[k][9]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 			
 			if(mask[d[k][9]])
 			{
-				drho[i][0]=(rho[d[i][0]]-rho[d[i][1]])*t1/2+(rho[d[i][8]]-rho[d[i][7]])*t2/2;
+				drho[k][0]=(rho[d[k][0]]-rho[d[k][1]])*t1/2+(rho[d[k][8]]-rho[d[k][7]])*t2/2;
 
-				drho[i][1]=(rho[d[i][2]]-rho[d[i][3]])*t1/2+(rho[d[i][7]]-rho[d[i][8]])*t2/2;
+				drho[k][1]=(rho[d[k][2]]-rho[d[k][3]])*t1/2+(rho[d[k][7]]-rho[d[k][8]])*t2/2;
 
-				drho[i][2]=0.0;
+				drho[k][2]=0.0;
 			}
 	}
 	}
-	p[i]=rho[i]*(u[i][0]*u[i][0]+u[i][1]*u[i][1]+u[i][2]*u[i][2])/2;
+	p[k]=rho[k]*(u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/2;
 
-tau[i]=1.0/(C[i]/tau1+(1-C[i])/tau2);
+tau[k]=1.0/(C[k]/tau1+(1-C[k])/tau2);
 
-f[i]=0.0;
+f[k]=0.0;
 for(a=0;a<19;a++)
 {
-	f[i]+=gamma[i][a];
+	f[k]+=gamma[k][a];
 }
 }
 

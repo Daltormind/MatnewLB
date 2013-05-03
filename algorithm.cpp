@@ -26,7 +26,7 @@ void wet::algorithm()
 			
 			//writevelocity(st);
 			
-			diffMD();
+			//diffMD();
 			
 			writemoments(80);
 			

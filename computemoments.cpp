@@ -47,7 +47,11 @@ for(k=k1;k<k2;k++)
 	{
 	for(a=1;a<Q;a++)
 		{
-			d2C+=t[a]*(C[d[k][a-1]]-2*C[k]+C[d[k][com[a]-1]]);
+			//d2C+=t[a]*(C[d[k][a-1]]-2*C[k]+C[d[k][com[a]-1]]);
+			if(dimensions==1)
+					{
+					d2C=C[d[k][0]]-2*C[k]+C[d[k][1]];
+					}
 			
 		}
 	}
@@ -79,7 +83,7 @@ for(k=k1;k<k2;k++)
 			}
 		}	
 	}
-	mu[k]=2*B*(C[k]*pow(C[k]-1.0,2)+pow(C[k],2)*(C[k]-1.0))-kappa*(1.0/(cs2*dt*dt))*d2C;
+	mu[k]=2*B*(C[k]*pow(C[k]-1.0,2)+pow(C[k],2)*(C[k]-1.0))-kappa*(1.0/(dt*dt))*d2C;
 	
 	
 	rho[k]=C[k]*rho1+(1-C[k])*rho2;

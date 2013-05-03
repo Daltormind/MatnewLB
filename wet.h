@@ -94,6 +94,8 @@ class wet
 	int wx ,wy ,wz ; //Width of surface
 	
 	double El,Eg,Ei,Et;//Energy values
+	
+	double *dCt , *dmut ,*drhot,*dpt,*dgammat;
 
 
 	void initialisemoments();
@@ -115,7 +117,9 @@ class wet
 	void initialisesurface();
 	void relabel();
 	void computefreeenergy();
-	
+	void diffCD(double *,double *);
+	void diffMDt(double *,double *);
+	void diffMDgamma();
 	public:
 	
 		void algorithm();

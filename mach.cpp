@@ -35,12 +35,15 @@ void wet::mach()
 	for(a=0;a<Q;a++)
 	{
 	
-	for(int b=1;b<Q;b++)
-		{
-			gamhold[k][a]+=t[b]*(gamma[d[k][b-1]][a]-2*gamma[k][a]+gamma[d[k][com[b]-1]][a])/dt/cs2;
+	//for(int b=1;b<Q;b++)
+		//{
+			//gamhold[k][a]+=t[b]*(gamma[d[k][b-1]][a]-2*gamma[k][a]+gamma[d[k][com[b]-1]][a])/dt/cs2;
+			if(dimensions==1)
+			{
+				gamhold[k][a]=gamma[d[k][0]][a]-2*gamma[k][a]+gamma[d[k][1]][a];
+			}
 			
-			
-		}
+		//}
 
 		
 	

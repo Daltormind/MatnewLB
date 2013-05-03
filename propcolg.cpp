@@ -14,17 +14,18 @@ void wet::propcolg()
 		for(a=0 ;a<Q;a++)
 		{
 	
-			
+			diffMDgamma();
 			ghold=g[k][a]-1/(tau[k]+0.5)*(g[k][a]-geq[k][a]);
 			
 	
-			ghold+=(rho[k]-C[k]*mu[k]/cs2)*dgamma[k][a];
-			
+			//ghold+=(rho[k]-C[k]*mu[k]/cs2)*dgammat[i];
+			diffMDt(rho,drhot);
+			diffMDt(mu,dmut);
 			
 	
 			for(i=0;i<dimensions;i++)
 			{
-					ghold+=(e[a][i]-u[k][i])*((gamma[k][a]-t[a])*drho[k][i]-C[k]*gamma[k][a]*dmu[k][i]/cs2);
+					ghold+=(e[a][i]-u[k][i])*((rho[k]*cs2-C[k]*mu[k])*dgammat[i]+(gamma[k][a]-t[a])*drhot[i]*cs2-C[k]*gamma[k][a]*dmut[i]);
 			}
 			
 			if(mask[k]==1)
