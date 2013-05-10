@@ -11,8 +11,8 @@ double rh;
 //Compute Composition C
 for(k=k1;k<k2;k++)
 {
-	if(mask[k]!=28)
-	{
+if(mask[k]!=28)
+{
 		C[k]=0.0;
 		p[k]=0.0;
 		Ct[k]=0.0;
@@ -23,15 +23,8 @@ for(k=k1;k<k2;k++)
 			C[k]+=h[k][a];
 			Ct[k]+=ht[k][a];
 		}
-		if(C[k]>2)
-		{
-		//cout << " C is greater than 1 at " << st << " " << k << " " << C[k] << endl;
-		for(a=0;a<Q;a++)
-		{
-			//cout <<a << " " <<h[k][a]<< endl;
-		}
 		
-	}
+		
 }
 }
 

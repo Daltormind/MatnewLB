@@ -14,19 +14,9 @@ void wet::algorithm()
 	
 		for(st=1;st<=Neqst;st++)
 		{
-			//ch=ch+1;
-			//computemoments();
 			
 			
-			
-			//writemoments(st);
-			
-			
-			
-			
-			//writevelocity(st);
-			
-			//diffMD();
+			diffMD();
 			
 			writemoments(80);
 			

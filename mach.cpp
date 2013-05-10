@@ -4,8 +4,7 @@
 
 void wet::mach()
 {
-	for(k=k1;k<k2;k++)
-	{
+	
 		
 		
 		
@@ -15,22 +14,15 @@ void wet::mach()
 	
 	if(C[k]<0)
 	{
-		gamma[k][a]=(mu[k]+2*BA*C[k])*gamma[k][a];
+		mu[k]=(mu[k]+2*BA*C[k]);
 		
 		
-		
-	}
-	else
-	{
-		gamma[k][a]=mu[k]*gamma[k][a];
 		
 	}
 	
-	gamhold[k][a]=0;
-	}
-	}
-	for(k=k1;k<k2;k++)
-	{
+	
+	
+	
 	
 	for(a=0;a<Q;a++)
 	{
