@@ -52,7 +52,7 @@ void wet::algorithm()
             
             if(k==3169)
             {
-            cout << "Stop oh la" << endl; 
+            //cout << "Stop oh la" << endl; 
 			}
 
 			

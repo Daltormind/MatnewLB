@@ -100,6 +100,7 @@ class wet
 	//double *dCt , *dmut ,*drhot,*dpt,*dgammat;
 
     double gamma0,gamma1,gamma2,gamma3,gamma4,gamma5,gamma6,gamma7,gamma8,gamma9,gamma10,gamma11,gamma12,gamma13,gamma14,gamma15,gamma16,gamma17,gamma18,gammat;
+    double gammap1,gammap2,gammap3,gammap4,gammap7,gammap8,gammap9,gammap10;
     double gradrhoC1,gradrhoC2,gradrhoC3,gradrhoC4,gradrhoC5,gradrhoC6,gradrhoC7,gradrhoC8,gradrhoC9,gradrhoC10,gradrhoC11,gradrhoC12,gradrhoC13,gradrhoC14,gradrhoC15,gradrhoC16,gradrhoC17,gradrhoC18,gradrhoCx,gradrhoCy,gradrhoCz;
     double gradmuC1,gradmuC2,gradmuC3,gradmuC4,gradmuC5,gradmuC6,gradmuC7,gradmuC8,gradmuC9,gradmuC10,gradmuC11,gradmuC12,gradmuC13,gradmuC14,gradmuC15,gradmuC16,gradmuC17,gradmuC18,gradmuCx,gradmuCy,gradmuCz;
     double gradpC1,gradpC2,gradpC3,gradpC4,gradpC5,gradpC6,gradpC7,gradpC8,gradpC9,gradpC10,gradpC11,gradpC12,gradpC13,gradpC14,gradpC15,gradpC16,gradpC17,gradpC18,gradpCx,gradpCy,gradpCz;

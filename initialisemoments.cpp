@@ -18,7 +18,7 @@ void wet::initialisemoments()
 
 	if(/*(xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<R*R*/xk<50)
 		{
-			C[k]=1;
+			C[k]=0.5+0.5*tanh(double(xk-25)/2/ep);//1;
 			u[k][0]=ux;
 			u[k][1]=uy;
 			u[k][2]=uz;
@@ -42,7 +42,7 @@ void wet::initialisemoments()
 	else
 		{
 
-			C[k]=0;
+			C[k]=0.5+0.5*tanh(double(75-xk)/2/ep);
 			u[k][0]=0.0;
 			u[k][1]=0.0;
 			u[k][2]=0.0;

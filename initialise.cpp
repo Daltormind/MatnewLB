@@ -115,10 +115,10 @@ void wet::initialise()
 
 
 
-		equiliberiumg();
+		//equiliberiumg();
 
 
-		equiliberiumh();
+		//equiliberiumh();
 		writemoments(75);
 
 
