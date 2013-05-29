@@ -26,7 +26,7 @@ void wet::writevelocity(int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = n + j*Lz + q*Ly*Lz;
-					file << g[k][i] << " " ;
+					file << u[k][i] << " " ;
 						
 				}
 				file << endl;

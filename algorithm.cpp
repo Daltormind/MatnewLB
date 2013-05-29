@@ -14,28 +14,9 @@ void wet::algorithm()
 
 		for(st=1;st<=Neqst;st++)
 		{
-
+			
             computemoments();
-
-
-
-		for(k=k1;k<k2;k++)
-		{
-			diffCD();
-			diffBD();
-			centralforce();
-			equiliberiumg();
-            equiliberiumh();
-            propcolh();
-            propcolg();
-
-
-
-		}
-
-
-
-
+		
 		if(st%wrtst==0)
 		{
 		//computefreeenergy();
@@ -45,6 +26,42 @@ void wet::algorithm()
 		writevelocity(st);
 		}
 
+
+
+		for(k=k1;k<k2;k++)
+		{
+			diffCD();
+			
+			diffBD();
+			
+			centralforce();
+			
+			equiliberiumg();
+           
+            equiliberiumh();
+            
+            
+            
+            
+            
+            
+            
+            propcolh();
+            
+            propcolg();
+            
+            if(k==3169)
+            {
+            cout << "Stop oh la" << endl; 
+			}
+
+			
+		}
+
+
+
+
+		
 
 		}
 

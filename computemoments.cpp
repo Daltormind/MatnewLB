@@ -14,8 +14,8 @@ for(k=k1;k<k2;k++)
 if(mask[k]!=28)
 {
 
-		p[k]=0.0;
-		Ct[k]=0.0;
+		
+		
 
 
 		C[k]=h[k][0]+h[k][1]+h[k][2]+h[k][3]+h[k][4]+h[k][7]+h[k][8]+h[k][9]+h[k][10];
@@ -30,12 +30,19 @@ for(k=k1;k<k2;k++)
 	if(mask[k]!=28)
 {
 
-	d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/6.0
+	d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/6.0;
 
 	mu[k]=2*B*(C[k]*pow(C[k]-1.0,2)+pow(C[k],2)*(C[k]-1.0))-kappa*(1.0/(dt*dt))*d2C;
 
 
 	rho[k]=C[k]*rho1+(1-C[k])*rho2;
+	
+	if(C[k]<0)
+	{
+	muh[k]=mu[k]+BA*C[k]*C[k];
+	}
+	else{muh[k]=mu[k];}
+	
 }
 }
 
@@ -46,7 +53,7 @@ if(mask[k]!=28)
 {
             gradmuC1=0.5*(mu[d[k][0]]-mu[d[k][1]]);
 			gradmuC2=0.5*(mu[d[k][1]]-mu[d[k][0]]);
-    		gradmuC3=0.5*(mu[d[k][2]]-mu[d[k][3]);
+    		gradmuC3=0.5*(mu[d[k][2]]-mu[d[k][3]]);
     		gradmuC4=0.5*(mu[d[k][3]]-mu[d[k][2]]);
     		gradmuC7=0.5*(mu[d[k][6]]-mu[d[k][9]]);
     		gradmuC8=0.5*(mu[d[k][7]]-mu[d[k][8]]);
@@ -71,7 +78,7 @@ if(mask[k]!=28)
 
             gradrhoC1=0.5*(rho[d[k][0]]-rho[d[k][1]]);
 			gradrhoC2=0.5*(rho[d[k][1]]-rho[d[k][0]]);
-    		gradrhoC3=0.5*(rho[d[k][2]]-rho[d[k][3]);
+    		gradrhoC3=0.5*(rho[d[k][2]]-rho[d[k][3]]);
     		gradrhoC4=0.5*(rho[d[k][3]]-rho[d[k][2]]);
     		gradrhoC7=0.5*(rho[d[k][6]]-rho[d[k][9]]);
     		gradrhoC8=0.5*(rho[d[k][7]]-rho[d[k][8]]);

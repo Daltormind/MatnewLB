@@ -42,6 +42,8 @@ void wet::initialise()
 	u=new double[ProcessN][3]; //Velocity
 
 	mu=new double[ProcessN]; //Free Energy
+	
+	muh=new double[ProcessN];
 
 	//dmu=new double[ProcessN][3];
 
@@ -122,21 +124,36 @@ void wet::initialise()
 
 	for(k=k1;k<k2;k++)
 	{
-        diffCd();
+        diffCD();
         diffBD();
         centralforce();
         equiliberiumg();
         equiliberiumh();
 
+		g[k][0]=geq0;
+		g[k][1]=geq1;
+		g[k][2]=geq2;
+		g[k][3]=geq3;
+		g[k][4]=geq4;
+
+		g[k][7]=geq7;
+		g[k][8]=geq8;
+		g[k][9]=geq9;
+		g[k][10]=geq10;
+		
+		h[k][0]=heq0;
+		h[k][1]=heq1;
+		h[k][2]=heq2;
+		h[k][3]=heq3;
+		h[k][4]=heq4;
+
+		h[k][7]=heq7;
+		h[k][8]=heq8;
+		h[k][9]=heq9;
+		h[k][10]=heq10;
 
 
-
-		for(a=0;a<Q;a++)
-			{
-				g[k][a]=geq[k][a];
-
-				h[k][a]=heq[k][a]	;
-			}
+		
 
 
 

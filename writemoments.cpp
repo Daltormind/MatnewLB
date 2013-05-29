@@ -112,6 +112,7 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		
+		/*
 		//------------------------ Write f File -----------------------------------------
 		
 		snprintf(filename1,20,"/sf%ld.m",in);			//Create a name for file that contain data
@@ -136,7 +137,8 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		*/
+		/*
 		//--------------------------- Write mask ---------------------------------------
 		
 		snprintf(filename1,20,"/smask%ld.m",in);			//Create a name for file that contain data
@@ -152,7 +154,7 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					file << dC[k][1] << " " ;
+					file << mask[k]<< " " ;
 						
 				}
 				file << endl;
@@ -177,7 +179,7 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					file << dC[k][0] << " " ;
+					file << Ct[k] << " " ;
 						
 				}
 				file << endl;
@@ -186,5 +188,5 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		*/
 }

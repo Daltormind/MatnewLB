@@ -12,7 +12,7 @@ void wet::diffCD()
 			
 			gradrhoC1=0.5*(rho[d[k][0]]-rho[d[k][1]]);
 			gradrhoC2=0.5*(rho[d[k][1]]-rho[d[k][0]]);
-    		gradrhoC3=0.5*(rho[d[k][2]]-rho[d[k][3]);
+    		gradrhoC3=0.5*(rho[d[k][2]]-rho[d[k][3]]);
     		gradrhoC4=0.5*(rho[d[k][3]]-rho[d[k][2]]);
     		gradrhoC7=0.5*(rho[d[k][6]]-rho[d[k][9]]);
     		gradrhoC8=0.5*(rho[d[k][7]]-rho[d[k][8]]);
@@ -21,7 +21,7 @@ void wet::diffCD()
 
     		gradCC1=0.5*(C[d[k][0]]-C[d[k][1]]);
 			gradCC2=0.5*(C[d[k][1]]-C[d[k][0]]);
-    		gradCC3=0.5*(C[d[k][2]]-C[d[k][3]);
+    		gradCC3=0.5*(C[d[k][2]]-C[d[k][3]]);
     		gradCC4=0.5*(C[d[k][3]]-C[d[k][2]]);
     		gradCC7=0.5*(C[d[k][6]]-C[d[k][9]]);
     		gradCC8=0.5*(C[d[k][7]]-C[d[k][8]]);
@@ -30,7 +30,7 @@ void wet::diffCD()
     		
     		gradmuC1=0.5*(mu[d[k][0]]-mu[d[k][1]]);
 			gradmuC2=0.5*(mu[d[k][1]]-mu[d[k][0]]);
-    		gradmuC3=0.5*(mu[d[k][2]]-mu[d[k][3]);
+    		gradmuC3=0.5*(mu[d[k][2]]-mu[d[k][3]]);
     		gradmuC4=0.5*(mu[d[k][3]]-mu[d[k][2]]);
     		gradmuC7=0.5*(mu[d[k][6]]-mu[d[k][9]]);
     		gradmuC8=0.5*(mu[d[k][7]]-mu[d[k][8]]);
@@ -39,7 +39,7 @@ void wet::diffCD()
     		
     		gradpC1=0.5*(p[d[k][0]]-p[d[k][1]]);
 			gradpC2=0.5*(p[d[k][1]]-p[d[k][0]]);
-    		gradpC3=0.5*(p[d[k][2]]-p[d[k][3]);
+    		gradpC3=0.5*(p[d[k][2]]-p[d[k][3]]);
     		gradpC4=0.5*(p[d[k][3]]-p[d[k][2]]);
     		gradpC7=0.5*(p[d[k][6]]-p[d[k][9]]);
     		gradpC8=0.5*(p[d[k][7]]-p[d[k][8]]);

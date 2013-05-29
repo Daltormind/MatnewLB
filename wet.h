@@ -28,7 +28,7 @@ class wet
 
 	int ProcessN; //Number of nodes the processor is dealing with
 
-	double *C , *mu , *p, *rho, *mask,*Ct; //Assigning memory space to the composition
+	double *C , *mu , *p, *rho, *mask,*muh; //Assigning memory space to the composition
 
 	double (*u)[3];
 
@@ -38,7 +38,9 @@ class wet
 
 	double t0,t1,t2; //Weightings used to ensure anisotropy
 
-	//double (*dC)[3], (*dmu)[3], (*dp)[3], (*drho)[3], d2C; // Gradients of equiliberium variables
+	//double (*dC)[3], (*dmu)[3], (*dp)[3], (*drho)[3]; // Gradients of equiliberium variables
+
+	double d2C;
 
 	int Lx,Ly,Lz; // Size of simulation box
 
@@ -54,7 +56,7 @@ class wet
 
 	//double (*gamma)[19], (*dgamma)[19]; //Gamma
 
-	double (*g)[19], (*h)[19],(*ht)[19]; //The single particle probability functions
+	double (*g)[19], (*h)[19]; //The single particle probability functions
 
 	//double (*ge)[19], (*he)[19]; //Equiliberium functions
 
@@ -97,7 +99,7 @@ class wet
 
 	//double *dCt , *dmut ,*drhot,*dpt,*dgammat;
 
-    double gamma0,gamma1,gamma2,gamma3,gamma4,gamma5,gamma6,gamma7,gamma8,gamma9,gamma10,gamma11,gamma12,gamma13,gamma14,gamma15,gamma16,gamma17,gamma18;
+    double gamma0,gamma1,gamma2,gamma3,gamma4,gamma5,gamma6,gamma7,gamma8,gamma9,gamma10,gamma11,gamma12,gamma13,gamma14,gamma15,gamma16,gamma17,gamma18,gammat;
     double gradrhoC1,gradrhoC2,gradrhoC3,gradrhoC4,gradrhoC5,gradrhoC6,gradrhoC7,gradrhoC8,gradrhoC9,gradrhoC10,gradrhoC11,gradrhoC12,gradrhoC13,gradrhoC14,gradrhoC15,gradrhoC16,gradrhoC17,gradrhoC18,gradrhoCx,gradrhoCy,gradrhoCz;
     double gradmuC1,gradmuC2,gradmuC3,gradmuC4,gradmuC5,gradmuC6,gradmuC7,gradmuC8,gradmuC9,gradmuC10,gradmuC11,gradmuC12,gradmuC13,gradmuC14,gradmuC15,gradmuC16,gradmuC17,gradmuC18,gradmuCx,gradmuCy,gradmuCz;
     double gradpC1,gradpC2,gradpC3,gradpC4,gradpC5,gradpC6,gradpC7,gradpC8,gradpC9,gradpC10,gradpC11,gradpC12,gradpC13,gradpC14,gradpC15,gradpC16,gradpC17,gradpC18,gradpCx,gradpCy,gradpCz;
@@ -121,7 +123,8 @@ class wet
     double geq0,geq1,geq2,geq3,geq4,geq5,geq6,geq7,geq8,geq9,geq10,geq11,geq12,geq13,geq14,geq15,geq16,geq17,geq18;
     double heq0,heq1,heq2,heq3,heq4,heq5,heq6,heq7,heq8,heq9,heq10,heq11,heq12,heq13,heq14,heq15,heq16,heq17,heq18;
 
-
+    double M0,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11,M12,M13,M14,M15,M16,M17,M18;
+	
 
 
 
@@ -149,6 +152,9 @@ class wet
 	void diffCD(double *,double *);
 	void diffMDt(double *,double *);
 	void diffMDgamma();
+	void diffBD();
+	void diffCD();
+	void centralforce();
 	public:
 
 		void algorithm();
