@@ -40,13 +40,13 @@ void wet::algorithm()
            
             equiliberiumh();
             
+           //equiliberiumf();
             
             
             
+            //propcolf();
             
-            
-            
-            propcolh();
+           propcolh();
             
             propcolg();
             

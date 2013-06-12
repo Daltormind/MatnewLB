@@ -30,5 +30,6 @@ wet::~wet(void)
 	//delete []Ct;
 	//delete []ht;
 	delete []muh;
+	delete []f;
 
 }

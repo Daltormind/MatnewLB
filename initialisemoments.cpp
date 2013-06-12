@@ -16,9 +16,11 @@ void wet::initialisemoments()
 	if(R!=-1)
 	{
 
-	if(/*(xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<R*R*/xk<50)
+	if((xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<R*R)
 		{
-			C[k]=0.5+0.5*tanh(double(xk-25)/2/ep);//1;
+			//C[k]=0.5+0.5*tanh(double(xk-25)/2/ep);//1;
+			C[k]=1.0;//(1.0)/2.0+(1.0)/2.0*tanh(2.0/ep*(sqrt((xk-50.0)*(xk-50.0)+(yk-50.0)*(yk-50.0))-25.0));
+			//rho[k]=rho1;
 			u[k][0]=ux;
 			u[k][1]=uy;
 			u[k][2]=uz;
@@ -42,7 +44,9 @@ void wet::initialisemoments()
 	else
 		{
 
-			C[k]=0.5+0.5*tanh(double(75-xk)/2/ep);
+			//C[k]=0.5+0.5*tanh(double(75-xk)/2/ep);
+			C[k]=0.0;//(1.0)/2.0+(1.0)/2.0*tanh(2.0/ep*(sqrt((xk-50.0)*(xk-50.0)+(yk-50.0)*(yk-50.0))-25.0));
+			//rho[k]=rho2;
 			u[k][0]=0.0;
 			u[k][1]=0.0;
 			u[k][2]=0.0;
@@ -75,9 +79,13 @@ void wet::initialisemoments()
 
             rho[k]=C[k]*rho1+(1-C[k])*rho2;
             
+           // d2rho=(rho[d[k][6]]+rho[d[k][7]]+rho[d[k][8]]+rho[d[k][9]]+4.0*(rho[d[k][0]]+rho[d[k][1]]+rho[d[k][2]]+rho[d[k][3]])-20.0*rho[k])/6.0;
+            
+            //mu[k]=4.0*B*(rho[k]-rho1)*(rho[k]-rho2)*(rho[k]-(rho2+rho1)*0.5)-kappa*d2rho; 
+            
             if(C[k]<0)
 			{
-			muh[k]=mu[k]+BA*C[k]*C[k];
+			muh[k]=mu[k]+2*BA*C[k];
 			}
 			else{muh[k]=mu[k];}
 		}

@@ -70,10 +70,11 @@ class wet
 
 	double M,BA;//Mobility and free energy variation
 
-	double *f;
+	double (*f)[19];
 
 	int wrtst;//step interval at which to write to file
 
+	double d2rho;
 
 	int dimensions; //Number of dimensions the problem is being run in
 
@@ -121,9 +122,16 @@ class wet
     double FgU1,FgU2,FgU3,FgU4,FgU5,FgU6,FgU7,FgU8,FgU9,FgU10,FgU11,FgU12,FgU13,FgU14,FgU15,FgU16,FgU17,FgU18,FgUx,FgUy,FgUz;
     double FgM1,FgM2,FgM3,FgM4,FgM5,FgM6,FgM7,FgM8,FgM9,FgM10,FgM11,FgM12,FgM13,FgM14,FgM15,FgM16,FgM17,FgM18,FgMx,FgMy,FgMz;
 
+	double FfC1,FfC2,FfC3,FfC4,FfC5,FfC6,FfC7,FfC8,FfC9,FfC10,FfC11,FfC12,FfC13,FfC14,FfC15,FfC16,FfC17,FfC18,FfCx,FfCy,FfCz;
+    double FfU1,FfU2,FfU3,FfU4,FfU5,FfU6,FfU7,FfU8,FfU9,FfU10,FfU11,FfU12,FfU13,FfU14,FfU15,FfU16,FfU17,FfU18,FfUx,FfUy,FfUz;
+    double FfM1,FfM2,FfM3,FfM4,FfM5,FfM6,FfM7,FfM8,FfM9,FfM10,FfM11,FfM12,FfM13,FfM14,FfM15,FfM16,FfM17,FfM18,FfMx,FfMy,FfMz;
+
+
     double geq0,geq1,geq2,geq3,geq4,geq5,geq6,geq7,geq8,geq9,geq10,geq11,geq12,geq13,geq14,geq15,geq16,geq17,geq18;
     double heq0,heq1,heq2,heq3,heq4,heq5,heq6,heq7,heq8,heq9,heq10,heq11,heq12,heq13,heq14,heq15,heq16,heq17,heq18;
+    double feq0,feq1,feq2,feq3,feq4,feq5,feq6,feq7,feq8,feq9,feq10,feq11,feq12,feq13,feq14,feq15,feq16,feq17,feq18;
 
+    
     double M0,M1,M2,M3,M4,M5,M6,M7,M8,M9,M10,M11,M12,M13,M14,M15,M16,M17,M18;
 	
 
@@ -156,6 +164,9 @@ class wet
 	void diffBD();
 	void diffCD();
 	void centralforce();
+	void equiliberiumf();
+	void propcolf();
+	
 	public:
 
 		void algorithm();

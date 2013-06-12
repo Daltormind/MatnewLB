@@ -75,7 +75,7 @@ void wet::initialise()
 
 	//gc=new double[ProcessN][19];
 
-	//f=new double[ProcessN];
+	f=new double[ProcessN][19];
 
 	//ht=new double[ProcessN][19];
 
@@ -129,6 +129,7 @@ void wet::initialise()
         centralforce();
         equiliberiumg();
         equiliberiumh();
+        equiliberiumf();
 
 		g[k][0]=geq0;
 		g[k][1]=geq1;
@@ -151,6 +152,17 @@ void wet::initialise()
 		h[k][8]=heq8;
 		h[k][9]=heq9;
 		h[k][10]=heq10;
+		
+		f[k][0]=feq0;
+		f[k][1]=feq1;
+		f[k][2]=feq2;
+		f[k][3]=feq3;
+		f[k][4]=feq4;
+
+		f[k][7]=feq7;
+		f[k][8]=feq8;
+		f[k][9]=feq9;
+		f[k][10]=feq10;
 
 
 		
