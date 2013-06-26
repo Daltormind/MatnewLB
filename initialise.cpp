@@ -96,10 +96,12 @@ void wet::initialise()
 
 
 	 k1=0, k2=ProcessN;
+	 
+	 Wc=-cos(theta*M_PI/180.0)*sqrt(2*B/kappa);
 
 
 	neibour();
-	//initialisesurface();
+	initialisesurface();
 
 
 

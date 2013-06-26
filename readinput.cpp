@@ -47,6 +47,10 @@ void wet::readinput()
     inputfile.ignore(250,'\n');
     cout << "M is " << M  << endl;
     
+    inputfile >> theta ;
+    inputfile.ignore(250,'\n');
+    cout << "theta is " << theta  << endl;
+    
     inputfile >> tau1 >> tau2 ;
     inputfile.ignore(250,'\n');
     cout << "tau1 and tau2 are " << tau1 << " " << tau2 << endl;

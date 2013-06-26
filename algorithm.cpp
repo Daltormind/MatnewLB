@@ -16,6 +16,8 @@ void wet::algorithm()
 		{
 			
             computemoments();
+            
+            momentsbound();
 		
 		if(st%wrtst==0)
 		{
@@ -30,6 +32,8 @@ void wet::algorithm()
 
 		for(k=k1;k<k2;k++)
 		{
+			if(mask[k]!=28)
+			{
 			diffCD();
 			
 			diffBD();
@@ -50,19 +54,28 @@ void wet::algorithm()
             
             propcolg();
             
+            
+            
             if(k==3169)
             {
             //cout << "Stop oh la" << endl; 
 			}
 
-			
+			}
+		}
+
+		for(k=k1;k<k2;k++)
+		{
+		
+		if(mask[k]!=28)
+			{
+			setwallnodes();
+			}
 		}
 
 
-
-
 		
-
+		//cout << "Stop" << endl;
 		}
 
 }

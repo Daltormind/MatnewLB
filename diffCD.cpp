@@ -4,7 +4,7 @@
 
 void wet::diffCD()
 {
-	
+		dC=Wc*(C[k]-C[k]*C[k]);
 		
 		if (dimensions==2)
 		{
@@ -46,10 +46,92 @@ void wet::diffCD()
     		gradpC9=0.5*(p[d[k][8]]-p[d[k][7]]);
     		gradpC10=0.5*(p[d[k][9]]-p[d[k][6]]);
     		
+    		/*
+    		if(mask[k]==1)
+			{
+				gradrhoC1=0.0;
+				gradrhoC2=0.0;
+				gradrhoC7=0.5*(rho[d[k][7]]-rho[d[k][9]]);
+				gradrhoC8=0.5*(rho[d[k][7]]-rho[d[k][9]]);
+				gradrhoC9=0.5*(rho[d[k][9]]-rho[d[k][7]]);
+				gradrhoC10=0.5*(rho[d[k][9]]-rho[d[k][7]]);
+				
+				/*
+				gradCCx=-dC;
+				gradCCy=1.0/3.0*(C[d[k][2]]-C[d[k][3]])+1.0/12.0*(C[d[k][7]]+C[d[k][7]]-C[d[k][9]]-C[d[k][9]]);
+				
+				gradCC1=gradCCx;
+				gradCC2=-gradCCx;
+				gradCC7=gradCCx+gradCCy;
+				gradCC8=-gradCCx+gradCCy;
+				gradCC9=gradCCx-gradCCy;
+				gradCC10=-gradCCx-gradCCy;
+				
+				
+				
+				gradCC1=-dC;
+				gradCC2=dC;
+				gradCC7=0.5*(C[d[k][7]]-2*dC-C[d[k][9]]);
+				gradCC8=0.5*(C[d[k][7]]-C[d[k][9]]+2*dC);
+				gradCC9=0.5*(C[d[k][9]]-2*dC-C[d[k][7]]);
+				gradCC10=0.5*(C[d[k][9]]-C[d[k][7]]+2*dC);
+				
+				gradmuC1=0.0;
+				gradmuC2=0.0;
+				gradmuC7=0.5*(mu[d[k][7]]-mu[d[k][9]]);
+				gradmuC8=0.5*(mu[d[k][7]]-mu[d[k][9]]);
+				gradmuC9=0.5*(mu[d[k][9]]-mu[d[k][7]]);
+				gradmuC10=0.5*(mu[d[k][9]]-mu[d[k][7]]);
+				
+				gradpC1=0.0;
+				gradpC2=0.0;
+				gradpC7=0.5*(p[d[k][7]]-p[d[k][9]]);
+				gradpC8=0.5*(p[d[k][7]]-p[d[k][9]]);
+				gradpC9=0.5*(p[d[k][9]]-p[d[k][7]]);
+				gradpC10=0.5*(p[d[k][9]]-p[d[k][7]]);
+				
+				
+			}
+			
+			if(mask[k]==2)
+			{
+				gradCC1=dC;
+				gradCC2=-dC;
+				gradCC7=0.5*(C[d[k][6]]-C[d[k][8]]+2*dC);
+				gradCC8=0.5*(C[d[k][6]]-2*dC-C[d[k][8]]);
+				gradCC9=0.5*(C[d[k][8]]-C[d[k][6]]+2*dC);
+				gradCC10=0.5*(C[d[k][8]]-2*dC-C[d[k][6]]);
+				
+				gradrhoC1=0.0;
+				gradrhoC2=0.0;
+				gradrhoC7=0.5*(rho[d[k][6]]-rho[d[k][8]]);
+				gradrhoC8=0.5*(rho[d[k][6]]-rho[d[k][8]]);
+				gradrhoC9=0.5*(rho[d[k][8]]-rho[d[k][6]]);
+				gradrhoC10=0.5*(rho[d[k][8]]-rho[d[k][6]]);
+				
+				gradmuC1=0.0;
+				gradmuC2=0.0;
+				gradmuC7=0.5*(mu[d[k][6]]-mu[d[k][8]]);
+				gradmuC8=0.5*(mu[d[k][6]]-mu[d[k][8]]);
+				gradmuC9=0.5*(mu[d[k][8]]-mu[d[k][6]]);
+				gradmuC10=0.5*(mu[d[k][8]]-mu[d[k][6]]);
+				
+				gradpC1=0.0;
+				gradpC2=0.0;
+				gradpC7=0.5*(p[d[k][6]]-p[d[k][8]]);
+				gradpC8=0.5*(p[d[k][6]]-p[d[k][8]]);
+				gradpC9=0.5*(p[d[k][8]]-p[d[k][6]]);
+				gradpC10=0.5*(p[d[k][8]]-p[d[k][6]]);
+				
+				
+			}
+    		
+    		*/
     		// Work out x and y derivatives
     		
     		gradrhoCx=1.0/3.0*(gradrhoC1-gradrhoC2)+1.0/12.0*(gradrhoC7-gradrhoC8+gradrhoC9-gradrhoC10);
     		gradrhoCy=1.0/3.0*(gradrhoC3-gradrhoC4)+1.0/12.0*(gradrhoC7+gradrhoC8-gradrhoC9-gradrhoC10);
+    		
     		
     		gradCCx=1.0/3.0*(gradCC1-gradCC2)+1.0/12.0*(gradCC7-gradCC8+gradCC9-gradCC10);
     		gradCCy=1.0/3.0*(gradCC3-gradCC4)+1.0/12.0*(gradCC7+gradCC8-gradCC9-gradCC10);
@@ -59,6 +141,11 @@ void wet::diffCD()
     		
     		gradpCx=1.0/3.0*(gradpC1-gradpC2)+1.0/12.0*(gradpC7-gradpC8+gradpC9-gradpC10);
     		gradpCy=1.0/3.0*(gradpC3-gradpC4)+1.0/12.0*(gradpC7+gradpC8-gradpC9-gradpC10);
+		
+			
+		
+		
+		
 		}
 		
 		

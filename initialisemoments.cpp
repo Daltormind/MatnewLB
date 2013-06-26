@@ -47,9 +47,11 @@ void wet::initialisemoments()
 			//C[k]=0.5+0.5*tanh(double(75-xk)/2/ep);
 			C[k]=0.0;//(1.0)/2.0+(1.0)/2.0*tanh(2.0/ep*(sqrt((xk-50.0)*(xk-50.0)+(yk-50.0)*(yk-50.0))-25.0));
 			//rho[k]=rho2;
-			u[k][0]=0.0;
+			u[k][0]=0.0;//double(xk)/10000;
 			u[k][1]=0.0;
 			u[k][2]=0.0;
+		
+	
 
 		}
 	}
@@ -57,10 +59,11 @@ void wet::initialisemoments()
 
 	else
 	{
-		if(xk<=xcentre){C[k]=0;}else{C[k]=1;}
+	  if(xk>=xcentre){C[k]=1.0;}else{C[k]=0.0;}
 		u[k][0]=0.0;
 		u[k][1]=0.0;
 		u[k][2]=0.0;
+		
 	}
 	
 	
@@ -74,7 +77,21 @@ void wet::initialisemoments()
 		{
 
             d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/6.0;
+			
+			
+	if(mask[k]==1)
+	{
+		dC=Wc*(C[k]-C[k]*C[k]);
+		d2C=(C[d[k][7]]-2*dC+C[d[k][7]]+C[d[k][9]]-2*dC+C[d[k][9]]+4.0*(C[d[k][1]]-2*dC+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/6.0;
 
+	}
+	if(mask[k]==2)
+	{
+		dC=Wc*(C[k]-C[k]*C[k]);
+		d2C=(C[d[k][6]]+C[d[k][6]]-2*dC+C[d[k][8]]+C[d[k][8]]-2*dC+4.0*(C[d[k][1]]-2*dC+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/6.0;
+
+	}
+			
 			mu[k]=2*B*( C[k]*pow(C[k]-1.0,2) + pow(C[k],2)*(C[k]-1.0) ) - kappa*( 1/(dt*dt) )*d2C;
 
             rho[k]=C[k]*rho1+(1-C[k])*rho2;

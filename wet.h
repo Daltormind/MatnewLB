@@ -40,9 +40,13 @@ class wet
 
 	//double (*dC)[3], (*dmu)[3], (*dp)[3], (*drho)[3]; // Gradients of equiliberium variables
 
-	double d2C;
+	double d2C,dC;
+	
+	double theta;
 
 	int Lx,Ly,Lz; // Size of simulation box
+	
+	double Wc; //Modified wetting constant.
 
 	double ux,uy,uz; //Initial Drop velocity
 
@@ -166,6 +170,8 @@ class wet
 	void centralforce();
 	void equiliberiumf();
 	void propcolf();
+	void setwallnodes();
+	void momentsbound();
 	
 	public:
 
