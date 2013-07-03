@@ -26,30 +26,30 @@ void wet::initialisemoments()
 			u[k][2]=uz;
 
 		}
-		/*
+		
 		else if ((xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre)<(R+ep)*(R+ep))
 		{
 				
 				num=sqrt((xk-xcentre)*(xk-xcentre)+(yk-ycentre)*(yk-ycentre)+(zk-zcentre)*(zk-zcentre));
 				test=tanh(2.0*(ep/2.0-num+R)/ep);
 				C[k]=0.5 + 0.5*test;
-				u[k][0]=0.0;
-				u[k][1]=0.0;
-				u[k][2]=0.0;
+				u[k][0]=ux;
+				u[k][1]=uy;
+				u[k][2]=uz;
 				
-				cout << "Entered boundry layer C=" << C[k]  << " test=" << test << " num=" << num << endl;
+				//cout << "Entered boundry layer C=" << C[k]  << " test=" << test << " num=" << num << endl;
 		
 		}
-		*/
+		
 	else
 		{
 
 			//C[k]=0.5+0.5*tanh(double(75-xk)/2/ep);
 			C[k]=0.0;//(1.0)/2.0+(1.0)/2.0*tanh(2.0/ep*(sqrt((xk-50.0)*(xk-50.0)+(yk-50.0)*(yk-50.0))-25.0));
 			//rho[k]=rho2;
-			u[k][0]=0.0;//double(xk)/10000;
-			u[k][1]=0.0;
-			u[k][2]=0.0;
+			u[k][0]=ux;//double(xk)/10000;
+			u[k][1]=uy;
+			u[k][2]=uz;
 		
 	
 

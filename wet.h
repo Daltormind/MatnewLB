@@ -31,6 +31,8 @@ class wet
 	double *C , *mu , *p, *rho, *mask,*muh; //Assigning memory space to the composition
 
 	double (*u)[3];
+	
+	double G[2];
 
 	int (*d)[18]; //Assigning memory for neibour arrays
 
@@ -100,11 +102,13 @@ class wet
 
 	int wx ,wy ,wz ; //Width of surface
 
-	double El,Eg,Ei,Et;//Energy values
+	double El,Eg,Ei,Et,Ekin;//Energy values
 
 	//double *dCt , *dmut ,*drhot,*dpt,*dgammat;
 
     double gamma0,gamma1,gamma2,gamma3,gamma4,gamma5,gamma6,gamma7,gamma8,gamma9,gamma10,gamma11,gamma12,gamma13,gamma14,gamma15,gamma16,gamma17,gamma18,gammat;
+        double gammar0,gammar1,gammar2,gammar3,gammar4,gammar5,gammar6,gammar7,gammar8,gammar9,gammar10,gammar11,gammar12,gammar13,gammar14,gammar15,gammar16,gammar17,gammar18,gammart;
+
     double gammap1,gammap2,gammap3,gammap4,gammap7,gammap8,gammap9,gammap10;
     double gradrhoC1,gradrhoC2,gradrhoC3,gradrhoC4,gradrhoC5,gradrhoC6,gradrhoC7,gradrhoC8,gradrhoC9,gradrhoC10,gradrhoC11,gradrhoC12,gradrhoC13,gradrhoC14,gradrhoC15,gradrhoC16,gradrhoC17,gradrhoC18,gradrhoCx,gradrhoCy,gradrhoCz;
     double gradmuC1,gradmuC2,gradmuC3,gradmuC4,gradmuC5,gradmuC6,gradmuC7,gradmuC8,gradmuC9,gradmuC10,gradmuC11,gradmuC12,gradmuC13,gradmuC14,gradmuC15,gradmuC16,gradmuC17,gradmuC18,gradmuCx,gradmuCy,gradmuCz;
@@ -125,6 +129,10 @@ class wet
     double FgC1,FgC2,FgC3,FgC4,FgC5,FgC6,FgC7,FgC8,FgC9,FgC10,FgC11,FgC12,FgC13,FgC14,FgC15,FgC16,FgC17,FgC18,FgCx,FgCy,FgCz;
     double FgU1,FgU2,FgU3,FgU4,FgU5,FgU6,FgU7,FgU8,FgU9,FgU10,FgU11,FgU12,FgU13,FgU14,FgU15,FgU16,FgU17,FgU18,FgUx,FgUy,FgUz;
     double FgM1,FgM2,FgM3,FgM4,FgM5,FgM6,FgM7,FgM8,FgM9,FgM10,FgM11,FgM12,FgM13,FgM14,FgM15,FgM16,FgM17,FgM18,FgMx,FgMy,FgMz;
+    
+    double FgrC1,FgrC2,FgrC3,FgrC4,FgrC5,FgrC6,FgrC7,FgrC8,FgrC9,FgrC10,FgrC11,FgrC12,FgrC13,FgrC14,FgrC15,FgrC16,FgrC17,FgrC18,FgrCx,FgrCy,FgrCz;
+    double FgrU1,FgrU2,FgrU3,FgrU4,FgrU5,FgrU6,FgrU7,FgrU8,FgrU9,FgrU10,FgrU11,FgrU12,FgrU13,FgrU14,FgrU15,FgrU16,FgrU17,FgrU18,FgrUx,FgrUy,FgrUz;
+    double FgrM1,FgrM2,FgrM3,FgrM4,FgrM5,FgrM6,FgrM7,FgrM8,FgrM9,FgrM10,FgrM11,FgrM12,FgrM13,FgrM14,FgrM15,FgrM16,FgrM17,FgrM18,FgrMx,FgrMy,FgrMz;
 
 	double FfC1,FfC2,FfC3,FfC4,FfC5,FfC6,FfC7,FfC8,FfC9,FfC10,FfC11,FfC12,FfC13,FfC14,FfC15,FfC16,FfC17,FfC18,FfCx,FfCy,FfCz;
     double FfU1,FfU2,FfU3,FfU4,FfU5,FfU6,FfU7,FfU8,FfU9,FfU10,FfU11,FfU12,FfU13,FfU14,FfU15,FfU16,FfU17,FfU18,FfUx,FfUy,FfUz;
@@ -172,7 +180,7 @@ class wet
 	void propcolf();
 	void setwallnodes();
 	void momentsbound();
-	
+	void computeenergy();
 	public:
 
 		void algorithm();

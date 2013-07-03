@@ -55,6 +55,10 @@ void wet::readinput()
     inputfile.ignore(250,'\n');
     cout << "tau1 and tau2 are " << tau1 << " " << tau2 << endl;
     
+    inputfile >> G[0] >> G[1] ;
+    inputfile.ignore(250,'\n');
+    cout << "G0 and G1 are " << G[0] << " " << G[1] << endl;
+    
     inputfile >> folder;
     inputfile.ignore(250,'\n');
     cout << "Folder is " << folder << endl;

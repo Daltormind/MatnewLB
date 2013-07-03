@@ -44,6 +44,8 @@ void wet::initialise()
 	mu=new double[ProcessN]; //Free Energy
 	
 	muh=new double[ProcessN];
+	
+	//G=new double[2];
 
 	//dmu=new double[ProcessN][3];
 

@@ -57,14 +57,18 @@ if(mask[k]!=28)
     		gradrhoCy=1.0/3.0*(gradrhoC3-gradrhoC4)+1.0/12.0*(gradrhoC7+gradrhoC8-gradrhoC9-gradrhoC10);
 			
 			/*
-			if(st<1000)
+			if(st<50)
 			{
             u[k][0]=0.0;//(3.0*(g[k][1]-g[k][2]+g[k][7]-g[k][10]+g[k][9]-g[k][8])-0.5*C[k]*gradmuCx)/rho[k];
             u[k][1]=0.0;//(3.0*(g[k][3]-g[k][4]+g[k][7]-g[k][10]+g[k][8]-g[k][9])-0.5*C[k]*gradmuCy)/rho[k];
 			}
-			else if (st==100){u[k][0]=ux;u[k][1]=uy;}
 			else
+			{
+				u[k][0]=(3.0*(g[k][1]-g[k][2]+g[k][7]-g[k][10]+g[k][9]-g[k][8])-0.5*C[k]*gradmuCx)/rho[k];
+            	u[k][1]=(3.0*(g[k][3]-g[k][4]+g[k][7]-g[k][10]+g[k][8]-g[k][9])-0.5*C[k]*gradmuCy)/rho[k];
+			}
 			*/
+			
 			
 			
 			//u[k][0]=0.0;
@@ -97,11 +101,11 @@ if(mask[k]!=28)
     		gradrhoCy=1.0/3.0*(gradrhoC3-gradrhoC4)+1.0/12.0*(gradrhoC7+gradrhoC8-gradrhoC9-gradrhoC10);
 	
 	/*
-	if(st<1000)
+	if(st<50)
 	{
-	p[k]=g[k][0]+g[k][1]+g[k][2]+g[k][3]+g[k][4]+g[k][7]+g[k][8]+g[k][9]+g[k][10]+1.5*u[k][0]*gradrhoCx+1.5*gradrhoCy*u[k][1];
+	p[k]=0.0;
     }
-    else if(st==100) {p[k]=rho[k]*(u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/2;}
+    
     else
     {
     p[k]=g[k][0]+g[k][1]+g[k][2]+g[k][3]+g[k][4]+g[k][7]+g[k][8]+g[k][9]+g[k][10]+1.5*u[k][0]*gradrhoCx+1.5*gradrhoCy*u[k][1];
