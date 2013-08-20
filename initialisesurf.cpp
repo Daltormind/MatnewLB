@@ -13,9 +13,10 @@ void wet::initialisesurface()
 	mask[k]=0.0;
 	
 	
-	if(xk>xs or xk<10)
+	if(xk>xs )
 	{
-		//mask[k]=28;
+		mask[k]=28;
+		
 	}
 	}
 	

@@ -40,7 +40,7 @@ class wet
 
 	double t0,t1,t2; //Weightings used to ensure anisotropy
 
-	//double (*dC)[3], (*dmu)[3], (*dp)[3], (*drho)[3]; // Gradients of equiliberium variables
+	//double    (*drho)[3]; // Gradients of equiliberium variables
 
 	double d2C,dC;
 	
@@ -63,6 +63,8 @@ class wet
 	//double (*gamma)[19], (*dgamma)[19]; //Gamma
 
 	double (*g)[19], (*h)[19]; //The single particle probability functions
+	
+	double (*gc)[19], (*hc)[19];
 
 	//double (*ge)[19], (*he)[19]; //Equiliberium functions
 
@@ -181,6 +183,7 @@ class wet
 	void setwallnodes();
 	void momentsbound();
 	void computeenergy();
+	void propset();
 	public:
 
 		void algorithm();

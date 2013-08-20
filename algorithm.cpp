@@ -49,7 +49,7 @@ void wet::algorithm()
             
             
             
-            //propcolf();
+          //  propcolf();
             
            propcolh();
             
@@ -66,7 +66,15 @@ void wet::algorithm()
 		}
 
 		for(k=k1;k<k2;k++)
-		{
+		{	
+		
+		
+			propset();
+			
+		}
+		
+		for(k=k1;k<k2;k++)
+		{		
 		
 		if(mask[k]!=28)
 			{

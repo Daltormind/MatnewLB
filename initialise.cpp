@@ -7,7 +7,7 @@ void wet::initialise()
 {
 
 	ProcessN=Lx*Ly*Lz;
-	cs2=1.0/3.0;//108900.0;//1.0/3.0;
+	cs2=1.0/3.0;
 	dt=1.0;
 	dx=1.0;
 	kappa=B*ep*ep/8;
@@ -37,58 +37,31 @@ void wet::initialise()
 
 	mask =new double[ProcessN]; //Array which holds the information on the substrate
 
-	//dC=new double[ProcessN][3];	//Array which holds gradient of composition
-
 	u=new double[ProcessN][3]; //Velocity
 
 	mu=new double[ProcessN]; //Free Energy
 	
 	muh=new double[ProcessN];
 	
-	//G=new double[2];
-
-	//dmu=new double[ProcessN][3];
-
-	//gamma=new double[ProcessN][19];//Gamma
-
-	//dgamma= new double[ProcessN][19];
-
 	p=new double[ProcessN];//Pressure
-
-	//dp=new double[ProcessN][3];
-
-	rho=new double[ProcessN];//Density
 
 	//drho=new double[ProcessN][3];
 
-	//geq=new double[ProcessN][19];
-
-	//heq=new double[ProcessN][19];
+	rho=new double[ProcessN];//Density
 
 	g=new double[ProcessN][19];//
 
 	h=new double[ProcessN][19];
+	
+	gc=new double[ProcessN][19];//
+
+	hc=new double[ProcessN][19];
 
 	tau=new double[ProcessN];
 
-	//gamhold=new double[ProcessN][19];
-
-	//hc=new double[ProcessN][19];
-
-	//gc=new double[ProcessN][19];
-
 	f=new double[ProcessN][19];
 
-	//ht=new double[ProcessN][19];
-
-	//Ct=new double[ProcessN];
-
-	//dgammat=new double[3];
-
-	//dCt=new double[3];
-	//dmut=new double[3];
-	//drhot=new double[3];
-	//dpt=new double[3];
+	
 
 	//--------------------Initialise Variable values----------------------
 
@@ -120,7 +93,7 @@ void wet::initialise()
 
 
 		//equiliberiumg();
-
+		
 
 		//equiliberiumh();
 		writemoments(75);
