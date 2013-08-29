@@ -17,7 +17,7 @@ void wet::algorithm()
 			
             computemoments();
             
-            momentsbound();
+            //momentsbound();
 		
 		if(st%wrtst==0)
 		{

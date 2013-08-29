@@ -52,17 +52,17 @@ void wet ::centralforce()
   	     FhCy=(gradCCy-3.0*C[k]/rho[k]*(gradpCy-mu[k]*gradCCy-G[1]));
 		
 
-  	     FgC1=mu[k]*gradmuC1+G[0];
-    	 FgC2=mu[k]*gradmuC2-G[0];
-    	 FgC3=mu[k]*gradmuC3+G[1];
-    	 FgC4=mu[k]*gradmuC4-G[1];
-      	 FgC7=mu[k]*gradmuC7+G[1];
-		 FgC8=mu[k]*gradmuC8+G[1];
-		 FgC9=mu[k]*gradmuC9-G[1];
-		 FgC10=mu[k]*gradmuC10-G[1];
+  	     FgC1=mu[k]*gradCC1+G[0];
+    	 FgC2=mu[k]*gradCC2-G[0];
+    	 FgC3=mu[k]*gradCC3+G[1];
+    	 FgC4=mu[k]*gradCC4-G[1];
+      	 FgC7=mu[k]*gradCC7+G[1];
+		 FgC8=mu[k]*gradCC8+G[1];
+		 FgC9=mu[k]*gradCC9-G[1];
+		 FgC10=mu[k]*gradCC10-G[1];
 
-		 FgCx=mu[k]*gradmuCx+G[0];
-		 FgCy=mu[k]*gradmuCy+G[1];
+		 FgCx=mu[k]*gradCCx+G[0];
+		 FgCy=mu[k]*gradCCy+G[1];
 		 
 		 FgrC1=gradrhoC1/3.0;
     	 FgrC2=gradrhoC2/3.0;
@@ -103,17 +103,17 @@ void wet ::centralforce()
   	     FhUx=(gradCUx-3.0*C[k]/rho[k]*(gradpUx-mu[k]*gradCUx-G[0]));
   	     FhUy=(gradCUy-3.0*C[k]/rho[k]*(gradpUy-mu[k]*gradCUy-G[1]));
 		
-  	     FgU1=mu[k]*gradmuU1+G[0];
-    	 FgU2=mu[k]*gradmuU2-G[0];
-    	 FgU3=mu[k]*gradmuU3+G[1];
-    	 FgU4=mu[k]*gradmuU4-G[1];
-      	 FgU7=mu[k]*gradmuU7+G[1];
-		 FgU8=mu[k]*gradmuU8+G[1];
-		 FgU9=mu[k]*gradmuU9-G[1];
-		 FgU10=mu[k]*gradmuU10-G[1];
+  	     FgU1=mu[k]*gradCU1+G[0];
+    	 FgU2=mu[k]*gradCU2-G[0];
+    	 FgU3=mu[k]*gradCU3+G[1];
+    	 FgU4=mu[k]*gradCU4-G[1];
+      	 FgU7=mu[k]*gradCU7+G[1];
+		 FgU8=mu[k]*gradCU8+G[1];
+		 FgU9=mu[k]*gradCU9-G[1];
+		 FgU10=mu[k]*gradCU10-G[1];
 
-		 FgUx=mu[k]*gradmuUx+G[0];
-		 FgUy=mu[k]*gradmuUy+G[1];
+		 FgUx=mu[k]*gradCUx+G[0];
+		 FgUy=mu[k]*gradCUy+G[1];
 		 
 		 FgrU1=gradrhoU1/3.0;
     	 FgrU2=gradrhoU2/3.0;

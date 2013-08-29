@@ -23,6 +23,7 @@ if(mask[k]!=28)
 		rho[k]=C[k]*rho1+(1-C[k])*rho2; //Compute Rho from updated moments
 		
 		tau[k]=1.0/(C[k]/tau1+(1-C[k])/tau2); // Compute tau for updated moments
+		if (mask[k]!=0){tau[k]=0.5;}
 		
 		
 
@@ -33,25 +34,61 @@ for(k=k1;k<k2;k++)//Initialise free energy
 	{
 		if(mask[k]!=28)
 		{
-
+			if (mask[k]==0)
+            {
             d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/(6.0*dt*dt);
-			
+			}
 			
 		
 			
-	if(mask[k]==1)
+	else if(mask[k]==1)
 	{
 		dC=Wc*(C[k]-C[k]*C[k]);
-		d2C=(C[d[k][7]]-2*dC+C[d[k][7]]+C[d[k][9]]-2*dC+C[d[k][9]]+4.0*(C[d[k][1]]-2*dC+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/(6.0*dt*dt);
+		d2C=(C[d[k][7]] + C[d[k][9]] + 4.0*C[d[k][1]] - 6.0*dC + 2.0*C[d[k][2]] + 2.0*C[d[k][3]]-10.0*C[k])/(3.0*dt*dt);
 
 	}
-	if(mask[k]==2)
+	else if(mask[k]==2)
 	{
 		dC=Wc*(C[k]-C[k]*C[k]);
-		d2C=(C[d[k][6]]+C[d[k][6]]-2*dC+C[d[k][8]]+C[d[k][8]]-2*dC+4.0*(C[d[k][1]]-2*dC+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/(6.0*dt*dt);
+		d2C=(C[d[k][6]]+C[d[k][8]]+4.0*C[d[k][1]] + 2.0*C[d[k][2]] + 2.0*C[d[k][3]]-10.0*C[k] -6.0*dC )/(3.0*dt*dt);
 
 	}
-			
+	else if(mask[k]==3)
+	{
+		dC=Wc*(C[k]-C[k]*C[k]);
+		d2C=(C[d[k][8]]+C[d[k][9]]+4.0*C[d[k][3]] + 2.0*C[d[k][0]] + 2.0*C[d[k][1]]-10.0*C[k] -6.0*dC )/(3.0*dt*dt);
+
+	}
+	else if(mask[k]==4)
+	{
+		dC=Wc*(C[k]-C[k]*C[k]);
+		d2C=(C[d[k][6]]+C[d[k][7]]+4.0*C[d[k][2]] + 2.0*C[d[k][0]] + 2.0*C[d[k][1]]-10.0*C[k] -6.0*dC )/(3.0*dt*dt);
+
+	}
+	else if(mask[k]==7)
+	{
+	dC=Wc*(C[k]-C[k]*C[k]);
+	d2C=1.0/6.0*(C[d[k][8]] + 2.0*C[d[k][9]] + C[d[k][7]]+ 4.0*C[d[k][3]] + 4.0*C[d[k][2]]
+	+4.0*C[d[k][0]] + 4.0*C[d[k][1]] - 20.0*C[k]);
+	}	
+	else if(mask[k]==8)
+	{
+	dC=Wc*(C[k]-C[k]*C[k]);
+	d2C=1.0/6.0*(C[d[k][6]] + 2.0*C[d[k][8]] + C[d[k][9]]+ 4.0*C[d[k][3]] + 4.0*C[d[k][2]]
+	+4.0*C[d[k][0]] + 4.0*C[d[k][1]] - 20.0*C[k]);
+	}	
+	else if(mask[k]==9)
+	{
+	dC=Wc*(C[k]-C[k]*C[k]);
+	d2C=1.0/6.0*(C[d[k][6]] + 2.0*C[d[k][7]] + C[d[k][79]]+ 4.0*C[d[k][3]] + 4.0*C[d[k][2]]
+	+4.0*C[d[k][0]] + 4.0*C[d[k][1]] - 20.0*C[k]);
+	}	
+	else if(mask[k]==10)
+	{
+	dC=Wc*(C[k]-C[k]*C[k]);
+	d2C=1.0/6.0*(C[d[k][8]] + 2.0*C[d[k][6]] + C[d[k][7]]+ 4.0*C[d[k][3]] + 4.0*C[d[k][2]]
+	+4.0*C[d[k][0]] + 4.0*C[d[k][1]] - 20.0*C[k]);
+	}					
 			mu[k]=2*B*( C[k]*pow(C[k]-1.0,2) + pow(C[k],2)*(C[k]-1.0) ) - kappa*d2C;
 
             

@@ -84,7 +84,8 @@ void wet::initialise()
 
 	initialisemoments();
 
-
+	momentsbound();
+	
 	writemoments(0);
 
 
@@ -147,6 +148,8 @@ void wet::initialise()
 
 
 	}
+	
+	
 
 	writevelocity(0);
 
