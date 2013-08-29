@@ -9,6 +9,8 @@ void wet::diffBD()
 	
 	if(mask[k]==0)
 	{
+	
+	//2D differentials
 	gradrhoU1=0.5*(-rho[d[d[k][0]][0]]+4*rho[d[k][0]]-3*rho[k])/dt;
     gradrhoU2=0.5*(-rho[d[d[k][1]][1]]+4*rho[d[k][1]]-3*rho[k])/dt;
     gradrhoU3=0.5*(-rho[d[d[k][2]][2]]+4*rho[d[k][2]]-3*rho[k])/dt;
@@ -44,6 +46,53 @@ void wet::diffBD()
     gradpU8=0.5*(-p[d[d[k][7]][7]]+4*p[d[k][7]]-3*p[k])/dt;
     gradpU9=0.5*(-p[d[d[k][8]][8]]+4*p[d[k][8]]-3*p[k])/dt;
     gradpU10=0.5*(-p[d[d[k][9]][9]]+4*p[d[k][9]]-3*p[k])/dt;
+    
+    //3D differentials
+    gradrhoU5=0.5*(-rho[d[d[k][4]][4]]+4*rho[d[k][4]]-3*rho[k])/dt;
+    gradrhoU6=0.5*(-rho[d[d[k][5]][5]]+4*rho[d[k][5]]-3*rho[k])/dt;
+    gradrhoU11=0.5*(-rho[d[d[k][10]][10]]+4*rho[d[k][10]]-3*rho[k])/dt;
+    gradrhoU12=0.5*(-rho[d[d[k][11]][11]]+4*rho[d[k][11]]-3*rho[k])/dt;
+    gradrhoU13=0.5*(-rho[d[d[k][12]][12]]+4*rho[d[k][12]]-3*rho[k])/dt;
+    gradrhoU14=0.5*(-rho[d[d[k][13]][13]]+4*rho[d[k][13]]-3*rho[k])/dt;
+    gradrhoU15=0.5*(-rho[d[d[k][14]][14]]+4*rho[d[k][14]]-3*rho[k])/dt;
+    gradrhoU16=0.5*(-rho[d[d[k][15]][15]]+4*rho[d[k][15]]-3*rho[k])/dt;
+    gradrhoU17=0.5*(-rho[d[d[k][16]][16]]+4*rho[d[k][16]]-3*rho[k])/dt;
+    gradrhoU18=0.5*(-rho[d[d[k][17]][17]]+4*rho[d[k][17]]-3*rho[k])/dt;
+    
+    gradCU5=0.5*(-C[d[d[k][4]][4]]+4*C[d[k][4]]-3*C[k])/dt;
+    gradCU6=0.5*(-C[d[d[k][5]][5]]+4*C[d[k][5]]-3*C[k])/dt;
+    gradCU11=0.5*(-C[d[d[k][10]][10]]+4*C[d[k][10]]-3*C[k])/dt;
+    gradCU12=0.5*(-C[d[d[k][11]][11]]+4*C[d[k][11]]-3*C[k])/dt;
+    gradCU13=0.5*(-C[d[d[k][12]][12]]+4*C[d[k][12]]-3*C[k])/dt;
+    gradCU14=0.5*(-C[d[d[k][13]][13]]+4*C[d[k][13]]-3*C[k])/dt;
+    gradCU15=0.5*(-C[d[d[k][14]][14]]+4*C[d[k][14]]-3*C[k])/dt;
+    gradCU16=0.5*(-C[d[d[k][15]][15]]+4*C[d[k][15]]-3*C[k])/dt;
+    gradCU17=0.5*(-C[d[d[k][16]][16]]+4*C[d[k][16]]-3*C[k])/dt;
+    gradCU18=0.5*(-C[d[d[k][17]][17]]+4*C[d[k][17]]-3*C[k])/dt;
+    
+    gradmuU5=0.5*(-mu[d[d[k][4]][4]]+4*mu[d[k][4]]-3*mu[k])/dt;
+    gradmuU6=0.5*(-mu[d[d[k][5]][5]]+4*mu[d[k][5]]-3*mu[k])/dt;
+    gradmuU11=0.5*(-mu[d[d[k][10]][10]]+4*mu[d[k][10]]-3*mu[k])/dt;
+    gradmuU12=0.5*(-mu[d[d[k][11]][11]]+4*mu[d[k][11]]-3*mu[k])/dt;
+    gradmuU13=0.5*(-mu[d[d[k][12]][12]]+4*mu[d[k][12]]-3*mu[k])/dt;
+    gradmuU14=0.5*(-mu[d[d[k][13]][13]]+4*mu[d[k][13]]-3*mu[k])/dt;
+    gradmuU15=0.5*(-mu[d[d[k][14]][14]]+4*mu[d[k][14]]-3*mu[k])/dt;
+    gradmuU16=0.5*(-mu[d[d[k][15]][15]]+4*mu[d[k][15]]-3*mu[k])/dt;
+    gradmuU17=0.5*(-mu[d[d[k][16]][16]]+4*mu[d[k][16]]-3*mu[k])/dt;
+    gradmuU18=0.5*(-mu[d[d[k][17]][17]]+4*mu[d[k][17]]-3*mu[k])/dt;
+    
+    gradpU5=0.5*(-p[d[d[k][4]][4]]+4*p[d[k][4]]-3*p[k])/dt;
+    gradpU6=0.5*(-p[d[d[k][5]][5]]+4*p[d[k][5]]-3*p[k])/dt;
+    gradpU11=0.5*(-p[d[d[k][10]][10]]+4*p[d[k][10]]-3*p[k])/dt;
+    gradpU12=0.5*(-p[d[d[k][11]][11]]+4*p[d[k][11]]-3*p[k])/dt;
+    gradpU13=0.5*(-p[d[d[k][12]][12]]+4*p[d[k][12]]-3*p[k])/dt;
+    gradpU14=0.5*(-p[d[d[k][13]][13]]+4*p[d[k][13]]-3*p[k])/dt;
+    gradpU15=0.5*(-p[d[d[k][14]][14]]+4*p[d[k][14]]-3*p[k])/dt;
+    gradpU16=0.5*(-p[d[d[k][15]][15]]+4*p[d[k][15]]-3*p[k])/dt;
+    gradpU17=0.5*(-p[d[d[k][16]][16]]+4*p[d[k][16]]-3*p[k])/dt;
+    gradpU18=0.5*(-p[d[d[k][17]][17]]+4*p[d[k][17]]-3*p[k])/dt;
+    
+    
     }
     
     
@@ -1533,7 +1582,7 @@ void wet::diffBD()
 			
 			
     // Work out x and y derivatives
-    		
+    		/*
     		gradrhoUx=1.0/3.0*(gradrhoU1-gradrhoU2)+1.0/12.0*(gradrhoU7-gradrhoU8+gradrhoU9-gradrhoU10);
     		gradrhoUy=1.0/3.0*(gradrhoU3-gradrhoU4)+1.0/12.0*(gradrhoU7+gradrhoU8-gradrhoU9-gradrhoU10);
     		
@@ -1546,7 +1595,23 @@ void wet::diffBD()
     		
     		gradpUx=1.0/3.0*(gradpU1-gradpU2)+1.0/12.0*(gradpU7-gradpU8+gradpU9-gradpU10);
     		gradpUy=1.0/3.0*(gradpU3-gradpU4)+1.0/12.0*(gradpU7+gradpU8-gradpU9-gradpU10);
-    
+    		*/
+    		
+    		gradrhoUx=1.0/6.0*(gradrhoU1-gradrhoU2)+1.0/12.0*(gradrhoU7-gradrhoU8+gradrhoU9-gradrhoU10+gradrhoU15+gradrhoU17-gradrhoU16-gradrhoU18);
+    		gradrhoUy=1.0/6.0*(gradrhoU3-gradrhoU4)+1.0/12.0*(gradrhoU7+gradrhoU8-gradrhoU9-gradrhoU10+gradrhoU11+gradrhoU13-gradrhoU12-gradrhoU14);
+    		gradrhoUz=1.0/6.0*(gradrhoU5-gradrhoU6)+1.0/12.0*(gradrhoU11+gradrhoU12-gradrhoU13-gradrhoU14+gradrhoU16+gradrhoU15-gradrhoU17-gradrhoU18);
+    		
+    		gradCUx=1.0/6.0*(gradCU1-gradCU2)+1.0/12.0*(gradCU7-gradCU8+gradCU9-gradCU10+gradCU15+gradCU17-gradCU16-gradCU18);
+    		gradCUy=1.0/6.0*(gradCU3-gradCU4)+1.0/12.0*(gradCU7+gradCU8-gradCU9-gradCU10+gradCU11+gradCU13-gradCU12-gradCU14);
+    		gradCUz=1.0/6.0*(gradCU5-gradCU6)+1.0/12.0*(gradCU11+gradCU12-gradCU13-gradCU14+gradCU16+gradCU15-gradCU17-gradCU18);
+		
+			gradmuUx=1.0/6.0*(gradmuU1-gradmuU2)+1.0/12.0*(gradmuU7-gradmuU8+gradmuU9-gradmuU10+gradmuU15+gradmuU17-gradmuU16-gradmuU18);
+    		gradmuUy=1.0/6.0*(gradmuU3-gradmuU4)+1.0/12.0*(gradmuU7+gradmuU8-gradmuU9-gradmuU10+gradmuU11+gradmuU13-gradmuU12-gradmuU14);
+    		gradmuUz=1.0/6.0*(gradmuU5-gradmuU6)+1.0/12.0*(gradmuU11+gradmuU12-gradmuU13-gradmuU14+gradmuU16+gradmuU15-gradmuU17-gradmuU18);
+		
+			gradpUx=1.0/6.0*(gradpU1-gradpU2)+1.0/12.0*(gradpU7-gradpU8+gradpU9-gradpU10+gradpU15+gradpU17-gradpU16-gradpU18);
+    		gradpUy=1.0/6.0*(gradpU3-gradpU4)+1.0/12.0*(gradpU7+gradpU8-gradpU9-gradpU10+gradpU11+gradpU13-gradpU12-gradpU14);
+    		gradpUz=1.0/6.0*(gradpU5-gradpU6)+1.0/12.0*(gradpU11+gradpU12-gradpU13-gradpU14+gradpU16+gradpU15-gradpU17-gradpU18);
     
 	}
 }
