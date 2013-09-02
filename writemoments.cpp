@@ -52,7 +52,7 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					file << mask[k] << " " ;
+					file << mu[k] << " " ;
 						
 				}
 				file << endl;

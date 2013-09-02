@@ -68,9 +68,10 @@ void wet::algorithm()
 		for(k=k1;k<k2;k++)
 		{	
 		
-		
+		if(mask[k]!=28)
+			{
 			propset();
-			
+			}
 		}
 		
 		for(k=k1;k<k2;k++)
@@ -84,7 +85,7 @@ void wet::algorithm()
 
 
 		
-		//cout << "Stop" << endl;
+		
 		}
 
 }

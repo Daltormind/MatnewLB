@@ -20,6 +20,8 @@ void wet::initialisesurface()
 	}
 	}
 	
+	//exchangemask();
+	
 	for(k=k1;k<k2;k++)
 	{	
 		// Four Cardinal directions
@@ -38,10 +40,10 @@ void wet::initialisesurface()
 		if(mask[k]==0 and mask[d[k][9]]==28){mask[k]=10;}
 		
 		//Four possible concave corner types
-		if(mask[d[k][0]]==28 and mask[d[k][2]]==28 and mask[k]=0){mask[k]=31;}
-		if(mask[d[k][0]]==28 and mask[d[k][3]]==28 and mask[k]=0){mask[k]=41;}
-		if(mask[d[k][1]]==28 and mask[d[k][2]]==28 and mask[k]=0){mask[k]=32;}
-		if(mask[d[k][1]]==28 and mask[d[k][3]]==28 and mask[k]=0){mask[k]=42;}
+		if(mask[d[k][0]]==28 and mask[d[k][2]]==28 and mask[k]==0){mask[k]=31;}
+		if(mask[d[k][0]]==28 and mask[d[k][3]]==28 and mask[k]==0){mask[k]=41;}
+		if(mask[d[k][1]]==28 and mask[d[k][2]]==28 and mask[k]==0){mask[k]=32;}
+		if(mask[d[k][1]]==28 and mask[d[k][3]]==28 and mask[k]==0){mask[k]=42;}
 	
 	}
 	/*

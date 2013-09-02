@@ -51,7 +51,26 @@ void wet::neibour()
 	
 	d[k][a]=z+y*Lz+x*Ly*Lz;
 	}
+	/*
+	if(k<k1+Ly*Lz or k>=k2-Ly*Lz)
+	{
+		for(a=0;a<Q-1;a++)
+	{
+		x=xk+2*geo[a][0];
+		y=yk+2*geo[a][1];
+		z=zk+2*geo[a][2];
 	
+	
+	//x=mod(x,Lx);
+	y=mod(y,Ly);
+	z=mod(z,Lz);
+	
+	
+	
+	d[d[k][a]][a]=z+y*Lz+x*Ly*Lz;
+	}
+	}
+	*/
 	
 	}
 	 

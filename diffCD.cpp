@@ -6,8 +6,8 @@ void wet::diffCD()
 {
 		//dC=Wc*(C[k]-C[k]*C[k]);
 		
-		if (dimensions==2)
-		{
+
+		
 			// First calculate Directional derivatives 
 			if(mask[k]==0)
 			{
@@ -97,7 +97,7 @@ void wet::diffCD()
     		
     		 
     		}
-    		
+    		/*
     			else if(mask[k]==1 or mask[k]==2)
 			{
 				gradrhoC1=0.0;
@@ -304,7 +304,7 @@ void wet::diffCD()
     		gradpC9=0.0;
     		gradpC10=0.0;
     		}
-    		
+    		*/
     		
     		// Work out x and y derivatives
     		/*
@@ -337,7 +337,7 @@ void wet::diffCD()
 			gradpCx=1.0/6.0*(gradpC1-gradpC2)+1.0/12.0*(gradpC7-gradpC8+gradpC9-gradpC10+gradpC15+gradpC17-gradpC16-gradpC18);
     		gradpCy=1.0/6.0*(gradpC3-gradpC4)+1.0/12.0*(gradpC7+gradpC8-gradpC9-gradpC10+gradpC11+gradpC13-gradpC12-gradpC14);
     		gradpCz=1.0/6.0*(gradpC5-gradpC6)+1.0/12.0*(gradpC11+gradpC12-gradpC13-gradpC14+gradpC16+gradpC15-gradpC17-gradpC18);
-		}
+		
 		
 		
 

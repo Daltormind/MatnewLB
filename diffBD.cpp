@@ -4,8 +4,8 @@
 
 void wet::diffBD()
 {
-	if(dimensions==2)
-	{
+	
+	
 	
 	if(mask[k]==0)
 	{
@@ -95,7 +95,7 @@ void wet::diffBD()
     
     }
     
-    
+    /*
    else if(mask[k]==1)
 			{
 				gradrhoU1=0.5*(-rho[d[d[k][1]][1]]+4*rho[d[k][1]]-3*rho[k])/dt;
@@ -1579,7 +1579,7 @@ void wet::diffBD()
    				gradpU9=0.5*(-p[d[d[k][7]][7]]+4*p[d[k][7]]-3*p[k])/dt;
     			gradpU10=0.5*(-p[d[d[k][6]][6]]+4*p[d[k][6]]-3*p[k])/dt;
     		}
-			
+			*/
 			
     // Work out x and y derivatives
     		/*
@@ -1613,5 +1613,5 @@ void wet::diffBD()
     		gradpUy=1.0/6.0*(gradpU3-gradpU4)+1.0/12.0*(gradpU7+gradpU8-gradpU9-gradpU10+gradpU11+gradpU13-gradpU12-gradpU14);
     		gradpUz=1.0/6.0*(gradpU5-gradpU6)+1.0/12.0*(gradpU11+gradpU12-gradpU13-gradpU14+gradpU16+gradpU15-gradpU17-gradpU18);
     
-	}
+	
 }

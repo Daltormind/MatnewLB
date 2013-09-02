@@ -97,7 +97,9 @@ void wet::initialisemoments()
 
             if (mask[k]==0)
             {
-            d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/(6.0*dt*dt);
+            //d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+4.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]])-20.0*C[k])/(6.0*dt*dt);
+			            d2C=(C[d[k][6]]+C[d[k][7]]+C[d[k][8]]+C[d[k][9]]+C[d[k][10]]+C[d[k][11]]+C[d[k][12]]+C[d[k][13]]+C[d[k][14]]+C[d[k][15]]+C[d[k][16]]+C[d[k][17]]+2.0*(C[d[k][0]]+C[d[k][1]]+C[d[k][2]]+C[d[k][3]]+C[d[k][4]]+C[d[k][5]])-24.0*C[k])/(6.0*dt*dt);
+
 			}
 			
 		
@@ -176,9 +178,10 @@ void wet::initialisemoments()
 	if(mask[k]!=28)
 	{
 
-	p[k]=rho[k]*(u[k][0]*u[k][0]+u[k][1]*u[k][1]+u[k][2]*u[k][2])/2;
+	p[k]=g[k][0]+g[k][1]+g[k][2]+g[k][3]+g[k][4]+g[k][7]+g[k][8]+g[k][9]+g[k][10]+g[k][11]+g[k][12]+g[k][12]+g[k][13]+g[k][14]+g[k][15]+g[k][16]+g[k][17]+g[k][18]+g[k][5]+g[k][6]+dt*u[k][0]*gradrhoCx/6.0+dt*gradrhoCy*u[k][1]/6.0+dt*gradrhoCz*u[k][2]/6.0;//compute pressure
 
 tau[k]=1.0/(C[k]/tau1+(1-C[k])/tau2);
+
 
 
 }
