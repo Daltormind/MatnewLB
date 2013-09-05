@@ -43,8 +43,9 @@ void wet::initialise()
 	//Setting up different processors done.
 	*/
 	
+	cout << "Entered initialise" << endl;
 	N=Lx*Ly*Lz;
-	
+	ProcessN=N;
 	k1 = 0;			//k where real lattice starts
 	k2 = N;		//k where real lattice ends
 	
@@ -78,7 +79,7 @@ void wet::initialise()
 
 	mask =new double[ProcessN]; //Array which holds the information on the substrate
 
-	u=new double[ProcessN][3]; //Velocity
+	ux=new double[ProcessN]; uy=new double[ProcessN];uz=new double[ProcessN];//Velocity
 
 	mu=new double[ProcessN]; //Free Energy
 	
@@ -90,24 +91,35 @@ void wet::initialise()
 
 	rho=new double[ProcessN];//Density
 
-	g=new double[ProcessN][19];//
+	g0=new double[ProcessN]; g1=new double[ProcessN]; g2=new double[ProcessN]; g3=new double[ProcessN]; g4=new double[ProcessN];
+	g5=new double[ProcessN]; g6=new double[ProcessN]; g7=new double[ProcessN]; g8=new double[ProcessN]; g9=new double[ProcessN];
+	g10=new double[ProcessN]; g11=new double[ProcessN]; g12=new double[ProcessN]; g13=new double[ProcessN]; g14=new double[ProcessN];
+	g15=new double[ProcessN]; g16=new double[ProcessN]; g17=new double[ProcessN]; g18=new double[ProcessN];
 
-	h=new double[ProcessN][19];
-	
-	gc=new double[ProcessN][19];//
+	h0=new double[ProcessN]; h1=new double[ProcessN]; h2=new double[ProcessN]; h3=new double[ProcessN]; h4=new double[ProcessN];
+	h5=new double[ProcessN]; h6=new double[ProcessN]; h7=new double[ProcessN]; h8=new double[ProcessN]; h9=new double[ProcessN];
+	h10=new double[ProcessN]; h11=new double[ProcessN]; h12=new double[ProcessN]; h13=new double[ProcessN]; h14=new double[ProcessN];
+	h15=new double[ProcessN]; h16=new double[ProcessN]; h17=new double[ProcessN]; h18=new double[ProcessN];
 
-	hc=new double[ProcessN][19];
+	hc0=new double[ProcessN]; hc1=new double[ProcessN]; hc2=new double[ProcessN]; hc3=new double[ProcessN]; hc4=new double[ProcessN];
+	hc5=new double[ProcessN]; hc6=new double[ProcessN]; hc7=new double[ProcessN]; hc8=new double[ProcessN]; hc9=new double[ProcessN];
+	hc10=new double[ProcessN]; hc11=new double[ProcessN]; hc12=new double[ProcessN]; hc13=new double[ProcessN]; hc14=new double[ProcessN];
+	hc15=new double[ProcessN]; hc16=new double[ProcessN]; hc17=new double[ProcessN]; hc18=new double[ProcessN];
 
+	gc0=new double[ProcessN]; gc1=new double[ProcessN]; gc2=new double[ProcessN]; gc3=new double[ProcessN]; gc4=new double[ProcessN];
+	gc5=new double[ProcessN]; gc6=new double[ProcessN]; gc7=new double[ProcessN]; gc8=new double[ProcessN]; gc9=new double[ProcessN];
+	gc10=new double[ProcessN]; gc11=new double[ProcessN]; gc12=new double[ProcessN]; gc13=new double[ProcessN]; gc14=new double[ProcessN];
+	gc15=new double[ProcessN]; gc16=new double[ProcessN]; gc17=new double[ProcessN]; gc18=new double[ProcessN];
 	tau=new double[ProcessN];
 
-	f=new double[ProcessN][19];
+	//f=new double[ProcessN][19];
 
 	
 
 	//--------------------Initialise Variable values----------------------
 
 
-
+	cout << "Initialised variables" << endl;
 
 
 
@@ -130,7 +142,7 @@ void wet::initialise()
 	writemoments(0);
 
 
-
+	cout << "Initialised surface and moments" << endl;
 
 
 
@@ -148,51 +160,51 @@ void wet::initialise()
         centralforce();
         equiliberiumg();
         equiliberiumh();
-        equiliberiumf();
+        //equiliberiumf();
 
-		g[k][0]=geq0;
-		g[k][1]=geq1;
-		g[k][2]=geq2;
-		g[k][3]=geq3;
-		g[k][4]=geq4;
+		g0[k]=geq0;
+		g1[k]=geq1;
+		g2[k]=geq2;
+		g3[k]=geq3;
+		g4[k]=geq4;
 
-		g[k][7]=geq7;
-		g[k][8]=geq8;
-		g[k][9]=geq9;
-		g[k][10]=geq10;
+		g7[k]=geq7;
+		g8[k]=geq8;
+		g9[k]=geq9;
+		g10[k]=geq10;
 		
-		g[k][5]=geq5;
-		g[k][6]=geq6;
-		g[k][11]=geq11;
-		g[k][12]=geq12;
-		g[k][13]=geq13;
-		g[k][14]=geq14;
-		g[k][15]=geq15;
-		g[k][16]=geq16;
-		g[k][17]=geq17;
-		g[k][18]=geq18;
+		g5[k]=geq5;
+		g6[k]=geq6;
+		g11[k]=geq11;
+		g12[k]=geq12;
+		g13[k]=geq13;
+		g14[k]=geq14;
+		g15[k]=geq15;
+		g16[k]=geq16;
+		g17[k]=geq17;
+		g18[k]=geq18;
 		
-		h[k][0]=heq0;
-		h[k][1]=heq1;
-		h[k][2]=heq2;
-		h[k][3]=heq3;
-		h[k][4]=heq4;
+		h0[k]=heq0;
+		h1[k]=heq1;
+		h2[k]=heq2;
+		h3[k]=heq3;
+		h4[k]=heq4;
 
-		h[k][7]=heq7;
-		h[k][8]=heq8;
-		h[k][9]=heq9;
-		h[k][10]=heq10;
+		h7[k]=heq7;
+		h8[k]=heq8;
+		h9[k]=heq9;
+		h10[k]=heq10;
 		
-		h[k][5]=heq5;
-		h[k][6]=heq6;
-		h[k][11]=heq11;
-		h[k][12]=heq12;
-		h[k][13]=heq13;
-		h[k][14]=heq14;
-		h[k][15]=heq15;
-		h[k][16]=heq16;
-		h[k][17]=heq17;
-		h[k][18]=heq18;
+		h5[k]=heq5;
+		h6[k]=heq6;
+		h11[k]=heq11;
+		h12[k]=heq12;
+		h13[k]=heq13;
+		h14[k]=heq14;
+		h15[k]=heq15;
+		h16[k]=heq16;
+		h17[k]=heq17;
+		h18[k]=heq18;
 		/*
 		f[k][0]=feq0;
 		f[k][1]=feq1;
@@ -215,5 +227,5 @@ void wet::initialise()
 	
 
 	writevelocity(0);
-
+	cout << "Finished initialise" << endl;
 }

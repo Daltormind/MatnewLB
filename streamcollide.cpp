@@ -27,7 +27,7 @@ double mu[mx+2][my+2];
 double u[mx+2][my+2],v[mx+2][my+2];
 double Lap;
 double mu0,rho0G=1.0,rho0L=1.0;
-double ux=0,uy=0;
+double ux[k]=0,uy[k]=0;
 double kappa=0.01;
 double beta=0.01;
 double gradRhoC0,gradRhoC1,gradRhoC2,gradRhoC3,gradRhoC4,gradRhoC5,gradRhoC6,gradRhoC7,gradRhoC8;
@@ -65,18 +65,18 @@ for(j=1;j<=my;j++)
     {
         for(i=1;i<=mx;i++)
         {
-         ux=u[i][j];
-         uy=v[i][j];
+         ux[k]=u[i][j];
+         uy[k]=v[i][j];
 
-         f0[i][j] = 4.0/9.0*rho[i][j]*(1.0-1.5*(ux*ux+uy*uy));
-         f1[i][j] = 1.0/9.0*rho[i][j]*(1.0+3.0*ux+3.0*ux*ux-1.5*uy*uy);
-         f2[i][j] = 1.0/9.0*rho[i][j]*(1.0+3.0*uy+3.0*uy*uy-1.5*ux*ux);
-         f3[i][j] = 1.0/9.0*rho[i][j]*(1.0-3.0*ux+3.0*ux*ux-1.5*uy*uy);
-         f4[i][j] = 1.0/9.0*rho[i][j]*(1.0-3.0*uy+3.0*uy*uy-1.5*ux*ux);
-         f5[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(ux+uy+ux*ux+uy*uy)+9.0*ux*uy);
-         f6[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(-ux+uy+ux*ux+uy*uy)-9.0*ux*uy);
-         f7[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(-ux-uy+ux*ux+uy*uy)+9.0*ux*uy);
-         f8[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(ux-uy+ux*ux+uy*uy)-9.0*ux*uy);
+         f0[i][j] = 4.0/9.0*rho[i][j]*(1.0-1.5*(ux[k]*ux[k]+uy[k]*uy[k]));
+         f1[i][j] = 1.0/9.0*rho[i][j]*(1.0+3.0*ux[k]+3.0*ux[k]*ux[k]-1.5*uy[k]*uy[k]);
+         f2[i][j] = 1.0/9.0*rho[i][j]*(1.0+3.0*uy[k]+3.0*uy[k]*uy[k]-1.5*ux[k]*ux[k]);
+         f3[i][j] = 1.0/9.0*rho[i][j]*(1.0-3.0*ux[k]+3.0*ux[k]*ux[k]-1.5*uy[k]*uy[k]);
+         f4[i][j] = 1.0/9.0*rho[i][j]*(1.0-3.0*uy[k]+3.0*uy[k]*uy[k]-1.5*ux[k]*ux[k]);
+         f5[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9.0*ux[k]*uy[k]);
+         f6[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(-ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9.0*ux[k]*uy[k]);
+         f7[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(-ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9.0*ux[k]*uy[k]);
+         f8[i][j] = 1.0/36.0*rho[i][j]*(1.0+3.0*(ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9.0*ux[k]*uy[k]);
 
         }
     }
@@ -295,45 +295,45 @@ for(i=1;i<=mx;i++)
       v[i][j]=(f5[i][j]+f2[i][j]+f6[i][j]- f7[i][j]-f4[i][j]-f8[i][j]+0.5*FCy)/rho[i][j];
 
 
-      ux=u[i][j];
-      uy=v[i][j];
+      ux[k]=u[i][j];
+      uy[k]=v[i][j];
 
 //Equilibria
 
 
-             f0zero = 4/9*rho[i][j]*(1-1.5*(ux*ux+uy*uy));
-             f1zero = 1/9*rho[i][j]*(1+3*ux+3*ux*ux-1.5*uy*uy);
-             f2zero = 1/9*rho[i][j]*(1+3*uy+3*uy*uy-1.5*ux*ux);
-             f3zero = 1/9*rho[i][j]*(1-3*ux+3*ux*ux-1.5*uy*uy);
-             f4zero = 1/9*rho[i][j]*(1-3*uy+3*uy*uy-1.5*ux*ux);
-             f5zero = 1/36*rho[i][j]*(1+3*(ux+uy+ux*ux+uy*uy)+9*ux*uy);
-             f6zero = 1/36*rho[i][j]*(1+3*(-ux+uy+ux*ux+uy*uy)-9*ux*uy);
-             f7zero = 1/36*rho[i][j]*(1+3*(-ux-uy+ux*ux+uy*uy)+9*ux*uy);
-             f8zero = 1/36*rho[i][j]*(1+3*(ux-uy+ux*ux+uy*uy)-9*ux*uy);
+             f0zero = 4/9*rho[i][j]*(1-1.5*(ux[k]*ux[k]+uy[k]*uy[k]));
+             f1zero = 1/9*rho[i][j]*(1+3*ux[k]+3*ux[k]*ux[k]-1.5*uy[k]*uy[k]);
+             f2zero = 1/9*rho[i][j]*(1+3*uy[k]+3*uy[k]*uy[k]-1.5*ux[k]*ux[k]);
+             f3zero = 1/9*rho[i][j]*(1-3*ux[k]+3*ux[k]*ux[k]-1.5*uy[k]*uy[k]);
+             f4zero = 1/9*rho[i][j]*(1-3*uy[k]+3*uy[k]*uy[k]-1.5*ux[k]*ux[k]);
+             f5zero = 1/36*rho[i][j]*(1+3*(ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9*ux[k]*uy[k]);
+             f6zero = 1/36*rho[i][j]*(1+3*(-ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9*ux[k]*uy[k]);
+             f7zero = 1/36*rho[i][j]*(1+3*(-ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9*ux[k]*uy[k]);
+             f8zero = 1/36*rho[i][j]*(1+3*(ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9*ux[k]*uy[k]);
 
 //'barred' Equilibria
 
-             f0zeroBar=f0zero+3/2*(ux*FCx+uy*FCy)*f0zero/rho[i][j];
-             f1zeroBar=f1zero-3/2*(FC1-ux*FCx-uy*FCy)*f1zero/rho[i][j];
-             f2zeroBar=f2zero-3/2*(FC2-ux*FCx-uy*FCy)*f2zero/rho[i][j];
-             f3zeroBar=f3zero-3/2*(FC3-ux*FCx-uy*FCy)*f3zero/rho[i][j];
-             f4zeroBar=f4zero-3/2*(FC4-ux*FCx-uy*FCy)*f4zero/rho[i][j];
-             f5zeroBar=f5zero-3/2*(FC5-ux*FCx-uy*FCy)*f5zero/rho[i][j];
-             f6zeroBar=f6zero-3/2*(FC6-ux*FCx-uy*FCy)*f6zero/rho[i][j];
-             f7zeroBar=f7zero-3/2*(FC7-ux*FCx-uy*FCy)*f7zero/rho[i][j];
-             f8zeroBar=f8zero-3/2*(FC8-ux*FCx-uy*FCy)*f8zero/rho[i][j];
+             f0zeroBar=f0zero+3/2*(ux[k]*FCx+uy[k]*FCy)*f0zero/rho[i][j];
+             f1zeroBar=f1zero-3/2*(FC1-ux[k]*FCx-uy[k]*FCy)*f1zero/rho[i][j];
+             f2zeroBar=f2zero-3/2*(FC2-ux[k]*FCx-uy[k]*FCy)*f2zero/rho[i][j];
+             f3zeroBar=f3zero-3/2*(FC3-ux[k]*FCx-uy[k]*FCy)*f3zero/rho[i][j];
+             f4zeroBar=f4zero-3/2*(FC4-ux[k]*FCx-uy[k]*FCy)*f4zero/rho[i][j];
+             f5zeroBar=f5zero-3/2*(FC5-ux[k]*FCx-uy[k]*FCy)*f5zero/rho[i][j];
+             f6zeroBar=f6zero-3/2*(FC6-ux[k]*FCx-uy[k]*FCy)*f6zero/rho[i][j];
+             f7zeroBar=f7zero-3/2*(FC7-ux[k]*FCx-uy[k]*FCy)*f7zero/rho[i][j];
+             f8zeroBar=f8zero-3/2*(FC8-ux[k]*FCx-uy[k]*FCy)*f8zero/rho[i][j];
 
 //Collisions and force
 
-            f0[i][j] = f0[i][j]-(f0[i][j]-f0zeroBar)/(tau+0.5)-3*(ux*FMx+uy*FMy)*f0zero/rho[i][j];
-            f1[i][j] = f1[i][j]-(f1[i][j]-f1zeroBar)/(tau+0.5)+3*(FM1-ux*FMx-uy*FMy)*f1zero/rho[i][j];
-            f2[i][j] = f2[i][j]-(f2[i][j]-f2zeroBar)/(tau+0.5)+3*(FM2-ux*FMx-uy*FMy)*f2zero/rho[i][j];
-            f3[i][j] = f3[i][j]-(f3[i][j]-f3zeroBar)/(tau+0.5)+3*(FM3-ux*FMx-uy*FMy)*f3zero/rho[i][j];
-            f4[i][j] = f4[i][j]-(f4[i][j]-f4zeroBar)/(tau+0.5)+3*(FM4-ux*FMx-uy*FMy)*f4zero/rho[i][j];
-            f5[i][j] = f5[i][j]-(f5[i][j]-f5zeroBar)/(tau+0.5)+3*(FM5-ux*FMx-uy*FMy)*f5zero/rho[i][j];
-            f6[i][j] = f6[i][j]-(f6[i][j]-f6zeroBar)/(tau+0.5)+3*(FM6-ux*FMx-uy*FMy)*f6zero/rho[i][j];
-            f7[i][j] = f7[i][j]-(f7[i][j]-f7zeroBar)/(tau+0.5)+3*(FM7-ux*FMx-uy*FMy)*f7zero/rho[i][j];
-            f8[i][j] = f8[i][j]-(f8[i][j]-f8zeroBar)/(tau+0.5)+3*(FM8-ux*FMx-uy*FMy)*f8zero/rho[i][j];
+            f0[i][j] = f0[i][j]-(f0[i][j]-f0zeroBar)/(tau+0.5)-3*(ux[k]*FMx+uy[k]*FMy)*f0zero/rho[i][j];
+            f1[i][j] = f1[i][j]-(f1[i][j]-f1zeroBar)/(tau+0.5)+3*(FM1-ux[k]*FMx-uy[k]*FMy)*f1zero/rho[i][j];
+            f2[i][j] = f2[i][j]-(f2[i][j]-f2zeroBar)/(tau+0.5)+3*(FM2-ux[k]*FMx-uy[k]*FMy)*f2zero/rho[i][j];
+            f3[i][j] = f3[i][j]-(f3[i][j]-f3zeroBar)/(tau+0.5)+3*(FM3-ux[k]*FMx-uy[k]*FMy)*f3zero/rho[i][j];
+            f4[i][j] = f4[i][j]-(f4[i][j]-f4zeroBar)/(tau+0.5)+3*(FM4-ux[k]*FMx-uy[k]*FMy)*f4zero/rho[i][j];
+            f5[i][j] = f5[i][j]-(f5[i][j]-f5zeroBar)/(tau+0.5)+3*(FM5-ux[k]*FMx-uy[k]*FMy)*f5zero/rho[i][j];
+            f6[i][j] = f6[i][j]-(f6[i][j]-f6zeroBar)/(tau+0.5)+3*(FM6-ux[k]*FMx-uy[k]*FMy)*f6zero/rho[i][j];
+            f7[i][j] = f7[i][j]-(f7[i][j]-f7zeroBar)/(tau+0.5)+3*(FM7-ux[k]*FMx-uy[k]*FMy)*f7zero/rho[i][j];
+            f8[i][j] = f8[i][j]-(f8[i][j]-f8zeroBar)/(tau+0.5)+3*(FM8-ux[k]*FMx-uy[k]*FMy)*f8zero/rho[i][j];
 
 
 

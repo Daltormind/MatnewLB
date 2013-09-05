@@ -6,43 +6,43 @@ void wet ::centralforce()
 {
 
 		//compute gamma
-  gamma0 = t0*(1.0 - 1.5*(u[k][0]*u[k][0] + u[k][1]*u[k][1] + u[k][2]*u[k][2]));
+  gamma0 = t0*(1.0 - 1.5*(ux[k]*ux[k] + uy[k]*uy[k] + uz[k]*uz[k]));
   
-  gamma1 = t1*(1.0 + 3.0*u[k][0] + 3.0*u[k][0]*u[k][0] - 1.5*u[k][1]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma1 = t1*(1.0 + 3.0*ux[k] + 3.0*ux[k]*ux[k] - 1.5*uy[k]*uy[k] - 1.5*uz[k]*uz[k]);
   
-  gamma3 = t1*(1.0+3.0*u[k][1]+3.0*u[k][1]*u[k][1]-1.5*u[k][0]*u[k][0] - 1.5*u[k][2]*u[k][2]);
+  gamma3 = t1*(1.0+3.0*uy[k]+3.0*uy[k]*uy[k]-1.5*ux[k]*ux[k] - 1.5*uz[k]*uz[k]);
   
-  gamma2 = t1*(1.0-3.0*u[k][0]+3.0*u[k][0]*u[k][0]-1.5*u[k][1]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma2 = t1*(1.0-3.0*ux[k]+3.0*ux[k]*ux[k]-1.5*uy[k]*uy[k] - 1.5*uz[k]*uz[k]);
   
-  gamma4 = t1*(1.0-3.0*u[k][1]+3.0*u[k][1]*u[k][1]-1.5*u[k][0]*u[k][0] - 1.5*u[k][2]*u[k][2]);
+  gamma4 = t1*(1.0-3.0*uy[k]+3.0*uy[k]*uy[k]-1.5*ux[k]*ux[k] - 1.5*uz[k]*uz[k]);
   
-  gamma5 = t1*(1.0 + 3.0*u[k][2] + 3.0*u[k][2]*u[k][2] - 1.5*u[k][1]*u[k][1] - 1.5*u[k][0]*u[k][0]);
+  gamma5 = t1*(1.0 + 3.0*uz[k] + 3.0*uz[k]*uz[k] - 1.5*uy[k]*uy[k] - 1.5*ux[k]*ux[k]);
   
-  gamma6 = t1*(1.0 - 3.0*u[k][2] + 3.0*u[k][2]*u[k][2] - 1.5*u[k][1]*u[k][1] - 1.5*u[k][0]*u[k][0]);
+  gamma6 = t1*(1.0 - 3.0*uz[k] + 3.0*uz[k]*uz[k] - 1.5*uy[k]*uy[k] - 1.5*ux[k]*ux[k]);
   
-  gamma7 = t2*(1.0+3.0*(u[k][0]+u[k][1]+u[k][0]*u[k][0]+u[k][1]*u[k][1])+9.0*u[k][0]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma7 = t2*(1.0+3.0*(ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9.0*ux[k]*uy[k] - 1.5*uz[k]*uz[k]);
   
-  gamma8 = t2*(1.0+3.0*(-u[k][0]+u[k][1]+u[k][0]*u[k][0]+u[k][1]*u[k][1])-9.0*u[k][0]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma8 = t2*(1.0+3.0*(-ux[k]+uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9.0*ux[k]*uy[k] - 1.5*uz[k]*uz[k]);
   
-  gamma10 = t2*(1.0+3.0*(-u[k][0]-u[k][1]+u[k][0]*u[k][0]+u[k][1]*u[k][1])+9.0*u[k][0]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma10 = t2*(1.0+3.0*(-ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])+9.0*ux[k]*uy[k] - 1.5*uz[k]*uz[k]);
   
-  gamma9 = t2*(1.0+3.0*(u[k][0]-u[k][1]+u[k][0]*u[k][0]+u[k][1]*u[k][1])-9.0*u[k][0]*u[k][1] - 1.5*u[k][2]*u[k][2]);
+  gamma9 = t2*(1.0+3.0*(ux[k]-uy[k]+ux[k]*ux[k]+uy[k]*uy[k])-9.0*ux[k]*uy[k] - 1.5*uz[k]*uz[k]);
 	
-  gamma11 = t2*(1.0+3.0*(u[k][1]+u[k][2]+u[k][1]*u[k][1]+u[k][2]*u[k][2])+9.0*u[k][1]*u[k][2] - 1.5*u[k][0]*u[k][0]);
+  gamma11 = t2*(1.0+3.0*(uy[k]+uz[k]+uy[k]*uy[k]+uz[k]*uz[k])+9.0*uy[k]*uz[k] - 1.5*ux[k]*ux[k]);
 
-  gamma12 = t2*(1.0+3.0*(-u[k][1]+u[k][2]+u[k][1]*u[k][1]+u[k][2]*u[k][2])-9.0*u[k][1]*u[k][2] - 1.5*u[k][0]*u[k][0]);
+  gamma12 = t2*(1.0+3.0*(-uy[k]+uz[k]+uy[k]*uy[k]+uz[k]*uz[k])-9.0*uy[k]*uz[k] - 1.5*ux[k]*ux[k]);
 
-  gamma13 = t2*(1.0+3.0*(u[k][1]-u[k][2]+u[k][1]*u[k][1]+u[k][2]*u[k][2])-9.0*u[k][1]*u[k][2] - 1.5*u[k][0]*u[k][0]);
+  gamma13 = t2*(1.0+3.0*(uy[k]-uz[k]+uy[k]*uy[k]+uz[k]*uz[k])-9.0*uy[k]*uz[k] - 1.5*ux[k]*ux[k]);
 
-  gamma14 = t2*(1.0+3.0*(-u[k][1]-u[k][2]+u[k][1]*u[k][1]+u[k][2]*u[k][2])+9.0*u[k][1]*u[k][2] - 1.5*u[k][0]*u[k][0]);
+  gamma14 = t2*(1.0+3.0*(-uy[k]-uz[k]+uy[k]*uy[k]+uz[k]*uz[k])+9.0*uy[k]*uz[k] - 1.5*ux[k]*ux[k]);
 
-  gamma15 = t2*(1.0+3.0*(u[k][0]+u[k][2]+u[k][0]*u[k][0]+u[k][2]*u[k][2])+9.0*u[k][0]*u[k][2] - 1.5*u[k][1]*u[k][1]);
+  gamma15 = t2*(1.0+3.0*(ux[k]+uz[k]+ux[k]*ux[k]+uz[k]*uz[k])+9.0*ux[k]*uz[k] - 1.5*uy[k]*uy[k]);
 	
-  gamma16 = t2*(1.0+3.0*(-u[k][0]+u[k][2]+u[k][0]*u[k][0]+u[k][2]*u[k][2])-9.0*u[k][0]*u[k][2] - 1.5*u[k][1]*u[k][1]);
+  gamma16 = t2*(1.0+3.0*(-ux[k]+uz[k]+ux[k]*ux[k]+uz[k]*uz[k])-9.0*ux[k]*uz[k] - 1.5*uy[k]*uy[k]);
 
-  gamma17 = t2*(1.0+3.0*(u[k][0]-u[k][2]+u[k][0]*u[k][0]+u[k][2]*u[k][2])-9.0*u[k][0]*u[k][2] - 1.5*u[k][1]*u[k][1]);
+  gamma17 = t2*(1.0+3.0*(ux[k]-uz[k]+ux[k]*ux[k]+uz[k]*uz[k])-9.0*ux[k]*uz[k] - 1.5*uy[k]*uy[k]);
 
-  gamma18 = t2*(1.0+3.0*(-u[k][0]-u[k][2]+u[k][0]*u[k][0]+u[k][2]*u[k][2])+9.0*u[k][0]*u[k][2] - 1.5*u[k][1]*u[k][1]);
+  gamma18 = t2*(1.0+3.0*(-ux[k]-uz[k]+ux[k]*ux[k]+uz[k]*uz[k])+9.0*ux[k]*uz[k] - 1.5*uy[k]*uy[k]);
 			
 		 gammar0 =  gamma0-t0;
          gammar1 = gamma1-t1;

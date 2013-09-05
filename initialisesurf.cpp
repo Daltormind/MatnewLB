@@ -26,6 +26,61 @@ void wet::initialisesurface()
 	{	
 		// Four Cardinal directions
 		if(mask[d[k][0]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][1]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][2]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][3]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][6]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][7]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][8]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][9]]==28 and mask[k]!=28){mask[k]=1;}
+		
+		if(mask[d[k][4]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][5]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][10]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][11]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][12]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][13]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][14]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][15]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][16]]==28 and mask[k]!=28){mask[k]=1;}
+		if(mask[d[k][17]]==28 and mask[k]!=28){mask[k]=1;}
+		
+	}
+	
+	for(k=k1;k<k2;k++)
+	{	
+		// Four Cardinal directions
+		if(mask[d[d[k][0]][0]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][1]][1]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][2]][2]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][3]][3]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][6]][6]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][7]][7]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][8]][8]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][9]][9]]==28 and mask[k]==0){mask[k]=2;}
+		
+		if(mask[d[d[k][4]][4]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][5]][5]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][10]][10]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][11]][11]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][12]][12]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][13]][13]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][14]][14]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][15]][15]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][16]][16]]==28 and mask[k]==0){mask[k]=2;}
+		if(mask[d[d[k][17]][17]]==28 and mask[k]==0){mask[k]=2;}
+		
+	}
+	
+	
+	
+	
+	
+	/*
+	for(k=k1;k<k2;k++)
+	{	
+		// Four Cardinal directions
+		if(mask[d[k][0]]==28 and mask[k]!=28){mask[k]=1;}
 		if(mask[d[k][1]]==28 and mask[k]!=28){mask[k]=2;}
 		if(mask[d[k][2]]==28 and mask[k]!=28){mask[k]=3;}
 		if(mask[d[k][3]]==28 and mask[k]!=28){mask[k]=4;}
@@ -62,7 +117,7 @@ void wet::initialisesurface()
 		
 	
 	}
-	*/
+	
 	
 	for(k=k1;k<k2;k++)
 	{
@@ -103,6 +158,6 @@ void wet::initialisesurface()
 
 
 	}
-	
+	*/
 	
 }

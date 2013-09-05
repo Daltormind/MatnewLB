@@ -30,7 +30,7 @@ class wet
 
 	double *C , *mu , *p, *rho, *mask,*muh; //Assigning memory space to the composition
 
-	double (*u)[3];
+	//double (*u)[3];
 	
 	double G[2];
 
@@ -46,11 +46,13 @@ class wet
 	
 	double theta;
 
-	int Lx,Ly,Lz; // Size of simulation box
+	int Lx,Ly,Lz,N; // Size of simulation box
 	
 	double Wc; //Modified wetting constant.
 
-	double ux,uy,uz; //Initial Drop velocity
+	double *ux,*uy,*uz; // Drop velocity
+	
+	double uxi,uyi,uzi; //Initial Drop velocity
 
 	int xk,yk,zk; //Positions
 
@@ -62,9 +64,15 @@ class wet
 
 	//double (*gamma)[19], (*dgamma)[19]; //Gamma
 
-	double (*g)[19], (*h)[19]; //The single particle probability functions
+	double *g0,*g1,*g2,*g3,*g4,*g5,*g6,*g7,*g8,*g9,*g10,*g11,*g12,*g13,*g14,*g15,*g16,*g17,*g18 ; //The single particle probability functions
 	
-	double (*gc)[19], (*hc)[19];
+	double *h0,*h1,*h2,*h3,*h4,*h5,*h6,*h7,*h8,*h9,*h10,*h11,*h12,*h13,*h14,*h15,*h16,*h17,*h18 ; //The sinhle particle probability functions
+	
+	double *gc0,*gc1,*gc2,*gc3,*gc4,*gc5,*gc6,*gc7,*gc8,*gc9,*gc10,*gc11,*gc12,*gc13,*gc14,*gc15,*gc16,*gc17,*gc18 ; //The singcle particle probability functions
+
+	double *hc0,*hc1,*hc2,*hc3,*hc4,*hc5,*hc6,*hc7,*hc8,*hc9,*hc10,*hc11,*hc12,*hc13,*hc14,*hc15,*hc16,*hc17,*hc18 ; //The sinhcle particle probability functions
+	
+	
 
 	//double (*ge)[19], (*he)[19]; //Equiliberium functions
 
@@ -78,11 +86,11 @@ class wet
 
 	double M,BA;//Mobility and free energy variation
 
-	double (*f)[19];
+	//double (*f)[19];
 
 	int wrtst;//step interval at which to write to file
 
-	double d2rho;
+	//double d2rho;
 
 	int dimensions; //Number of dimensions the problem is being run in
 
@@ -127,6 +135,8 @@ class wet
     double FhC1,FhC2,FhC3,FhC4,FhC5,FhC6,FhC7,FhC8,FhC9,FhC10,FhC11,FhC12,FhC13,FhC14,FhC15,FhC16,FhC17,FhC18,FhCx,FhCy,FhCz;
     double FhU1,FhU2,FhU3,FhU4,FhU5,FhU6,FhU7,FhU8,FhU9,FhU10,FhU11,FhU12,FhU13,FhU14,FhU15,FhU16,FhU17,FhU18,FhUx,FhUy,FhUz;
     double FhM1,FhM2,FhM3,FhM4,FhM5,FhM6,FhM7,FhM8,FhM9,FhM10,FhM11,FhM12,FhM13,FhM14,FhM15,FhM16,FhM17,FhM18,FhMx,FhMy,FhMz;
+	
+	double hold1,hold2,hold3,hold4,hold5,hold6,hold7,hold8,hold9,hold10,hold11,hold12,hold13,hold14,hold15,hold16,hold17,hold18,holdx,holdy,holdz;
 
     double FgC1,FgC2,FgC3,FgC4,FgC5,FgC6,FgC7,FgC8,FgC9,FgC10,FgC11,FgC12,FgC13,FgC14,FgC15,FgC16,FgC17,FgC18,FgCx,FgCy,FgCz;
     double FgU1,FgU2,FgU3,FgU4,FgU5,FgU6,FgU7,FgU8,FgU9,FgU10,FgU11,FgU12,FgU13,FgU14,FgU15,FgU16,FgU17,FgU18,FgUx,FgUy,FgUz;

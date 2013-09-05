@@ -5,12 +5,12 @@
 void wet::computecoordinates(int k)
 	{
 		
-		/*
+		
 		xk=int (k/float(Lz*Ly));
 		yk=int((k-xk*Lz*Ly)/float(Lz));
 		zk=k-xk*Ly*Lz-yk*Lz;
-		*/
-	
+		
+	/*
 		int kTot;
 
 	if(rank<ROOT)
@@ -34,6 +34,6 @@ void wet::computecoordinates(int k)
 		yk=int((kTot-xk*LZ*LY)/(float) LZ);	//Index node of y coordinate
 		zk=kTot-xk*LZ*LY-yk*LZ;			//Index node of z coordinate
 	}
-	
+	*/
 	
 	}

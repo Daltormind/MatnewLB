@@ -104,31 +104,31 @@ void wet::diffMD()
 	if(dimensions==3)
 	{
 	//Work out mixed differnce for mu
-	dmu[k][0]*=3;
-	dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][8]][8]]+mu[d[d[k][14]][14]]+mu[d[d[k][16]][16]]-mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]-mu[d[d[k][15]][15]]-mu[d[d[k][17]][17]]);
+	dmux[k]*=3;
+	dmux[k]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][8]][8]]+mu[d[d[k][14]][14]]+mu[d[d[k][16]][16]]-mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]-mu[d[d[k][15]][15]]-mu[d[d[k][17]][17]]);
 
-	dmu[k][1]*=3;
-	dmu[k][1]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][7]][7]]+mu[d[d[k][10]][10]]+mu[d[d[k][12]][12]]-mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]-mu[d[d[k][11]][11]]-mu[d[d[k][13]][13]]);
+	dmuy[k]*=3;
+	dmuy[k]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][7]][7]]+mu[d[d[k][10]][10]]+mu[d[d[k][12]][12]]-mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]-mu[d[d[k][11]][11]]-mu[d[d[k][13]][13]]);
 
 
-	dmu[k][2]*=3;
-	dmu[k][2]-=t1/4*(mu[d[d[k][4]][4]]-mu[d[d[k][5]][5]])+t2/4*(mu[d[d[k][10]][10]]+mu[d[d[k][11]][11]]+mu[d[d[k][14]][14]]+mu[d[d[k][15]][15]]-mu[d[d[k][12]][12]]-mu[d[d[k][13]][13]]-mu[d[d[k][16]][16]]-mu[d[d[k][17]][17]]);
+	dmuz[k]*=3;
+	dmuz[k]-=t1/4*(mu[d[d[k][4]][4]]-mu[d[d[k][5]][5]])+t2/4*(mu[d[d[k][10]][10]]+mu[d[d[k][11]][11]]+mu[d[d[k][14]][14]]+mu[d[d[k][15]][15]]-mu[d[d[k][12]][12]]-mu[d[d[k][13]][13]]-mu[d[d[k][16]][16]]-mu[d[d[k][17]][17]]);
 	}
 	if(dimensions==2)
 	{
-	dmu[k][0]*=3;
-	dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][8]][8]]-mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]);
+	dmux[k]*=3;
+	dmux[k]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][8]][8]]-mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]);
 
-	dmu[k][1]*=3;
-	dmu[k][1]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][7]][7]]-mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]);
+	dmuy[k]*=3;
+	dmuy[k]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][7]][7]]-mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]);
 
 
 	}
 	
 	if(dimensions==1)
 	{
-		dmu[k][0]*=3;
-		dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]]);
+		dmux[k]*=3;
+		dmux[k]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]]);
 
 	}
 
@@ -167,30 +167,30 @@ void wet::diffMD()
 	for(a=0;a<Q;a++)
 	{
 	dgamma[k][a]*=3;
-	dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][8]][8]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][16]][16]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][15]][15]][a]-gamma[d[d[k][17]][17]][a])*(e[a][0]-u[k][0]);
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][8]][8]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][16]][16]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][15]][15]][a]-gamma[d[d[k][17]][17]][a])*(e[a][0]-ux[k]);
 
 
-	dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][7]][7]][a]+gamma[d[d[k][10]][10]][a]+gamma[d[d[k][12]][12]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][11]][11]][a]-gamma[d[d[k][13]][13]][a])*(e[a][1]-u[k][1]);
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][7]][7]][a]+gamma[d[d[k][10]][10]][a]+gamma[d[d[k][12]][12]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][11]][11]][a]-gamma[d[d[k][13]][13]][a])*(e[a][1]-uy[k]);
 
 
 
-	dgamma[k][a]-=t1/4*(gamma[d[d[k][4]][4]][a]-gamma[d[d[k][5]][5]][a])+t2/4*(gamma[d[d[k][10]][10]][a]+gamma[d[d[k][11]][11]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][15]][15]][a]-gamma[d[d[k][12]][12]][a]-gamma[d[d[k][13]][13]][a]-gamma[d[d[k][16]][16]][a]-gamma[d[d[k][17]][17]][a])*(e[a][2]-u[k][2]);
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][4]][4]][a]-gamma[d[d[k][5]][5]][a])+t2/4*(gamma[d[d[k][10]][10]][a]+gamma[d[d[k][11]][11]][a]+gamma[d[d[k][14]][14]][a]+gamma[d[d[k][15]][15]][a]-gamma[d[d[k][12]][12]][a]-gamma[d[d[k][13]][13]][a]-gamma[d[d[k][16]][16]][a]-gamma[d[d[k][17]][17]][a])*(e[a][2]-uz[k]);
 	}
 	}
 	if(dimensions==2)
 	{
 	dgamma[k][a]*=3;
-	dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][8]][8]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a])*(e[a][0]-u[k][0]);
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][8]][8]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a])*(e[a][0]-ux[k]);
 
 
-	dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][7]][7]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a])*(e[a][1]-u[k][1]);
+	dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][7]][7]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a])*(e[a][1]-uy[k]);
 
 
 	}
     if(dimensions==1)
     {
     	dgamma[k][a]*=3;
-		dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])*(e[a][0]-u[k][0]);
+		dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])*(e[a][0]-ux[k]);
 
     }
     
@@ -240,36 +240,36 @@ void wet::diffMD()
             
             if(d[k][0]==28 or d[d[k][0]][0]==28)
             {
-                dmu[k][0]*=3;
+                dmux[k]*=3;
 
 
-                dmu[k][1]*=3;
-                dmu[k][1]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][7]][7]]+mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]-mu[d[d[k][9]][9]]);
+                dmuy[k]*=3;
+                dmuy[k]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][7]][7]]+mu[d[d[k][7]][7]]-mu[d[d[k][9]][9]]-mu[d[d[k][9]][9]]);
             }
 
             if(d[k][1]==28 or d[d[k][1]][1]==28)
             {
-                dmu[k][0]*=3;
+                dmux[k]*=3;
 
 
-                dmu[k][1]*=3;
-                dmu[k][1]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][6]][6]]-mu[d[d[k][8]][8]]-mu[d[d[k][8]][8]]);
+                dmuy[k]*=3;
+                dmuy[k]-=t1/4*(mu[d[d[k][2]][2]]-mu[d[d[k][3]][3]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][6]][6]]-mu[d[d[k][8]][8]]-mu[d[d[k][8]][8]]);
             }
 
             if(d[k][2]==28 or d[d[k][2]][2]==28)
             {
-                dmu[k][0]*=3;
-                dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][8]][8]]+mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]-mu[d[d[k][9]][9]]);
+                dmux[k]*=3;
+                dmux[k]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][8]][8]]+mu[d[d[k][8]][8]]-mu[d[d[k][9]][9]]-mu[d[d[k][9]][9]]);
 
-                dmu[k][1]*=3;
+                dmuy[k]*=3;
             }
 
             if(d[k][3]==28 or d[d[k][3]][3]==28)
             {
-                dmu[k][0]*=3;
-                dmu[k][0]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][6]][6]]-mu[d[d[k][7]][7]]-mu[d[d[k][7]][7]]);
+                dmux[k]*=3;
+                dmux[k]-=t1/4*(mu[d[d[k][0]][0]]-mu[d[d[k][1]][1]])+t2/4*(mu[d[d[k][6]][6]]+mu[d[d[k][6]][6]]-mu[d[d[k][7]][7]]-mu[d[d[k][7]][7]]);
 
-                dmu[k][1]*=3;
+                dmuy[k]*=3;
             }
             
             //Work out values for rho
@@ -350,7 +350,7 @@ void wet::diffMD()
                 dgamma[k][a]*=3;
 
 
-				dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][7]][7]][a]+gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][9]][9]][a])*(e[a][1]-u[k][1]);
+				dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][7]][7]][a]+gamma[d[d[k][7]][7]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][9]][9]][a])*(e[a][1]-uy[k]);
 
 
             }
@@ -360,7 +360,7 @@ void wet::diffMD()
                 dgamma[k][a]*=3;
 
 
-				dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][6]][6]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][8]][8]][a])*(e[a][1]-u[k][1]);
+				dgamma[k][a]-=t1/4*(gamma[d[d[k][2]][2]][a]-gamma[d[d[k][3]][3]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][6]][6]][a]-gamma[d[d[k][8]][8]][a]-gamma[d[d[k][8]][8]][a])*(e[a][1]-uy[k]);
 
    }
 
@@ -369,7 +369,7 @@ void wet::diffMD()
                 dgamma[k][a]*=3;
 
 
-				dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][8]][8]][a]+gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][9]][9]][a])*(e[a][0]-u[k][0]);
+				dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][8]][8]][a]+gamma[d[d[k][8]][8]][a]-gamma[d[d[k][9]][9]][a]-gamma[d[d[k][9]][9]][a])*(e[a][0]-ux[k]);
 
             }
 
@@ -378,7 +378,7 @@ void wet::diffMD()
                 dgamma[k][a]*=3;
 
 
-				dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][6]][6]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][7]][7]][a])*(e[a][0]-u[k][0]);
+				dgamma[k][a]-=t1/4*(gamma[d[d[k][0]][0]][a]-gamma[d[d[k][1]][1]][a])+t2/4*(gamma[d[d[k][6]][6]][a]+gamma[d[d[k][6]][6]][a]-gamma[d[d[k][7]][7]][a]-gamma[d[d[k][7]][7]][a])*(e[a][0]-ux[k]);
 
          
             }

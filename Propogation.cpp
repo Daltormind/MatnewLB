@@ -6,8 +6,8 @@ void wet ::Propogation()
 {
 	//g propogation
 	
-	g[k][0]=g[k][0];
-	h[k][0]=h[k][0];
+	g0[k]=g0[k];
+	h0[k]=h0[k];
 	
 	for(a=1;a<19;a++)
 		{
@@ -17,8 +17,8 @@ void wet ::Propogation()
 		
 		}
 	
-	g[k][1]=g[d[k][2]][1];
-	g[k][2]=g[d[k][1]][2];
+	g1[k]=g[d[k][2]][1];
+	g2[k]=g[d[k][1]][2];
 	
 	
 
