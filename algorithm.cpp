@@ -26,7 +26,7 @@ void wet::algorithm()
 		//cout << "t = " << st << " El=" << El << " Eg=" << Eg << " Ei=" << Ei  << " Et=" << Et << endl;
 		writemoments(st);
 
-		writevelocity(st);
+		//writevelocity(st);
 		}
 
 

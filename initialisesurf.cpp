@@ -20,7 +20,7 @@ void wet::initialisesurface()
 	}
 	}
 	
-	//exchangemask();
+	exchangemask();
 	
 	for(k=k1;k<k2;k++)
 	{	
@@ -46,6 +46,8 @@ void wet::initialisesurface()
 		if(mask[d[k][17]]==28 and mask[k]!=28){mask[k]=1;}
 		
 	}
+	
+	exchangemask();
 	
 	for(k=k1;k<k2;k++)
 	{	

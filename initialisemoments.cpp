@@ -89,6 +89,9 @@ void wet::initialisemoments()
 	
 	}
 	}
+	
+	
+	exchangeC();
 
 	for(k=k1;k<k2;++k)//Initialise free energy and density
 	{
@@ -237,7 +240,8 @@ void wet::initialisemoments()
 		}
 	}
 
-
+exchangemu();
+exchangerho();
 
 
 	for(k=k1;k<k2;++k)
@@ -257,6 +261,6 @@ tau[k]=1.0/(C[k]/tau1+(1-C[k])/tau2);
 }
 
 
-
+exchangep();
 
 }

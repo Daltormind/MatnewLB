@@ -6,11 +6,12 @@
 //#include <mpi.h>
 #include <string>
 #include <sstream>
+#include "mpi.h"
 
 
 using namespace std;
 
-
+#define ROOT 0
 const double e[19][3]={{0,0,0},{1,0,0},{-1,0,0},{0,1,0},{0,-1,0},{0,0,1},{0,0,-1},{1,1,0},{-1,1,0},{1,-1,0},{-1,-1,0},{0,1,1},{0,-1,1},{0,1,-1},{0,-1,-1},{1,0,1},{-1,0,1},{1,0,-1},{-1,0,-1}};
 
 //const double t[19]={1.0/3.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/18.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0,1.0/36.0};
@@ -26,13 +27,15 @@ const int com[19]={0,2,1,4,3,6,5,10,9,8,7,14,13,12,11,18,17,16,15};
 class wet
 {
 
+	int size;
+
 	int ProcessN; //Number of nodes the processor is dealing with
 
 	double *C , *mu , *p, *rho, *mask,*muh; //Assigning memory space to the composition
 
 	//double (*u)[3];
 	
-	double G[2];
+	double G[3];
 
 	int (*d)[18]; //Assigning memory for neibour arrays
 
@@ -72,7 +75,7 @@ class wet
 
 	double *hc0,*hc1,*hc2,*hc3,*hc4,*hc5,*hc6,*hc7,*hc8,*hc9,*hc10,*hc11,*hc12,*hc13,*hc14,*hc15,*hc16,*hc17,*hc18 ; //The sinhcle particle probability functions
 	
-	
+	double *CGlobal,*maskGlobal; //Global variable for writing
 
 	//double (*ge)[19], (*he)[19]; //Equiliberium functions
 
@@ -115,6 +118,9 @@ class wet
 	double El,Eg,Ei,Et,Ekin;//Energy values
 
 	//double *dCt , *dmut ,*drhot,*dpt,*dgammat;
+	
+		int leftProcess, rightProcess;	//identification numbers for neighboor processes in the ring
+
 
     double gamma0,gamma1,gamma2,gamma3,gamma4,gamma5,gamma6,gamma7,gamma8,gamma9,gamma10,gamma11,gamma12,gamma13,gamma14,gamma15,gamma16,gamma17,gamma18,gammat;
         double gammar0,gammar1,gammar2,gammar3,gammar4,gammar5,gammar6,gammar7,gammar8,gammar9,gammar10,gammar11,gammar12,gammar13,gammar14,gammar15,gammar16,gammar17,gammar18,gammart;
@@ -194,7 +200,18 @@ class wet
 	void momentsbound();
 	void computeenergy();
 	void propset();
+	void exchangeC(void);
+	void generateCGlobal(void);
+	void exchangemu(void);
+	void exchangerho(void);
+	void exchangep(void);
+	void exchangevel(void);
+	void exchangemask(void);
+	void generateglobalmask(void);
+	
 	public:
+	
+		int rank;
 
 		void algorithm();
 		wet(void);

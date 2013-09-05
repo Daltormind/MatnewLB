@@ -5,7 +5,7 @@
 
 void wet::initialise()
 {
-	/*
+	
 	MPI_Status statusLeft, statusRight;
 
 	//periodic boundary condition in processors
@@ -23,31 +23,34 @@ void wet::initialise()
 
 	N=Lx*Ly*Lz;
 	
-	if(size>LX)
+	if(size>Lx)
 	{
 		cout << "Process " << rank << ": ERROR, too many processes for this lattice. Abort!" << endl;
 		MPI_Abort(MPI_COMM_WORLD, 112);
 	}
 
-	if(size > (int)(LX/3))
+	if(size > (int)(Lx/3))
 		cout << "Process "<< rank <<": WARNING, very large number of processes for this lattice" << endl; 
 
 	if(rank==ROOT)
-		ProcessN=LY*LZ*((LX-LX%size)/size + LX%size + 4);	//Number of YZ plane for root process plus neighboors
+		ProcessN=Ly*Lz*((Lx-Lx%size)/size + Lx%size + 4);	//Number of YZ plane for root process plus neighboors
 	else
-		ProcessN=LY*LZ*((LX-LX%size)/size+4);			    //Number of YZ plane for other processes
+		ProcessN=Ly*Lz*((Lx-Lx%size)/size+4);			    //Number of YZ plane for other processes
 
-	k1 = 2*LY*LZ;			//k where real lattice starts
-	k2 = ProcessN-2*LY*LZ;		//k where real lattice ends
+	k1 = 2*Ly*Lz;			//k where real lattice starts
+	k2 = ProcessN-2*Ly*Lz;		//k where real lattice ends
 	
 	//Setting up different processors done.
-	*/
+	
 	
 	cout << "Entered initialise" << endl;
+	
+	/*
 	N=Lx*Ly*Lz;
 	ProcessN=N;
 	k1 = 0;			//k where real lattice starts
 	k2 = N;		//k where real lattice ends
+	*/
 	
 	cs2=1.0/3.0;
 	dt=1.0;
@@ -72,6 +75,10 @@ void wet::initialise()
 	}
 
 	Q=19;
+	
+	CGlobal=new double[N];
+	
+	maskGlobal=new double[N];
 
 	d=new int[ProcessN][18]; //Array which holds neigbour values
 
@@ -226,6 +233,6 @@ void wet::initialise()
 	
 	
 
-	writevelocity(0);
+	//writevelocity(0);
 	cout << "Finished initialise" << endl;
 }

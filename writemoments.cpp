@@ -5,12 +5,19 @@
 
 void wet::writemoments(long int in)
 {
+	
+	
+	
+	
 	int i, j, h;
 	ofstream file;
 	char filename1[20];
 		string filename;
         
         //------------------------- Write the composition File------------------------
+        
+        generateCGlobal();
+        generateglobalmask();
         
         snprintf(filename1,20,"/sC%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
@@ -25,9 +32,9 @@ void wet::writemoments(long int in)
 				for( j = 0 ; j < Ly ; j++) 
 				{
 					k = h + j*Lz + i*Ly*Lz;
-					if(mask[k]==28){file << -2 << " " ;}
+					if(maskGlobal[k]==28){file << -2 << " " ;}
 					
-					else{file << C[k] << " " ;}
+					else{file << CGlobal[k] << " " ;}
 						
 				}
 				file << endl;
@@ -36,8 +43,10 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		/*
 		//--------------------------- Write free energy file---------------------------
+		
+		generatemuGlobal();
 		
 		snprintf(filename1,20,"/smu%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
@@ -61,7 +70,8 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		*/
+		/*
 		//-------------------------- Write Density File -------------------------------
 		
 		snprintf(filename1,20,"/srho%ld.m",in);			//Create a name for file that contain data
@@ -87,7 +97,11 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		
+		*/
+		/*
 		//------------------------- Write pressure File----------------------------------
+		
+		generatepGlobal();
 		
 		snprintf(filename1,20,"/sp%ld.m",in);			//Create a name for file that contain data
 		filename=folder+filename1;
@@ -111,7 +125,7 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		*/
 		/*
 		//------------------------ Write f File -----------------------------------------
 		
@@ -138,7 +152,7 @@ void wet::writemoments(long int in)
 		
 		file.close();
 		*/
-		/*
+		
 		//--------------------------- Write mask ---------------------------------------
 		
 		snprintf(filename1,20,"/smask%ld.m",in);			//Create a name for file that contain data
@@ -163,7 +177,7 @@ void wet::writemoments(long int in)
 		}
 		
 		file.close();
-		
+		/*
 		//--------------------------- Write Ctest ---------------------------------------
 		
 		snprintf(filename1,20,"/sCt%ld.m",in);			//Create a name for file that contain data

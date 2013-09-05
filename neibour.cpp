@@ -43,7 +43,7 @@ void wet::neibour()
 	z=zk+geo[a][2];
 	
 	
-	x=mod(x,Lx);
+	//x=mod(x,Lx);
 	y=mod(y,Ly);
 	z=mod(z,Lz);
 	
@@ -51,7 +51,7 @@ void wet::neibour()
 	
 	d[k][a]=z+y*Lz+x*Ly*Lz;
 	}
-	/*
+	
 	if(k<k1+Ly*Lz or k>=k2-Ly*Lz)
 	{
 		for(a=0;a<Q-1;a++)
@@ -70,7 +70,7 @@ void wet::neibour()
 	d[d[k][a]][a]=z+y*Lz+x*Ly*Lz;
 	}
 	}
-	*/
+	
 	
 	}
 	 
